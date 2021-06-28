@@ -11,6 +11,7 @@ import 'package:project/models/Symptom.dart';
 import 'package:project/models/TypeOfTransport.dart';
 
 class Victim {
+  int id;
   String name;
   DateTime birthdate;
   int age;
@@ -31,7 +32,7 @@ class Victim {
   String comments;
   String typeOfEmergency;
   // ignore: non_constant_identifier_names
-  DateTime SIV_SAV;
+  DateTime siv_sav;
 
   TypeOfTransport typeOfTransport;
   NonTransportReason nonTransportReason;
@@ -46,46 +47,104 @@ class Victim {
   ProcedureScale procedureScale;
   Symptom symptom;
 
-  factory Victim.fromJson(Map<String, dynamic> json){
+  Victim(
+      {this.id,
+      this.name,
+      this.birthdate,
+      this.age,
+      this.gender,
+      this.identityNumber,
+      this.address,
+      this.circumstances,
+      this.diseaseHistory,
+      this.allergies,
+      this.lastMeal,
+      this.lastMealTime,
+      this.usualMedication,
+      this.riskSituation,
+      this.medicalFollowup,
+      this.healthUnitOrigin,
+      this.healthUnitDestination,
+      this.episodeNumber,
+      this.comments,
+      this.typeOfEmergency,
+        // ignore: non_constant_identifier_names
+      this.siv_sav,
+      this.typeOfTransport,
+      this.nonTransportReason,
+      this.occurrence,
+      this.evaluations,
+      this.pharmacies,
+      this.procedureRCP,
+      this.procedureVentilation,
+      this.procedureProtocol,
+      this.procedureCirculation,
+      this.procedureScale,
+      this.symptom});
+
+  factory Victim.fromJson(Map<String, dynamic> json) {
     TypeOfTransport typeOfTransport = TypeOfTransport.fromJson(json['type_of_transport']);
     NonTransportReason nonTransportReason = NonTransportReason.fromJson(json['non_transport_reason']);
     Occurrence occurrence = Occurrence.fromJsonSimplified(json['occurrence']);
 
-    return null;
+    return Victim(
+      id: json['id'],
+      name: json['name'],
+      birthdate: json['birthdate'],
+      age: json['age'],
+      gender: json['gender'],
+      identityNumber: json['identity_number'],
+      address: json['witnessed'],
+      circumstances: json['witnessed'],
+      diseaseHistory: json['witnessed'],
+      allergies: json['witnessed'],
+      lastMeal: json['witnessed'],
+      lastMealTime: json['witnessed'],
+      usualMedication: json['witnessed'],
+      riskSituation: json['witnessed'],
+      medicalFollowup: json['witnessed'],
+      healthUnitOrigin: json['witnessed'],
+      healthUnitDestination: json['witnessed'],
+      episodeNumber: json['witnessed'],
+      comments: json['witnessed'],
+      typeOfEmergency: json['witnessed'],
+      siv_sav: json['witnessed'],
+      typeOfTransport: typeOfTransport,
+      nonTransportReason: nonTransportReason,
+      occurrence: occurrence,
+      evaluations: null,
+      pharmacies: null,
+      procedureRCP: null,
+      procedureVentilation: null,
+      procedureProtocol: null,
+      procedureCirculation: null,
+      procedureScale: null,
+      symptom: null
+    );
+  }
+
+  factory Victim.fromJsonDetail(Map<String, dynamic> json) {
+    Victim victim = Victim.fromJson(json);
+
+    List<Evaluation> evaluations;
+    for (var evaluationJson in json['evaluations']) {
+      evaluations.add(Evaluation.fromJson(evaluationJson));
+    }
+    victim.evaluations = evaluations;
+    
+    List<Pharmacy> pharmacies;
+    for (var pharmacyJson in json['pharmacies']) {
+      pharmacies.add(Pharmacy.fromJson(pharmacyJson));
+    }
+    victim.pharmacies = pharmacies;
+    
+    victim.procedureRCP = ProcedureRCP.fromJson(json['procedure_rcp']);
+    victim.procedureVentilation = ProcedureVentilation.fromJson(json['procedure_ventilation']);
+    victim.procedureProtocol = ProcedureProtocol.fromJson(json['procedure_protocol']);
+    victim.procedureCirculation = ProcedureCirculation.fromJson(json['procedure_circulation']);
+    victim.procedureScale = ProcedureScale.fromJson(json['procedure_scale']);
+    victim.symptom = Symptom.fromJson(json['symptom']);
+
+    return victim;
   }
 }
-
-// *name Text
-// *birthdate Date
-// *age int
-// *gender Text
-// *identity_number Text
-// *address Text
-// *circumstances Text
-// *disease_history Text
-// *allergies Text
-// *last_meal Text
-// *last_meal_time DateTime
-// *usual_medication Text
-// *risk_situation Text
-// *medical_followup Boolean
-// *health_unit_origin Text
-// *health_unit_destination Text
-// *episode_number int
-// *comments Text
-// *type_of_emergency Text
-// *SIV_SAV DateTime
-//
-// *Type_Of_Transport
-// *Non_Transport_Reason
-// *Occurrence
-//
-// ---Details
-// evaluations = EvaluationSerializer(read_only=True, many=True)
-// pharmacies = PharmacySerializer(many=True, read_only=True)
-// procedure_rcp = ProcedureRCPSerializer(read_only=True)
-// procedure_ventilation = ProcedureVentilationSerializer(read_only=True)
-// procedure_protocol = ProcedureProtocolSerializer(read_only=True)
-// procedure_circulation = ProcedureCirculationSerializer(read_only=True)
-// procedure_scale = ProcedureScaleSerializer(read_only=True)
-// symptom = SymptomSerializer(read_only=True)
