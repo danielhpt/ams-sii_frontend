@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:project/models/Evaluation.dart';
 import 'package:project/models/Occurrence.dart';
+import 'package:project/models/Pharmacy.dart';
 import 'package:project/models/ProcedureCirculation.dart';
 import 'package:project/models/ProcedureProtocol.dart';
 import 'package:project/models/ProcedureRCP.dart';
@@ -198,11 +200,13 @@ Future<List<Occurrence>> getTeamOccurrencesList(int teamId) async {
   }
 }
 
-Future<Occurrence> postTeamOccurrence(int teamId, Map<String, dynamic> json) async {
+Future<Occurrence> postTeamOccurrence(
+    int teamId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.post(Uri.http(url, 'teams/' + teamId.toString() + '/occurrences'),
+  final response = await http.post(
+      Uri.http(url, 'teams/' + teamId.toString() + '/occurrences'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -221,7 +225,8 @@ Future<Occurrence> getOccurrence(int occurrenceId) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.get(Uri.http(url, 'occurrences/' + occurrenceId.toString()),
+  final response = await http.get(
+      Uri.http(url, 'occurrences/' + occurrenceId.toString()),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -234,11 +239,13 @@ Future<Occurrence> getOccurrence(int occurrenceId) async {
   }
 }
 
-Future<Occurrence> putOccurrence(int occurrenceId, Map<String, dynamic> json) async {
+Future<Occurrence> putOccurrence(
+    int occurrenceId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.put(Uri.http(url, 'occurrences/' + occurrenceId.toString()),
+  final response = await http.put(
+      Uri.http(url, 'occurrences/' + occurrenceId.toString()),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -277,11 +284,13 @@ Future<List<Victim>> getOccurrenceVictimsList(int occurrenceId) async {
   }
 }
 
-Future<Victim> postOccurrenceVictim(int occurrenceId, Map<String, dynamic> json) async {
+Future<Victim> postOccurrenceVictim(
+    int occurrenceId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.post(Uri.http(url, 'occurrences/' + occurrenceId.toString() + '/victims'),
+  final response = await http.post(
+      Uri.http(url, 'occurrences/' + occurrenceId.toString() + '/victims'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -320,11 +329,13 @@ Future<List<State>> getOccurrenceStatesList(int occurrenceId) async {
   }
 }
 
-Future<State> postOccurrenceState(int occurrenceId, Map<String, dynamic> json) async {
+Future<State> postOccurrenceState(
+    int occurrenceId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.post(Uri.http(url, 'occurrences/' + occurrenceId.toString() + '/victims'),
+  final response = await http.post(
+      Uri.http(url, 'occurrences/' + occurrenceId.toString() + '/victims'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -338,31 +349,190 @@ Future<State> postOccurrenceState(int occurrenceId, Map<String, dynamic> json) a
   }
 }
 
-// todo
 // victims/<int:victim_id>/
-// get
-// put
+Future<Victim> getVictim(int victimId) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.get(
+      Uri.http(url, 'victims/' + victimId.toString()),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      });
+
+  if (response.statusCode == 200) {
+    return Victim.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to get Victim.');
+  }
+}
+
+Future<Victim> putVictim(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.put(
+      Uri.http(url, 'victims/' + victimId.toString()),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 200) {
+    return Victim.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to put Victim.');
+  }
+}
 
 // victims/<int:victim_id>/pharmacies/
-// get
-// post
+Future<List<Pharmacy>> getVictimPharmaciesList(int victimId) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.get(
+      Uri.http(url, 'victims/' + victimId.toString() + '/pharmacies'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      });
+
+  if (response.statusCode == 200) {
+    List<dynamic> array = jsonDecode(response.body);
+
+    List<Pharmacy> pharmacies = array.map((element) {
+      return Pharmacy.fromJson(element);
+    }).toList();
+
+    return pharmacies;
+  } else {
+    throw Exception('Failed to get Pharmacies.');
+  }
+}
+
+Future<Pharmacy> postVictimPharmacy(
+    int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.post(
+      Uri.http(url, 'victims/' + victimId.toString() + '/pharmacies'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 201) {
+    return Pharmacy.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to post Pharmacy.');
+  }
+}
 
 // victims/<int:victim_id>/pharmacies/<int:pharmacy_id>/
-// get
+Future<Pharmacy> getVictimPharmacy(int victimId, int pharmacyId) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.get(
+      Uri.http(
+          url,
+          'victims/' +
+              victimId.toString() +
+              '/pharmacies/' +
+              pharmacyId.toString()),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      });
+
+  if (response.statusCode == 200) {
+    return Pharmacy.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to get Pharmacy.');
+  }
+}
 
 // victims/<int:victim_id>/evaluations/
-// get
-// post
+Future<List<Evaluation>> getVictimEvaluationsList(int victimId) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.get(
+      Uri.http(url, 'victims/' + victimId.toString() + '/evaluations'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      });
+
+  if (response.statusCode == 200) {
+    List<dynamic> array = jsonDecode(response.body);
+
+    List<Evaluation> evaluations = array.map((element) {
+      return Evaluation.fromJson(element);
+    }).toList();
+
+    return evaluations;
+  } else {
+    throw Exception('Failed to get Evaluations.');
+  }
+}
+
+Future<Evaluation> postVictimEvaluation(
+    int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.post(
+      Uri.http(url, 'victims/' + victimId.toString() + '/evaluations'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 201) {
+    return Evaluation.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to post Evaluation.');
+  }
+}
 
 // victims/<int:victim_id>/evaluations/<int:evaluation_id>/
-// get
+Future<Evaluation> getVictimEvaluation(int victimId, int evaluationId) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.get(
+      Uri.http(
+          url,
+          'victims/' +
+              victimId.toString() +
+              '/evaluations/' +
+              evaluationId.toString()),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      });
 
+  if (response.statusCode == 200) {
+    return Evaluation.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to get Pharmacy.');
+  }
+}
+
+// victims/<int:victim_id>/symptom/
 Future<Symptom> postSymptom(int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
 
-  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/symptom'),
+  final response = await http.post(
+      Uri.http(url, 'victims/' + victimId.toString() + '/symptom'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -380,7 +550,8 @@ Future<Symptom> putSymptom(int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/symptom'),
+  final response = await http.put(
+      Uri.http(url, 'victims/' + victimId.toString() + '/symptom'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -394,13 +565,15 @@ Future<Symptom> putSymptom(int victimId, Map<String, dynamic> json) async {
   }
 }
 
-
-Future<ProcedureRCP> postProcedureRCP(int victimId, Map<String, dynamic> json) async {
+// victims/<int:victim_id>/procedure_rcp/
+Future<ProcedureRCP> postProcedureRCP(
+    int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
 
-  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_rcp'),
+  final response = await http.post(
+      Uri.http(url, 'victims/' + victimId.toString() + '/procedure_rcp'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -414,11 +587,13 @@ Future<ProcedureRCP> postProcedureRCP(int victimId, Map<String, dynamic> json) a
   }
 }
 
-Future<ProcedureRCP> putProcedureRCP(int victimId, Map<String, dynamic> json) async {
+Future<ProcedureRCP> putProcedureRCP(
+    int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_rcp'),
+  final response = await http.put(
+      Uri.http(url, 'victims/' + victimId.toString() + '/procedure_rcp'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -432,13 +607,16 @@ Future<ProcedureRCP> putProcedureRCP(int victimId, Map<String, dynamic> json) as
   }
 }
 
-
-Future<ProcedureVentilation> postProcedureVentilation(int victimId, Map<String, dynamic> json) async {
+// victims/<int:victim_id>/procedure_ventilation/
+Future<ProcedureVentilation> postProcedureVentilation(
+    int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
 
-  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_ventilation'),
+  final response = await http.post(
+      Uri.http(
+          url, 'victims/' + victimId.toString() + '/procedure_ventilation'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -452,11 +630,14 @@ Future<ProcedureVentilation> postProcedureVentilation(int victimId, Map<String, 
   }
 }
 
-Future<ProcedureVentilation> putProcedureVentilation(int victimId, Map<String, dynamic> json) async {
+Future<ProcedureVentilation> putProcedureVentilation(
+    int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_ventilation'),
+  final response = await http.put(
+      Uri.http(
+          url, 'victims/' + victimId.toString() + '/procedure_ventilation'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -470,13 +651,15 @@ Future<ProcedureVentilation> putProcedureVentilation(int victimId, Map<String, d
   }
 }
 
-
-Future<ProcedureProtocol> postProcedureProtocol(int victimId, Map<String, dynamic> json) async {
+// victims/<int:victim_id>/procedure_protocol/
+Future<ProcedureProtocol> postProcedureProtocol(
+    int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
 
-  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_protocol'),
+  final response = await http.post(
+      Uri.http(url, 'victims/' + victimId.toString() + '/procedure_protocol'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -490,11 +673,13 @@ Future<ProcedureProtocol> postProcedureProtocol(int victimId, Map<String, dynami
   }
 }
 
-Future<ProcedureProtocol> putProcedureProtocol(int victimId, Map<String, dynamic> json) async {
+Future<ProcedureProtocol> putProcedureProtocol(
+    int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_protocol'),
+  final response = await http.put(
+      Uri.http(url, 'victims/' + victimId.toString() + '/procedure_protocol'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -508,13 +693,16 @@ Future<ProcedureProtocol> putProcedureProtocol(int victimId, Map<String, dynamic
   }
 }
 
-
-Future<ProcedureCirculation> postProcedureCirculation(int victimId, Map<String, dynamic> json) async {
+// victims/<int:victim_id>/procedure_circulation/
+Future<ProcedureCirculation> postProcedureCirculation(
+    int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
 
-  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_circulation'),
+  final response = await http.post(
+      Uri.http(
+          url, 'victims/' + victimId.toString() + '/procedure_circulation'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -528,11 +716,14 @@ Future<ProcedureCirculation> postProcedureCirculation(int victimId, Map<String, 
   }
 }
 
-Future<ProcedureCirculation> putProcedureCirculation(int victimId, Map<String, dynamic> json) async {
+Future<ProcedureCirculation> putProcedureCirculation(
+    int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_circulation'),
+  final response = await http.put(
+      Uri.http(
+          url, 'victims/' + victimId.toString() + '/procedure_circulation'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -546,17 +737,19 @@ Future<ProcedureCirculation> putProcedureCirculation(int victimId, Map<String, d
   }
 }
 
-
-Future<ProcedureScale> postProcedureScale(int victimId, Map<String, dynamic> json) async {
+// victims/<int:victim_id>/procedure_scale/
+Future<ProcedureScale> postProcedureScale(
+    int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
 
-  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_scale'),
+  final response = await http.post(
+      Uri.http(url, 'victims/' + victimId.toString() + '/procedure_scale'),
       headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': token
-  },
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
@@ -566,11 +759,13 @@ Future<ProcedureScale> postProcedureScale(int victimId, Map<String, dynamic> jso
   }
 }
 
-Future<ProcedureScale> putProcedureScale(int victimId, Map<String, dynamic> json) async {
+Future<ProcedureScale> putProcedureScale(
+    int victimId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_scale'),
+  final response = await http.put(
+      Uri.http(url, 'victims/' + victimId.toString() + '/procedure_scale'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -583,4 +778,3 @@ Future<ProcedureScale> putProcedureScale(int victimId, Map<String, dynamic> json
     throw Exception('Failed to put Scale Procedure.');
   }
 }
-
