@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project/widgets/HomePage.dart';
+import 'package:project/widgets/HomeTemp.dart';
 
-class HomePageState extends State<HomePage> {
+class HomePageState extends State<HomeTemp> {
   int _counter = 0;
 
   void _incrementCounter() {
@@ -14,7 +14,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Teste'),
       ),
       body: Center(
         child: Column(

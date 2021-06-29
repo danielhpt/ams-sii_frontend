@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/widgets/HomePage.dart';
+import 'package:project/widgets/MainPage.dart';
 
 void main() {
   runApp(App());
@@ -21,7 +21,7 @@ class App extends StatelessWidget {
          ThemeMode.light for light theme,
          ThemeMode.dark for dark theme
       */
-      home: HomePage(title: 'SIREPH Técnicos Home Page'),
+      home: MainPage(title: 'SIREPH Técnicos Home Page'),
     );
   }
 }
