@@ -2,7 +2,13 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:project/models/Occurrence.dart';
+import 'package:project/models/ProcedureCirculation.dart';
+import 'package:project/models/ProcedureProtocol.dart';
+import 'package:project/models/ProcedureRCP.dart';
+import 'package:project/models/ProcedureScale.dart';
+import 'package:project/models/ProcedureVentilation.dart';
 import 'package:project/models/State.dart';
+import 'package:project/models/Symptom.dart';
 import 'package:project/models/Team.dart';
 import 'package:project/models/User.dart';
 import 'package:project/models/Victim.dart';
@@ -351,26 +357,230 @@ Future<State> postOccurrenceState(int occurrenceId, Map<String, dynamic> json) a
 // victims/<int:victim_id>/evaluations/<int:evaluation_id>/
 // get
 
-// victims/<int:victim_id>/symptom/
-// post
-// put
+Future<Symptom> postSymptom(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
 
-// victims/<int:victim_id>/procedure_rcp/
-// post
-// put
+  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/symptom'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
 
-// victims/<int:victim_id>/procedure_ventilation/
-// post
-// put
+  if (response.statusCode == 201) {
+    return Symptom.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to post symptom.');
+  }
+}
 
-// victims/<int:victim_id>/procedure_protocol/
-// post
-// put
+Future<Symptom> putSymptom(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/symptom'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
 
-// victims/<int:victim_id>/procedure_circulation/
-// post
-// put
+  if (response.statusCode == 200) {
+    return Symptom.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to put symptom.');
+  }
+}
 
-// victims/<int:victim_id>/procedure_scale/
-// post
-// put
+
+Future<ProcedureRCP> postProcedureRCP(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+
+  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_rcp'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 201) {
+    return ProcedureRCP.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to post RCP Procedure.');
+  }
+}
+
+Future<ProcedureRCP> putProcedureRCP(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_rcp'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 200) {
+    return ProcedureRCP.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to put RCP Procedure.');
+  }
+}
+
+
+Future<ProcedureVentilation> postProcedureVentilation(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+
+  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_ventilation'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 201) {
+    return ProcedureVentilation.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to post Ventilation Procedure.');
+  }
+}
+
+Future<ProcedureVentilation> putProcedureVentilation(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_ventilation'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 200) {
+    return ProcedureVentilation.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to put Ventilation Procedure.');
+  }
+}
+
+
+Future<ProcedureProtocol> postProcedureProtocol(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+
+  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_protocol'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 201) {
+    return ProcedureProtocol.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to post Protocol Procedure.');
+  }
+}
+
+Future<ProcedureProtocol> putProcedureProtocol(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_protocol'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 200) {
+    return ProcedureProtocol.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to put Protocol Procedure.');
+  }
+}
+
+
+Future<ProcedureCirculation> postProcedureCirculation(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+
+  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_circulation'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 201) {
+    return ProcedureCirculation.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to post Circulation Procedure.');
+  }
+}
+
+Future<ProcedureCirculation> putProcedureCirculation(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_circulation'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 200) {
+    return ProcedureCirculation.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to put Circulation Procedure.');
+  }
+}
+
+
+Future<ProcedureScale> postProcedureScale(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+
+  final response = await http.post(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_scale'),
+      headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': token
+  },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 201) {
+    return ProcedureScale.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to post Scale Procedure.');
+  }
+}
+
+Future<ProcedureScale> putProcedureScale(int victimId, Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.put(Uri.http(url, 'victims/' + victimId.toString() + '/procedure_scale'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 200) {
+    return ProcedureScale.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to put Scale Procedure.');
+  }
+}
+
