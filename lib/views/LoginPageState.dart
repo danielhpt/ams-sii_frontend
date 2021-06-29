@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Login.dart';
 import 'package:project/utils/Utils.dart';
-import 'package:project/widgets/HomeTemp.dart';
+import 'package:project/widgets/HomePage.dart';
 import 'package:project/widgets/LoginForm.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:progress_indicator_button/progress_button.dart';
@@ -25,29 +25,41 @@ class LoginPageState extends State<LoginPage> {
         title: Text('Login'),
       ),
       body: Container(
+        padding: EdgeInsets.all(15),
         child: Column(
           children: [
+            Image.asset(
+              'assets/star-of-life.png',
+              height: 120,
+              width: 120,
+            ),
             LoginForm(
               formKey: formKey,
               login: login,
             ),
-            ProgressButton(
-                child: Text('Log In'),
+            Container(
+              padding: EdgeInsets.symmetric(
+                vertical: 15,
+                horizontal: 70
+              ),
+              child: ProgressButton(
+                child: Text(
+                  'Log In',
+                  style: TextStyle(fontSize: 20),
+                ),
                 borderRadius: BorderRadius.all(Radius.circular(8)),
                 strokeWidth: 2,
                 onPressed: (AnimationController controller) async {
-                  print('HERE 1');
                   controller.forward();
                   if (formKey.currentState.validate()) {
-                    print('HERE 2');
                     formKey.currentState.save();
-                    print('HERE 3');
                     try {
                       var s = await postToken(login);
-                      print('HERE 4');
                       controller.reset();
-                      print('HERE 5');
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomeTemp()), (route) => false);
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage()),
+                              (route) => false);
                     } catch (e) {
                       print('HERE 6');
                       controller.reset();
@@ -59,9 +71,10 @@ class LoginPageState extends State<LoginPage> {
                     showToast("Valor(es) Invalido(s)");
                   }
                 },
-            )
+              ),
+            ),
           ],
-        )
+        ),
       ),
     );
   }

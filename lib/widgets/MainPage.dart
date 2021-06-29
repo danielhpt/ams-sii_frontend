@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/LoginPage.dart';
 
-import 'Home.dart';
+import 'HomePage.dart';
 
 class MainPage extends StatelessWidget {
   final String title;
@@ -13,7 +13,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     token = 'a'; //todo
     if (token != null) {
-      return Home(title: 'SIREPH Técnicos Home Page');
+      return HomePage(title: 'SIREPH Técnicos Home Page');
     }
     return LoginPage();
   }

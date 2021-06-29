@@ -18,6 +18,7 @@ import 'package:project/models/Victim.dart';
 
 String url = '192.168.1.65:8000';
 String token;
+User user;
 
 // token/
 Future<String> postToken(Login login) async {
