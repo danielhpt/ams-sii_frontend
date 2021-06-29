@@ -11,7 +11,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    token = 'a'; //todo
+    //token = 'a'; //todo
     if (token != null) {
       return HomePage(title: 'SIREPH Técnicos Home Page');
     }

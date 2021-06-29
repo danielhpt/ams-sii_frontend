@@ -38,10 +38,7 @@ class LoginPageState extends State<LoginPage> {
               login: login,
             ),
             Container(
-              padding: EdgeInsets.symmetric(
-                vertical: 15,
-                horizontal: 70
-              ),
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 70),
               child: ProgressButton(
                 child: Text(
                   'Log In',
@@ -58,8 +55,10 @@ class LoginPageState extends State<LoginPage> {
                       controller.reset();
                       Navigator.pushAndRemoveUntil(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                              (route) => false);
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  HomePage(title: 'SIREPH Técnicos Home Page')),
+                          (route) => false);
                     } catch (e) {
                       print('HERE 6');
                       controller.reset();
