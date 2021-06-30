@@ -169,7 +169,6 @@ Future<Team> putTeam(int teamId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  print(jsonEncode(json));
   final response = await http.put(
       Uri.http(url, '/api/teams/' + teamId.toString() + '/'),
       headers: <String, String>{

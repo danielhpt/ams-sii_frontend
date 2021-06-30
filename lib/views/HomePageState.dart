@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/models/User.dart';
+import 'package:project/utils/GPS.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/HomePage.dart';
@@ -6,6 +8,7 @@ import 'package:project/widgets/OccurrenceHistory.dart';
 import 'package:project/widgets/TeamPage.dart';
 
 class HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

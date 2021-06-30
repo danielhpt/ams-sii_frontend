@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/utils/GPS.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/LoginPage.dart';
 
@@ -12,9 +13,22 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //token = 'Token bcad18a4d8d00e497358565428865532dec27111'; //todo
-    if (token != null) {
-      return HomePage(title: 'SIREPH Técnicos Home Page');
-    }
-    return LoginPage();
+    return FutureBuilder(
+      builder: (context, location) {
+        if (!location.hasData) {
+          return Center(child: CircularProgressIndicator());
+        } else if (location == null) {
+          return Center(
+            child: Text('Localização Obrigatória'),
+          );
+        } else {
+          if (token != null) {
+            return HomePage(title: 'SIREPH Técnicos Home Page');
+          }
+          return LoginPage();
+        }
+      },
+      future: getLocation(),
+    );
   }
 }
