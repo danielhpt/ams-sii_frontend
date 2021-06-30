@@ -5,8 +5,6 @@ import 'package:project/widgets/Drawer.dart';
 import 'package:project/widgets/TeamPage.dart';
 
 class TeamPageState extends State<TeamPage> {
-  int userId = 1;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +74,7 @@ class TeamPageState extends State<TeamPage> {
         }
       },
       future:
-          getUserTeamActive(userId), //esta função tem de retornar uma Future
+          getUserTeamActive(user.id),
     );
   }
 }

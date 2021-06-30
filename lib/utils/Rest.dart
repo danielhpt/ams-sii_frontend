@@ -32,7 +32,7 @@ Future<String> postToken(Login login) async {
       body: jsonEncode(login.toJson()));
 
   if (response.statusCode == 200) {
-    token = 'Token ' + jsonDecode(response.body)["token"];
+    token = 'Token ' + jsonDecode(utf8.decode(response.body.runes.toList()))["token"];
     return token;
   } else {
     throw Exception('Failed to get Token.');
@@ -51,7 +51,7 @@ Future<User> getUserByToken() async {
       });
 
   if (response.statusCode == 200) {
-    return User.fromJson(jsonDecode(response.body));
+    return User.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to get User.');
   }
@@ -70,7 +70,7 @@ Future<User> getUser(int userId) async {
       });
 
   if (response.statusCode == 200) {
-    return User.fromJson(jsonDecode(response.body));
+    return User.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to get User.');
   }
@@ -89,7 +89,7 @@ Future<List<Team>> getUserTeamsList(int userId) async {
       });
 
   if (response.statusCode == 200) {
-    List<dynamic> array = jsonDecode(response.body);
+    List<dynamic> array = jsonDecode(utf8.decode(response.body.runes.toList()));
 
     List<Team> teams = array.map((element) {
       return Team.fromJson(element);
@@ -114,7 +114,7 @@ Future<Team> postUserTeam(int userId, Map<String, dynamic> json) async {
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return Team.fromJson(jsonDecode(response.body));
+    return Team.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post Team.');
   }
@@ -133,7 +133,7 @@ Future<List<Occurrence>> getUserOccurrencesList(int userId) async {
       });
 
   if (response.statusCode == 200) {
-    List<dynamic> array = jsonDecode(response.body);
+    List<dynamic> array = jsonDecode(utf8.decode(response.body.runes.toList()));
 
     List<Occurrence> occurrences = array.map((element) {
       return Occurrence.fromJson(element);
@@ -158,7 +158,7 @@ Future<Team> getTeam(int teamId) async {
       });
 
   if (response.statusCode == 200) {
-    return Team.fromJson(jsonDecode(response.body));
+    return Team.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to get Team.');
   }
@@ -177,7 +177,7 @@ Future<Team> putTeam(int teamId, Map<String, dynamic> json) async {
       body: jsonEncode(json));
 
   if (response.statusCode == 200) {
-    return Team.fromJson(jsonDecode(response.body));
+    return Team.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to put Team.');
   }
@@ -191,12 +191,12 @@ Future<Team> getUserTeamActive(int userId) async {
   final response = await http.get(
       Uri.http(url, '/api/team/active/' + userId.toString() + '/'),
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
+        'Content-Type': 'application/json',
         'Authorization': token
       });
 
   if (response.statusCode == 200) {
-    return Team.fromJson(jsonDecode(response.body));
+    return Team.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     return Team();
   }
@@ -215,7 +215,7 @@ Future<List<Occurrence>> getTeamOccurrencesList(int teamId) async {
       });
 
   if (response.statusCode == 200) {
-    List<dynamic> array = jsonDecode(response.body);
+    List<dynamic> array = jsonDecode(utf8.decode(response.body.runes.toList()));
 
     List<Occurrence> occurrences = array.map((element) {
       return Occurrence.fromJson(element);
@@ -241,7 +241,7 @@ Future<Occurrence> postTeamOccurrence(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return Occurrence.fromJson(jsonDecode(response.body));
+    return Occurrence.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post Occurrence.');
   }
@@ -260,7 +260,7 @@ Future<Occurrence> getOccurrence(int occurrenceId) async {
       });
 
   if (response.statusCode == 200) {
-    return Occurrence.fromJson(jsonDecode(response.body));
+    return Occurrence.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to get Occurrence.');
   }
@@ -280,7 +280,7 @@ Future<Occurrence> putOccurrence(
       body: jsonEncode(json));
 
   if (response.statusCode == 200) {
-    return Occurrence.fromJson(jsonDecode(response.body));
+    return Occurrence.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to put Occurrence.');
   }
@@ -300,7 +300,7 @@ Future<List<Victim>> getOccurrenceVictimsList(int occurrenceId) async {
       });
 
   if (response.statusCode == 200) {
-    List<dynamic> array = jsonDecode(response.body);
+    List<dynamic> array = jsonDecode(utf8.decode(response.body.runes.toList()));
 
     List<Victim> victims = array.map((element) {
       return Victim.fromJson(element);
@@ -327,7 +327,7 @@ Future<Victim> postOccurrenceVictim(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return Victim.fromJson(jsonDecode(response.body));
+    return Victim.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post Victim.');
   }
@@ -346,7 +346,7 @@ Future<List<State>> getOccurrenceStatesList(int occurrenceId) async {
       });
 
   if (response.statusCode == 200) {
-    List<dynamic> array = jsonDecode(response.body);
+    List<dynamic> array = jsonDecode(utf8.decode(response.body.runes.toList()));
 
     List<State> states = array.map((element) {
       return State.fromJson(element);
@@ -373,7 +373,7 @@ Future<State> postOccurrenceState(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return State.fromJson(jsonDecode(response.body));
+    return State.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post State.');
   }
@@ -392,7 +392,7 @@ Future<Victim> getVictim(int victimId) async {
       });
 
   if (response.statusCode == 200) {
-    return Victim.fromJson(jsonDecode(response.body));
+    return Victim.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to get Victim.');
   }
@@ -411,7 +411,7 @@ Future<Victim> putVictim(int victimId, Map<String, dynamic> json) async {
       body: jsonEncode(json));
 
   if (response.statusCode == 200) {
-    return Victim.fromJson(jsonDecode(response.body));
+    return Victim.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to put Victim.');
   }
@@ -430,7 +430,7 @@ Future<List<Pharmacy>> getVictimPharmaciesList(int victimId) async {
       });
 
   if (response.statusCode == 200) {
-    List<dynamic> array = jsonDecode(response.body);
+    List<dynamic> array = jsonDecode(utf8.decode(response.body.runes.toList()));
 
     List<Pharmacy> pharmacies = array.map((element) {
       return Pharmacy.fromJson(element);
@@ -456,7 +456,7 @@ Future<Pharmacy> postVictimPharmacy(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return Pharmacy.fromJson(jsonDecode(response.body));
+    return Pharmacy.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post Pharmacy.');
   }
@@ -481,7 +481,7 @@ Future<Pharmacy> getVictimPharmacy(int victimId, int pharmacyId) async {
       });
 
   if (response.statusCode == 200) {
-    return Pharmacy.fromJson(jsonDecode(response.body));
+    return Pharmacy.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to get Pharmacy.');
   }
@@ -500,7 +500,7 @@ Future<List<Evaluation>> getVictimEvaluationsList(int victimId) async {
       });
 
   if (response.statusCode == 200) {
-    List<dynamic> array = jsonDecode(response.body);
+    List<dynamic> array = jsonDecode(utf8.decode(response.body.runes.toList()));
 
     List<Evaluation> evaluations = array.map((element) {
       return Evaluation.fromJson(element);
@@ -526,7 +526,7 @@ Future<Evaluation> postVictimEvaluation(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return Evaluation.fromJson(jsonDecode(response.body));
+    return Evaluation.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post Evaluation.');
   }
@@ -551,7 +551,7 @@ Future<Evaluation> getVictimEvaluation(int victimId, int evaluationId) async {
       });
 
   if (response.statusCode == 200) {
-    return Evaluation.fromJson(jsonDecode(response.body));
+    return Evaluation.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to get Pharmacy.');
   }
@@ -572,7 +572,7 @@ Future<Symptom> postSymptom(int victimId, Map<String, dynamic> json) async {
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return Symptom.fromJson(jsonDecode(response.body));
+    return Symptom.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post symptom.');
   }
@@ -591,7 +591,7 @@ Future<Symptom> putSymptom(int victimId, Map<String, dynamic> json) async {
       body: jsonEncode(json));
 
   if (response.statusCode == 200) {
-    return Symptom.fromJson(jsonDecode(response.body));
+    return Symptom.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to put symptom.');
   }
@@ -613,7 +613,7 @@ Future<ProcedureRCP> postProcedureRCP(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return ProcedureRCP.fromJson(jsonDecode(response.body));
+    return ProcedureRCP.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post RCP Procedure.');
   }
@@ -633,7 +633,7 @@ Future<ProcedureRCP> putProcedureRCP(
       body: jsonEncode(json));
 
   if (response.statusCode == 200) {
-    return ProcedureRCP.fromJson(jsonDecode(response.body));
+    return ProcedureRCP.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to put RCP Procedure.');
   }
@@ -656,7 +656,7 @@ Future<ProcedureVentilation> postProcedureVentilation(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return ProcedureVentilation.fromJson(jsonDecode(response.body));
+    return ProcedureVentilation.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post Ventilation Procedure.');
   }
@@ -677,7 +677,7 @@ Future<ProcedureVentilation> putProcedureVentilation(
       body: jsonEncode(json));
 
   if (response.statusCode == 200) {
-    return ProcedureVentilation.fromJson(jsonDecode(response.body));
+    return ProcedureVentilation.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to put Ventilation Procedure.');
   }
@@ -700,7 +700,7 @@ Future<ProcedureProtocol> postProcedureProtocol(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return ProcedureProtocol.fromJson(jsonDecode(response.body));
+    return ProcedureProtocol.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post Protocol Procedure.');
   }
@@ -721,7 +721,7 @@ Future<ProcedureProtocol> putProcedureProtocol(
       body: jsonEncode(json));
 
   if (response.statusCode == 200) {
-    return ProcedureProtocol.fromJson(jsonDecode(response.body));
+    return ProcedureProtocol.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to put Protocol Procedure.');
   }
@@ -744,7 +744,7 @@ Future<ProcedureCirculation> postProcedureCirculation(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return ProcedureCirculation.fromJson(jsonDecode(response.body));
+    return ProcedureCirculation.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post Circulation Procedure.');
   }
@@ -765,7 +765,7 @@ Future<ProcedureCirculation> putProcedureCirculation(
       body: jsonEncode(json));
 
   if (response.statusCode == 200) {
-    return ProcedureCirculation.fromJson(jsonDecode(response.body));
+    return ProcedureCirculation.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to put Circulation Procedure.');
   }
@@ -788,7 +788,7 @@ Future<ProcedureScale> postProcedureScale(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return ProcedureScale.fromJson(jsonDecode(response.body));
+    return ProcedureScale.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post Scale Procedure.');
   }
@@ -809,7 +809,7 @@ Future<ProcedureScale> putProcedureScale(
       body: jsonEncode(json));
 
   if (response.statusCode == 200) {
-    return ProcedureScale.fromJson(jsonDecode(response.body));
+    return ProcedureScale.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to put Scale Procedure.');
   }
