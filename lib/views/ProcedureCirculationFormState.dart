@@ -5,8 +5,9 @@ import '../models/ProcedureCirculation.dart';
 class ProcedureCirculationFormState extends State<ProcedureCirculationForm> {
   final formKey;
   final ProcedureCirculation procedureCirculation;
+  final bool enabled;
 
-  ProcedureCirculationFormState({this.procedureCirculation, this.formKey});
+  ProcedureCirculationFormState({this.procedureCirculation, this.formKey, this.enabled});
 
   @override
   void initState() {

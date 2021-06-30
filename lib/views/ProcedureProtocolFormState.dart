@@ -5,8 +5,9 @@ import '../models/ProcedureProtocol.dart';
 class ProcedureProtocolFormState extends State<ProcedureProtocolForm> {
   final formKey;
   final ProcedureProtocol procedureProtocol;
+  final bool enabled;
 
-  ProcedureProtocolFormState({this.procedureProtocol, this.formKey});
+  ProcedureProtocolFormState({this.procedureProtocol, this.formKey, this.enabled});
 
   @override
   void initState() {

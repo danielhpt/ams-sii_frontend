@@ -5,8 +5,9 @@ import '../models/ProcedureVentilation.dart';
 class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
   final formKey;
   final ProcedureVentilation procedureVentilation;
+  final bool enabled;
 
-  ProcedureVentilationFormState({this.procedureVentilation, this.formKey});
+  ProcedureVentilationFormState({this.procedureVentilation, this.formKey, this.enabled});
 
   @override
   void initState() {

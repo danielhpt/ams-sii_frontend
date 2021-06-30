@@ -5,8 +5,9 @@ import '../models/ProcedureScale.dart';
 class ProcedureScaleFormState extends State<ProcedureScaleForm> {
   final formKey;
   final ProcedureScale procedureScale;
+  final bool enabled;
 
-  ProcedureScaleFormState({this.procedureScale, this.formKey});
+  ProcedureScaleFormState({this.procedureScale, this.formKey, this.enabled});
 
   @override
   void initState() {
