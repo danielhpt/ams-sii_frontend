@@ -137,13 +137,13 @@ class Victim {
       pharmacies.add(Pharmacy.fromJson(pharmacyJson));
     }
     victim.pharmacies = pharmacies;
-    
+
+    victim.symptom = Symptom.fromJson(json['symptom']);
     victim.procedureRCP = ProcedureRCP.fromJson(json['procedure_rcp']);
     victim.procedureVentilation = ProcedureVentilation.fromJson(json['procedure_ventilation']);
-    victim.procedureProtocol = ProcedureProtocol.fromJson(json['procedure_protocol']);
     victim.procedureCirculation = ProcedureCirculation.fromJson(json['procedure_circulation']);
+    victim.procedureProtocol = ProcedureProtocol.fromJson(json['procedure_protocol']);
     victim.procedureScale = ProcedureScale.fromJson(json['procedure_scale']);
-    victim.symptom = Symptom.fromJson(json['symptom']);
 
     return victim;
   }
