@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/widgets/Drawer.dart';
 import 'package:project/widgets/HomePage.dart';
+import 'package:project/widgets/OccurrenceHistory.dart';
 import 'package:project/widgets/TeamPage.dart';
 
 class HomePageState extends State<HomePage> {
@@ -16,7 +17,7 @@ class HomePageState extends State<HomePage> {
               Container(
                 constraints: BoxConstraints.tightFor(width: 300, height: 200),
                 child: ElevatedButton(
-                  onPressed: goto,
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => OccurrenceHistory())),
                   style: ButtonStyle(),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

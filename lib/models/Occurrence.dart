@@ -74,7 +74,7 @@ class Occurrence {
     }
     occurrence.victims = victims;
 
-    List<OccurrenceState> states;
+    List<OccurrenceState> states = [];
     for (var stateJson in json['states']) {
       states.add(OccurrenceState.fromJson(stateJson));
     }

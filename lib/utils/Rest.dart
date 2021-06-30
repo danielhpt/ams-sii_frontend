@@ -16,7 +16,7 @@ import 'package:project/models/Team.dart';
 import 'package:project/models/User.dart';
 import 'package:project/models/Victim.dart';
 
-String url = '192.168.0.14:8000';
+String url = '192.168.1.120:8000';
 String token;
 User user;
 
