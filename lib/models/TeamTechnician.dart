@@ -1,3 +1,5 @@
+import 'package:project/models/User.dart';
+
 class TeamTechnician {
   int id;
   String username;
@@ -19,5 +21,27 @@ class TeamTechnician {
     );
   }
 
+  factory TeamTechnician.fromUser(User user){
+    return TeamTechnician(
+        id: user.id,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        isTeamLeader: false,
+        isActive: true
+    );
+  }
+
   getFullName() => this.firstName + ' ' + this.lastName;
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'id': this.id,
+      'username': this.username,
+      'first_name': this.firstName,
+      'last_name': this.lastName,
+      'active': this.isActive,
+      'team_leader': this.isTeamLeader
+    };
+  }
 }

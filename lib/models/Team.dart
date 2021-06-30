@@ -1,4 +1,5 @@
 import 'package:project/models/TeamTechnician.dart';
+import 'package:project/models/User.dart';
 
 class Team {
   int id;
@@ -17,6 +18,18 @@ class Team {
     );
   }
 
+  factory Team.begin(User user){
+    TeamTechnician technician = TeamTechnician.fromUser(user);
+    technician.isTeamLeader = true;
+
+    List<TeamTechnician> technicians = [technician];
+
+    return Team(
+      id: 0,
+      technicians: technicians
+    );
+  }
+
   TeamTechnician getLeader() {
     for (var technician in this.technicians) {
       if (technician.isTeamLeader) {
@@ -24,5 +37,15 @@ class Team {
       }
     }
     return null;
+  }
+
+  Map<String, dynamic> toJson(){
+    List<Map<String, dynamic>> tJson = this.technicians.map((element) {
+      return element.toJson();
+    }).toList();
+    return <String, dynamic>{
+      'id': this.id,
+      'technicians': tJson
+    };
   }
 }

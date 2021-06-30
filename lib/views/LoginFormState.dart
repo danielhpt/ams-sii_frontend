@@ -58,6 +58,7 @@ class LoginFormState extends State<LoginForm> {
               },
             ),
           ],
-        ));
+        ),
+    );
   }
 }
