@@ -16,7 +16,5 @@ class ProcedureScaleFormState extends State<ProcedureScaleForm> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-
   }
-
 }
