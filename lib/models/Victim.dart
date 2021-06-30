@@ -126,13 +126,13 @@ class Victim {
   factory Victim.fromJsonDetail(Map<String, dynamic> json) {
     Victim victim = Victim.fromJson(json);
 
-    List<Evaluation> evaluations;
+    List<Evaluation> evaluations = [];
     for (var evaluationJson in json['evaluations']) {
       evaluations.add(Evaluation.fromJson(evaluationJson));
     }
     victim.evaluations = evaluations;
     
-    List<Pharmacy> pharmacies;
+    List<Pharmacy> pharmacies = [];
     for (var pharmacyJson in json['pharmacies']) {
       pharmacies.add(Pharmacy.fromJson(pharmacyJson));
     }

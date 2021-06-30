@@ -68,7 +68,7 @@ class Occurrence {
   factory Occurrence.fromJsonDetail(Map<String, dynamic> json) {
     Occurrence occurrence = Occurrence.fromJson(json);
 
-    List<Victim> victims;
+    List<Victim> victims = [];
     for (var victimJson in json['victims']) {
       victims.add(Victim.fromJson(victimJson));
     }

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Team.dart';
+import 'package:project/models/TeamTechnician.dart';
+import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/TeamPage.dart';
 
 class TeamPageState extends State<TeamPage> {
+  int userId = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -13,26 +16,23 @@ class TeamPageState extends State<TeamPage> {
 
   Widget listTeam() {
     return FutureBuilder(
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
+      builder: (context, teamUser) {
+        if (!teamUser.hasData) {
           return Center(child: CircularProgressIndicator());
-        } else if (snapshot.data.length == 0) {
+        } else if (teamUser.data.technicians.length == 0) {
           return Text('Sem equipa no momento!');
         } else {
           return ListView.builder(itemBuilder: (context, index) {
-            Team team = snapshot.data[index];
+            TeamTechnician technician = teamUser.data.technicians[index];
             return Center(
               child: Card(
                 child: Column(
                   children: <Widget>[
                     ListTile(
-                      //title: Text(t),
+                      title: Text(technician.id.toString()),
                       trailing: Icon(Icons.keyboard_arrow_right),
-                      leading: CircleAvatar(
-                      ),
-                      onTap: () {
-
-                      },
+                      leading: CircleAvatar(),
+                      onTap: () {},
                     ),
                   ],
                 ),
@@ -41,8 +41,8 @@ class TeamPageState extends State<TeamPage> {
           });
         }
       },
-     //future: , //esta função tem de retornar uma Future
+      future:
+          getUserTeamActive(userId), //esta função tem de retornar uma Future
     );
   }
-
 }

@@ -7,7 +7,7 @@ class Team {
   Team({this.id, this.technicians});
 
   factory Team.fromJson(Map<String, dynamic> json) {
-    List<TeamTechnician> technicians;
+    List<TeamTechnician> technicians = [];
     for (var technicianJson in json['technicians']) {
       technicians.add(TeamTechnician.fromJson(technicianJson));
     }

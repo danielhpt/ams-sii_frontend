@@ -196,6 +196,7 @@ Future<Team> getUserTeamActive(int userId) async {
       });
 
   if (response.statusCode == 200) {
+    print(response.body);
     return Team.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('Failed to get Team.');

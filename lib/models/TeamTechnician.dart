@@ -1,3 +1,5 @@
+import 'package:project/models/Team.dart';
+
 class TeamTechnician {
   int id;
   String username;
