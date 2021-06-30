@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/widgets/Drawer.dart';
 import 'package:project/widgets/HomePage.dart';
 import 'package:project/widgets/TeamPage.dart';
 
@@ -7,31 +8,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text('Bem-Vindo!'),
-            ),
-            ListTile(
-              title: Text('Ocorrências'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Equipa'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: MyDrawer(),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -61,7 +38,7 @@ class HomePageState extends State<HomePage> {
                 margin: EdgeInsets.only(top: 20.0),
                 constraints: BoxConstraints.tightFor(width: 300, height: 200),
                 child: ElevatedButton(
-                  onPressed:  () => Navigator.push(context, MaterialPageRoute(builder: (context) => TeamPage())),
+                  onPressed:  () => Navigator.push(context, MaterialPageRoute(builder: (context) => TeamPage(title: 'SIREPH Técnicos Home Page'))),
                   style: ButtonStyle(),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
