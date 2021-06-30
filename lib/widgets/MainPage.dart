@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project/models/Victim.dart';
 import 'package:project/utils/GPS.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/LoginPage.dart';
+import 'package:project/widgets/VictimPage.dart';
 
 import 'HomePage.dart';
 
@@ -12,7 +14,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //token = 'Token bcad18a4d8d00e497358565428865532dec27111'; //todo
+    token = 'Token bcad18a4d8d00e497358565428865532dec27111'; //todo
     return FutureBuilder(
       builder: (context, location) {
         if (!location.hasData) {
@@ -24,6 +26,10 @@ class MainPage extends StatelessWidget {
         } else {
           if (token != null) {
             return HomePage(title: 'SIREPH Técnicos Home Page');
+            /*return VictimPage(
+                title: 'SIREPH Técnicos Home Page',
+              victim: Victim(),
+            );*/
           }
           return LoginPage();
         }
