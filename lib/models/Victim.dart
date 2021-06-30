@@ -94,21 +94,21 @@ class Victim {
       age: json['age'],
       gender: json['gender'],
       identityNumber: json['identity_number'],
-      address: json['witnessed'],
-      circumstances: json['witnessed'],
-      diseaseHistory: json['witnessed'],
-      allergies: json['witnessed'],
-      lastMeal: json['witnessed'],
-      lastMealTime: json['witnessed'],
-      usualMedication: json['witnessed'],
-      riskSituation: json['witnessed'],
-      medicalFollowup: json['witnessed'],
-      healthUnitOrigin: json['witnessed'],
-      healthUnitDestination: json['witnessed'],
-      episodeNumber: json['witnessed'],
-      comments: json['witnessed'],
-      typeOfEmergency: json['witnessed'],
-      siv_sav: json['witnessed'],
+      address: json['address'],
+      circumstances: json['circumstances'],
+      diseaseHistory: json['disease_history'],
+      allergies: json['allergies'],
+      lastMeal: json['last_meal'],
+      lastMealTime: json['last_meal_time'],
+      usualMedication: json['usual_medication'],
+      riskSituation: json['risk_situation'],
+      medicalFollowup: json['medical_followup'],
+      healthUnitOrigin: json['health_unit_origin'],
+      healthUnitDestination: json['health_unit_destination'],
+      episodeNumber: json['episode_number'],
+      comments: json['comments'],
+      typeOfEmergency: json['type_of_emergency'],
+      siv_sav: json['SIV_SAV'],
       typeOfTransport: typeOfTransport,
       nonTransportReason: nonTransportReason,
       occurrence: occurrence,
@@ -137,13 +137,13 @@ class Victim {
       pharmacies.add(Pharmacy.fromJson(pharmacyJson));
     }
     victim.pharmacies = pharmacies;
-    
+
+    victim.symptom = Symptom.fromJson(json['symptom']);
     victim.procedureRCP = ProcedureRCP.fromJson(json['procedure_rcp']);
     victim.procedureVentilation = ProcedureVentilation.fromJson(json['procedure_ventilation']);
-    victim.procedureProtocol = ProcedureProtocol.fromJson(json['procedure_protocol']);
     victim.procedureCirculation = ProcedureCirculation.fromJson(json['procedure_circulation']);
+    victim.procedureProtocol = ProcedureProtocol.fromJson(json['procedure_protocol']);
     victim.procedureScale = ProcedureScale.fromJson(json['procedure_scale']);
-    victim.symptom = Symptom.fromJson(json['symptom']);
 
     return victim;
   }
