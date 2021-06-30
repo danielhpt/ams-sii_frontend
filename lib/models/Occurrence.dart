@@ -8,7 +8,7 @@ class Occurrence {
   String entity;
   String meanOfAssistance;
   String motive;
-  String numberOfVictims;
+  int numberOfVictims;
   String local;
   String parish;
   String municipality;

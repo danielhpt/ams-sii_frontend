@@ -52,7 +52,6 @@ class LoginPageState extends State<LoginPage> {
                     formKey.currentState.save();
                     try {
                       var s = await postToken(login);
-                      user = await getUserByToken();
                       controller.reset();
                       Navigator.pushAndRemoveUntil(
                           context,
@@ -61,9 +60,7 @@ class LoginPageState extends State<LoginPage> {
                                   HomePage(title: 'SIREPH Técnicos Home Page')),
                           (route) => false);
                     } catch (e) {
-                      print('HERE 6');
                       controller.reset();
-                      print('HERE 7');
                       showToast("Erro ao fazer login");
                     }
                   } else {

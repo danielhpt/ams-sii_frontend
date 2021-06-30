@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project/utils/Rest.dart';
 
-class MyDrawer extends StatelessWidget {
+class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -11,16 +12,21 @@ class MyDrawer extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.blue,
             ),
-            child: Text('Bem-Vindo!'),
+            child: Text(
+              'Bem-Vindo! ' + user.getFullName(),
+              style: TextStyle(fontSize: 20),
+            ),
           ),
           ListTile(
-            title: Text('Ocorrências'),
+            title: Text('Ocorrências',
+              style: TextStyle(fontSize: 16),),
             onTap: () {
               Navigator.pop(context);
             },
           ),
           ListTile(
-            title: Text('Equipa'),
+            title: Text('Equipa',
+              style: TextStyle(fontSize: 16),),
             onTap: () {
               Navigator.pop(context);
             },

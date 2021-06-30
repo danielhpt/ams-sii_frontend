@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/TeamTechnician.dart';
 import 'package:project/utils/Rest.dart';
-import 'package:project/widgets/Drawer.dart';
+import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/TeamPage.dart';
 
 class TeamPageState extends State<TeamPage> {
@@ -9,7 +9,7 @@ class TeamPageState extends State<TeamPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text(widget.title)),
-        drawer: MyDrawer(),
+        drawer: CustomDrawer(),
         body: Center(
           child: listTeam(),
         ));
@@ -60,8 +60,7 @@ class TeamPageState extends State<TeamPage> {
                     child: Column(
                       children: <Widget>[
                         ListTile(
-                          title: Text(
-                              technician.firstName + " " + technician.lastName),
+                          title: Text(technician.getFullName()),
                           trailing: Icon(Icons.keyboard_arrow_right),
                           leading: CircleAvatar(),
                           onTap: () {},

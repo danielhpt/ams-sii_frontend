@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Occurrence.dart';
 import 'package:project/utils/Rest.dart';
-import 'package:project/widgets/Drawer.dart';
+import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/OccurrenceHistory.dart';
 
 class OccurrenceHistoryState  extends State<OccurrenceHistory>  {
-  int userId = 1;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text(widget.title)),
-        drawer: MyDrawer(),
+        drawer: CustomDrawer(),
         body: Center(
           child: listUserOccurrences(),
         ));
@@ -34,7 +32,7 @@ class OccurrenceHistoryState  extends State<OccurrenceHistory>  {
                     child: Column(
                       children: <Widget>[
                         ListTile(
-                          title: Text(occurrence.id.toString()),
+                          title: Text(occurrence.id.toString() + ' - ' + occurrence.municipality),
                           trailing: Icon(Icons.keyboard_arrow_right),
                           leading: CircleAvatar(),
                           onTap: () {},
@@ -46,7 +44,7 @@ class OccurrenceHistoryState  extends State<OccurrenceHistory>  {
               });
         }
       },
-      future: getUserOccurrencesList(userId), //esta função tem de retornar uma Future
+      future: getUserOccurrencesList(user.id),
     );
   }
 }

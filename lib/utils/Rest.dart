@@ -51,7 +51,8 @@ Future<User> getUserByToken() async {
       });
 
   if (response.statusCode == 200) {
-    return User.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
+    user = User.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
+    return user;
   } else {
     throw Exception('Failed to get User.');
   }
