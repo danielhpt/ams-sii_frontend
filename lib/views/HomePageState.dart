@@ -45,7 +45,7 @@ class HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Icon(
-                        Icons.group_add_sharp,
+                        Icons.group,
                         size: 70.0,
                       ),
                       Text(

@@ -22,8 +22,36 @@ class TeamPageState extends State<TeamPage> {
       builder: (context, teamUser) {
         if (!teamUser.hasData) {
           return Center(child: CircularProgressIndicator());
-        } else if (teamUser.data.technicians.length == 0) {
-          return Text('Sem equipa no momento!');
+        } else if (teamUser.data.technicians == null) {
+          return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text('Sem equipa no momento!',
+                    style: TextStyle(fontSize: 20.0)),
+                Container(
+                  margin: EdgeInsets.only(top: 20.0),
+                  constraints: BoxConstraints.tightFor(width: 200, height: 150),
+                  child: ElevatedButton(
+                    onPressed: goto,
+                    style: ButtonStyle(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.group_add_sharp,
+                          size: 70.0,
+                        ),
+                        Text(
+                          'Criar Equipa',
+                          style: TextStyle(fontSize: 20.0),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ]);
         } else {
           return ListView.builder(
               itemCount: teamUser.data.technicians.length,
@@ -52,3 +80,5 @@ class TeamPageState extends State<TeamPage> {
     );
   }
 }
+
+void goto() {}
