@@ -95,6 +95,7 @@ class Victim {
       gender: json['gender'],
       identityNumber: json['identity_number'],
       address: json['address'],
+
       circumstances: json['circumstances'],
       diseaseHistory: json['disease_history'],
       allergies: json['allergies'],
@@ -102,15 +103,18 @@ class Victim {
       lastMealTime: json['last_meal_time'],
       usualMedication: json['usual_medication'],
       riskSituation: json['risk_situation'],
+
       medicalFollowup: json['medical_followup'],
       healthUnitOrigin: json['health_unit_origin'],
       healthUnitDestination: json['health_unit_destination'],
       episodeNumber: json['episode_number'],
+      typeOfTransport: typeOfTransport,
+      nonTransportReason: nonTransportReason,
+
       comments: json['comments'],
       typeOfEmergency: json['type_of_emergency'],
       siv_sav: json['SIV_SAV'],
-      typeOfTransport: typeOfTransport,
-      nonTransportReason: nonTransportReason,
+
       occurrence: occurrence,
       evaluations: null,
       pharmacies: null,

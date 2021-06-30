@@ -14,7 +14,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    token = 'Token bcad18a4d8d00e497358565428865532dec27111'; //todo
+    //token = 'Token bcad18a4d8d00e497358565428865532dec27111'; //todo
     return FutureBuilder(
       builder: (context, location) {
         if (!location.hasData) {
@@ -28,7 +28,7 @@ class MainPage extends StatelessWidget {
             return HomePage(title: 'SIREPH Técnicos Home Page');
             /*return VictimPage(
                 title: 'SIREPH Técnicos Home Page',
-              victim: Victim(),
+              victim: Victim(medicalFollowup: false),
             );*/
           }
           return LoginPage();

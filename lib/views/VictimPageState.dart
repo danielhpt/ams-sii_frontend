@@ -16,7 +16,7 @@ class VictimPageState extends State<VictimPage> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
       drawer: CustomDrawer(),
-      body: Center(
+      body: SingleChildScrollView (
         child: Column(
           children: [
             VictimForm(
