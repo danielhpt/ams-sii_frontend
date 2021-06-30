@@ -1,13 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:project/models/Occurrence.dart';
 import 'package:project/models/User.dart';
 import 'package:project/utils/GPS.dart';
 import 'package:project/utils/Rest.dart';
+import 'package:project/widgets/OccurrenceDetailPage.dart';
+import 'package:project/widgets/OccurrenceForm.dart';
 import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/HomePage.dart';
 import 'package:project/widgets/OccurrenceHistory.dart';
 import 'package:project/widgets/TeamPage.dart';
 
 class HomePageState extends State<HomePage> {
+
+  Occurrence occurrence = new Occurrence(
+      id: 1,
+      occurrenceNumber: 1,
+      entity: 'Test',
+      meanOfAssistance: 'Ambulância',
+      motive: 'Queda',
+      numberOfVictims: 1,
+      local: 'Rua da Liberdade 84',
+      parish: 'Brandoa',
+      municipality: 'Amadora'
+  );
+
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +97,10 @@ class HomePageState extends State<HomePage> {
                       constraints:
                           BoxConstraints.tightFor(width: 300, height: 200),
                       child: ElevatedButton(
-                        onPressed: goto,
+                        onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => OccurrenceDetailPage(occurrence: occurrence, title: 'SIREPH Técnicos Home Page'))),
                         style: ButtonStyle(),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

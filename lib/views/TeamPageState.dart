@@ -166,5 +166,3 @@ class TeamPageState extends State<TeamPage> {
     return false;
   }
 }
-
-void goto() {}
