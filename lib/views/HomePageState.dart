@@ -11,17 +11,6 @@ import 'package:project/widgets/lists/OccurrencesListPage.dart';
 import 'package:project/widgets/TeamPage.dart';
 
 class HomePageState extends State<HomePage> {
-  Occurrence occurrence = new Occurrence(
-      id: 1,
-      occurrenceNumber: 1,
-      entity: 'Test',
-      meanOfAssistance: 'Ambulância',
-      motive: 'Queda',
-      numberOfVictims: 1,
-      local: 'Rua da Liberdade 84',
-      parish: 'Brandoa',
-      municipality: 'Amadora');
-
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -96,12 +85,22 @@ class HomePageState extends State<HomePage> {
                       constraints:
                           BoxConstraints.tightFor(width: 300, height: 200),
                       child: ElevatedButton(
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => OccurrenceDetailPage(
-                                    occurrence: occurrence,
-                                    title: 'SIREPH Técnicos Home Page'))),
+                        onPressed: () async {
+                          Occurrence occurrence;
+
+                          try {
+                            occurrence = await getUserActiveOccurrence(user.id);
+                          } catch (e) {
+                            occurrence = Occurrence(states: [], victims: []);
+                          }
+
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => OccurrenceDetailPage(
+                                      occurrence: occurrence,
+                                      title: 'SIREPH Técnicos Home Page')));
+                        },
                         style: ButtonStyle(),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

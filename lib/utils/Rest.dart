@@ -230,6 +230,18 @@ Future<List<Occurrence>> getTeamOccurrencesList(int teamId) async {
   }
 }
 
+Future<Occurrence> getUserActiveOccurrence(int userId) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+
+  Team team = await getUserTeamActive(userId);
+
+  List<Occurrence> occurrence = await getTeamOccurrencesList(team.id);
+
+  return occurrence[0];
+}
+
 Future<Occurrence> postTeamOccurrence(
     int teamId, Map<String, dynamic> json) async {
   if (token == null) {
@@ -242,6 +254,8 @@ Future<Occurrence> postTeamOccurrence(
         'Authorization': token
       },
       body: jsonEncode(json));
+
+  print(json);
 
   if (response.statusCode == 201) {
     return Occurrence.fromJson(
@@ -262,7 +276,6 @@ Future<Occurrence> getOccurrence(int occurrenceId) async {
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
       });
-
   if (response.statusCode == 200) {
     return Occurrence.fromJson(
         jsonDecode(utf8.decode(response.body.runes.toList())));
@@ -285,6 +298,28 @@ Future<Occurrence> putOccurrence(
       body: jsonEncode(json));
 
   if (response.statusCode == 200) {
+    return Occurrence.fromJson(
+        jsonDecode(utf8.decode(response.body.runes.toList())));
+  } else {
+    throw Exception('Failed to put Occurrence.');
+  }
+}
+
+Future<Occurrence> postOccurrence(Map<String, dynamic> json) async {
+  if (token == null) {
+    throw Exception('Token null.');
+  }
+  final response = await http.post(
+      Uri.http(url, '/api/occurrences/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token
+      },
+      body: jsonEncode(json));
+
+  if (response.statusCode == 200) {
+    return Occurrence.fromJson(
+        jsonDecode(utf8.decode(response.body.runes.toList())));
     return Occurrence.fromJson(
         jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
