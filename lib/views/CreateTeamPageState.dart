@@ -30,7 +30,7 @@ class CreateTeamPageState extends State<CreateTeamPage> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
       drawer: CustomDrawer(),
-      body: Center(
+      body: SingleChildScrollView(
         child: Container(
           child: Column(
             children: [

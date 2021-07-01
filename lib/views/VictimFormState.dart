@@ -1,6 +1,8 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:project/models/Victim.dart';
+import 'package:project/widgets/EvaluationsListPage.dart';
+import 'package:project/widgets/PharmaciesListPage.dart';
 import 'package:project/widgets/VictimForm.dart';
 
 class VictimFormState extends State<VictimForm> {
@@ -65,7 +67,8 @@ class VictimFormState extends State<VictimForm> {
                       victim.age = int.parse(value);
                     },
                     keyboardType: TextInputType.number,
-                    initialValue: victim.age != null ? victim.age.toString() : null,
+                    initialValue:
+                        victim.age != null ? victim.age.toString() : null,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (String value) {
                       return (value != null && int.tryParse(value) == null)
@@ -287,14 +290,16 @@ class VictimFormState extends State<VictimForm> {
                       victim.episodeNumber = int.parse(value);
                     },
                     keyboardType: TextInputType.number,
-                    initialValue: victim.episodeNumber != null ? victim.episodeNumber.toString() : null,
+                    initialValue: victim.episodeNumber != null
+                        ? victim.episodeNumber.toString()
+                        : null,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (String value) {
                       return (value != null && int.tryParse(value) == null)
                           ? 'Não é um Numero'
                           : (value != null && int.parse(value) < 0)
-                          ? 'Invalido'
-                          : null;
+                              ? 'Invalido'
+                              : null;
                     },
                   ),
                   //todo typeOfTransport
@@ -373,11 +378,13 @@ class VictimFormState extends State<VictimForm> {
               title: Text('Avaliações'),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
-                /*Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
-                      return EvaluationsPage();
-                    }));
-                });*/
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return EvaluationsListPage(
+                    title: 'SIREPH Técnicos Home Page',
+                    enabled: enabled,
+                    evaluations: victim.evaluations,
+                  );
+                }));
               },
             ),
           ),
@@ -386,11 +393,13 @@ class VictimFormState extends State<VictimForm> {
               title: Text('Fármacos'),
               trailing: Icon(Icons.keyboard_arrow_right),
               onTap: () {
-                /*Navigator.push(context,
-                    MaterialPageRoute(builder: (context) {
-                      return PharmaciesPage();
-                    }));
-                });*/
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return PharmaciesListPage(
+                    title: 'SIREPH Técnicos Home Page',
+                    enabled: enabled,
+                    pharmacies: victim.pharmacies,
+                  );
+                }));
               },
             ),
           ),

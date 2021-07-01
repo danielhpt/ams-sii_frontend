@@ -28,7 +28,7 @@ class MainPage extends StatelessWidget {
             return HomePage(title: 'SIREPH Técnicos Home Page');
             /*return VictimPage(
                 title: 'SIREPH Técnicos Home Page',
-              victim: Victim(medicalFollowup: false),
+              victim: Victim(medicalFollowup: false, evaluations: [], pharmacies: []),
             );*/
           }
           return LoginPage();
