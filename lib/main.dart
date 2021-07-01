@@ -27,7 +27,7 @@ class App extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: [const Locale('pt', 'PT')],
-      home: MainPage(title: 'SIREPH Técnicos Home Page'),
+      home: MainPage(title: 'SIREPH Técnicos'),
     );
   }
 }

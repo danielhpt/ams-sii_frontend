@@ -14,7 +14,6 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //token = 'Token bcad18a4d8d00e497358565428865532dec27111'; //todo
     return FutureBuilder(
       builder: (context, location) {
         if (!location.hasData) {
