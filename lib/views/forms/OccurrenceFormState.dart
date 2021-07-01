@@ -95,44 +95,6 @@ class OccurrenceFormState extends State<OccurrenceForm> {
             ],
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(top: 20.0),
-          child: ElevatedButton.icon(
-            label: Text(
-              'Estados da Ocorrência',
-              style: TextStyle(fontSize: 20.0),
-            ),
-            icon: Icon(
-              Icons.gps_fixed,
-              size: 50.0,
-            ),
-            onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        TeamPage(title: 'SIREPH Técnicos Home Page'))),
-            style: ButtonStyle(),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(top: 20.0),
-          child: ElevatedButton.icon(
-            label: Text(
-              'Gerir Vítimas',
-              style: TextStyle(fontSize: 20.0),
-            ),
-            icon: Icon(
-              Icons.group,
-              size: 50.0,
-            ),
-            onPressed: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        TeamPage(title: 'SIREPH Técnicos Home Page'))),
-            style: ButtonStyle(),
-          ),
-        ),
       ]),
     );
   }
