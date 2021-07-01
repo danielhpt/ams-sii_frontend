@@ -39,7 +39,7 @@ class Evaluation {
   factory Evaluation.fromJson(Map<String, dynamic> json) {
     return Evaluation(
         id: json['id'],
-        hours: json['hours'],
+        hours: DateTime.parse(json['hours']),
         avds: json['avds'],
         ventilation: json['ventilation'],
         spo2: json['spo2'],
@@ -48,7 +48,7 @@ class Evaluation {
         pulse: json['pulse'],
         ecg: json['ecg'],
         skin: json['skin'],
-        temperature: json['temperature'],
+        temperature: json['temperature'] == null ? null : double.parse(json['temperature']),
         systolicBloodPressure: json['systolic_blood_pressure'],
         diastolicBloodPressure: json['diastolic_blood_pressure'],
         pupils: json['pupils'],
@@ -59,8 +59,8 @@ class Evaluation {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'id': this.id,
-      'hours': this.hours,
+      'id': id == null ? 0 : this.id,
+      'hours': this.hours.toString(),
       'avds': this.avds,
       'ventilation': this.ventilation,
       'spo2': this.spo2,

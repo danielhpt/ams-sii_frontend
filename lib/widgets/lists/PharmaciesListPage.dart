@@ -3,13 +3,14 @@ import 'package:project/models/Pharmacy.dart';
 import 'package:project/views/lists/PharmaciesListPageState.dart';
 
 class PharmaciesListPage extends StatefulWidget {
-  final List<Pharmacy> pharmacies;
   final bool enabled;
+  final int victimId;
 
-  PharmaciesListPage({Key key, this.pharmacies, this.enabled})
-      : super(key: key);
+  PharmaciesListPage({Key key, this.enabled, this.victimId}) : super(key: key);
 
   @override
   PharmaciesListPageState createState() => PharmaciesListPageState(
-      pharmacies: pharmacies, enabled: enabled);
+        enabled: enabled,
+        victimId: victimId,
+      );
 }

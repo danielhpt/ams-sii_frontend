@@ -113,7 +113,7 @@ class Victim {
         nonTransportReason: nonTransportReason,
         comments: json['comments'],
         typeOfEmergency: json['type_of_emergency'],
-        siv_sav: json['SIV_SAV'],
+        siv_sav: DateTime.parse(json['SIV_SAV']),
         occurrence: occurrence,
         evaluations: null,
         pharmacies: null,
@@ -163,9 +163,9 @@ class Victim {
     }).toList();
 
     return <String, dynamic>{
-      'id': this.id,
+      'id': this.id == null ? 0 : this.id,
       'name': this.name,
-      'birthdate': birthdate.toString(),
+      'birthdate': birthdate.toString().split(' ')[0],
       'age': this.age,
       'gender': this.gender,
       'identity_number': this.identityNumber,
@@ -183,19 +183,18 @@ class Victim {
       'episode_number': this.episodeNumber,
       'comments': this.comments,
       'type_of_emergency': this.typeOfEmergency,
-      'siv_sav': this.siv_sav.toString(),
-      'type_of_transport': typeOfTransport.toJson(),
-      'non_transport_reason': nonTransportReason.toJson(),
+      'SIV_SAV': this.siv_sav.toString(),
+      'type_of_transport': typeOfTransport == null ? null : typeOfTransport.toJson(),
+      'non_transport_reason': nonTransportReason == null ? null : nonTransportReason.toJson(),
       'evaluations': eJson,
       'pharmacies': pJson,
-      'occurrence': occurrence.toJson(),
-      'procedure_rcp': procedureRCP.toJson(),
-      'procedure_ventilation': procedureVentilation.toJson(),
-      'procedure_circulation': procedureCirculation.toJson(),
-      'procedure_protocol': procedureProtocol.toJson(),
-      'procedure_scale': procedureScale.toJson(),
-      'symptom': symptom.toJson()
-
+      'occurrence': occurrence == null ? null : occurrence.toJson(),
+      'procedure_rcp': procedureRCP == null ? null : procedureRCP.toJson(),
+      'procedure_ventilation': procedureVentilation == null ? null : procedureVentilation.toJson(),
+      'procedure_circulation': procedureCirculation == null ? null : procedureCirculation.toJson(),
+      'procedure_protocol': procedureProtocol == null ? null : procedureProtocol.toJson(),
+      'procedure_scale': procedureScale == null ? null : procedureScale.toJson(),
+      'symptom': symptom == null ? null : symptom.toJson()
     };
   }
 }

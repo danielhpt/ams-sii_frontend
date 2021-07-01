@@ -17,7 +17,7 @@ class Pharmacy {
   factory Pharmacy.fromJson(Map<String, dynamic> json) {
     return Pharmacy(
         id: json['id'],
-        time: DateTime.parse(json['time']),
+        time: DateTime.parse('2000-01-01 ' + json['time']),
         pharmacy: json['pharmacy'],
         dose: json['dose'],
         route: json['route'],
@@ -26,8 +26,8 @@ class Pharmacy {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'id': this.id,
-      'time': time.toString(),
+      'id': id == null ? 0 : this.id,
+      'time': time.toString().split(' ')[1],
       'pharmacy': this.pharmacy,
       'dose': this.dose,
       'route': this.route,

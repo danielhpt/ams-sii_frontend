@@ -64,10 +64,10 @@ class OccurrenceFormState extends State<OccurrenceForm> {
                     occurrence.motive = value;
                   }),
               TextFormField(
-                  enabled: false,
+                  enabled: enabled,
                   initialValue: occurrence.victims != null
                       ? occurrence.victims.length.toString()
-                      : '0',
+                      : null,
                   decoration: const InputDecoration(
                     icon: Icon(Icons.people),
                     labelText: 'Número de Vítimas',

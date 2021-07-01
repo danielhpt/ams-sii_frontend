@@ -53,6 +53,7 @@ class VictimListPageState extends State<VictimListPage> {
                             pharmacies: []),
                         add: true,
                         occurrenceId: occurrenceId,
+                        enabled: enabled,
                       ),
                     ),
                   ).then((value) {
@@ -73,38 +74,43 @@ class VictimListPageState extends State<VictimListPage> {
       builder: (context, victims) {
         if (!victims.hasData) {
           return Center(child: CircularProgressIndicator());
-        } else if (victims.data.length == 0) {
-          return Text('Sem Vítimas adicionadas!');
         } else {
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: victims.data.length,
-            itemBuilder: (context, index) {
-              Victim victim = victims.data[index];
-              return Center(
-                child: Card(
-                  child: Column(
-                    children: <Widget>[
-                      ListTile(
-                        title: Text(victim.name),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        leading: CircleAvatar(),
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => VictimPage(
-                              victim: victim,
-                              enabled: enabled,
-                              add: false,
+          return Column(
+            children: [
+              if (victims.data.length == 0)
+                Text('Sem Vítimas adicionadas!')
+              else
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: victims.data.length,
+                  itemBuilder: (context, index) {
+                    Victim victim = victims.data[index];
+                    return Center(
+                      child: Card(
+                        child: Column(
+                          children: <Widget>[
+                            ListTile(
+                              title: Text(victim.name),
+                              trailing: Icon(Icons.keyboard_arrow_right),
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => VictimPage(
+                                    victim: victim,
+                                    enabled: enabled,
+                                    occurrenceId: occurrenceId,
+                                    add: false,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
-              );
-            },
+            ],
           );
         }
       },

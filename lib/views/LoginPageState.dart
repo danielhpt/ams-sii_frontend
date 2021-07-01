@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Login.dart';
+import 'package:project/utils/Offline.dart';
 import 'package:project/utils/Utils.dart';
 import 'package:project/widgets/HomePage.dart';
 import 'package:project/utils/Rest.dart';
@@ -47,6 +48,7 @@ class LoginPageState extends State<LoginPage> {
                     formKey.currentState.save();
                     try {
                       token = await postToken(login);
+                      //var a = await saveToken(token);
                       controller.reset();
                       Navigator.pushAndRemoveUntil(
                           context,

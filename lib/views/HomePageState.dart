@@ -82,18 +82,29 @@ class HomePageState extends State<HomePage> {
                       child: ElevatedButton(
                         onPressed: () async {
                           Occurrence occurrence;
+                          bool newOccurrence;
 
                           try {
                             occurrence = await getUserActiveOccurrence(user.id);
+                            newOccurrence = false;
                           } catch (e) {
                             occurrence = Occurrence(states: [], victims: []);
+                            newOccurrence = true;
                           }
 
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => OccurrenceDetailPage(
-                                      occurrence: occurrence)));
+                                        occurrence: occurrence,
+                                        enabled: true,
+                                        newOccurrence: newOccurrence,
+                                      ))).then((value) {
+                                        if (value == 'create') {
+                                          setState(() {
+                                          });
+                                        }
+                          });
                         },
                         style: ButtonStyle(),
                         child: Column(

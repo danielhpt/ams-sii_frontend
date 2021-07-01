@@ -6,8 +6,15 @@ class EvaluationFormState extends State<EvaluationForm> {
   final formKey;
   final Evaluation evaluation;
   final bool enabled;
+  bool ecg;
 
   EvaluationFormState({this.formKey, this.evaluation, this.enabled});
+
+  @override
+  void initState() {
+    super.initState();
+    ecg = evaluation.ecg == null ? false : evaluation.ecg;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +29,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               return InputDatePickerFormField(
                 lastDate: DateTime.now(),
                 firstDate: DateTime(1900),
-                initialDate: evaluation.hours,
+                initialDate: evaluation.hours == null ? DateTime.now() : evaluation.hours,
                 onDateSaved: (DateTime value) {
                   evaluation.hours = value;
                 },
@@ -36,7 +43,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'AVDS',
             ),
             onSaved: (String value) {
-              evaluation.avds = int.parse(value);
+              evaluation.avds = value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -48,7 +55,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'Ventilation',
             ),
             onSaved: (String value) {
-              evaluation.ventilation = int.parse(value);
+              evaluation.ventilation = value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -60,7 +67,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'SPO2',
             ),
             onSaved: (String value) {
-              evaluation.spo2 = int.parse(value);
+              evaluation.spo2 = value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -72,7 +79,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'O2',
             ),
             onSaved: (String value) {
-              evaluation.o2 = int.parse(value);
+              evaluation.o2 = value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -84,7 +91,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'EtCo2',
             ),
             onSaved: (String value) {
-              evaluation.etco2 = int.parse(value);
+              evaluation.etco2 = value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -96,7 +103,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'Pulso',
             ),
             onSaved: (String value) {
-              evaluation.pulse = int.parse(value);
+              evaluation.pulse = value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -106,16 +113,16 @@ class EvaluationFormState extends State<EvaluationForm> {
               builder: (FormFieldState<bool> state) {
                 return SwitchListTile(
                   title: Text('ECG'),
-                  value: evaluation.ecg,
+                  value: ecg,
                   onChanged: (bool value) {
                     setState(() {
-                      evaluation.ecg = value;
+                      ecg = value;
                     });
                   },
                 );
               },
               onSaved: (value) {
-                evaluation.ecg = value;
+                evaluation.ecg = ecg;
               }),
           TextFormField(
             enabled: enabled,
@@ -137,7 +144,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'Temperatura',
             ),
             onSaved: (String value) {
-              evaluation.temperature = double.parse(value);
+              evaluation.temperature = value == '' ? null : double.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -149,7 +156,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'Pressão arterial sistólica',
             ),
             onSaved: (String value) {
-              evaluation.systolicBloodPressure = int.parse(value);
+              evaluation.systolicBloodPressure = value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -161,7 +168,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'Pressão arterial diastólica',
             ),
             onSaved: (String value) {
-              evaluation.diastolicBloodPressure = int.parse(value);
+              evaluation.diastolicBloodPressure = value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -187,7 +194,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'Dor',
             ),
             onSaved: (String value) {
-              evaluation.pain = int.parse(value);
+              evaluation.pain = value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -199,7 +206,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'Glicemia',
             ),
             onSaved: (String value) {
-              evaluation.glycemia = int.parse(value);
+              evaluation.glycemia = value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -212,7 +219,7 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'Dor',
             ),
             onSaved: (String value) {
-              evaluation.news = int.parse(value);
+              evaluation.news = value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,

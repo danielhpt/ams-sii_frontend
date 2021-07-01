@@ -22,7 +22,7 @@ class PharmacyFormState extends State<PharmacyForm> {
               return InputDatePickerFormField(
                 lastDate: DateTime.now(),
                 firstDate: DateTime(1900),
-                initialDate: pharmacy.time,
+                initialDate: pharmacy.time == null ? DateTime.now() : pharmacy.time,
                 onDateSaved: (DateTime value) {
                   pharmacy.time = value;
                 },

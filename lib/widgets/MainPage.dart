@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project/models/Victim.dart';
 import 'package:project/utils/GPS.dart';
+import 'package:project/utils/Offline.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/LoginPage.dart';
-import 'package:project/widgets/VictimPage.dart';
 
 import 'HomePage.dart';
 
@@ -14,7 +13,7 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    token = 'Token bcad18a4d8d00e497358565428865532dec27111'; //todo
+    //token = 'Token bcad18a4d8d00e497358565428865532dec27111'; //todo
     return FutureBuilder(
       builder: (context, location) {
         if (!location.hasData) {
@@ -24,14 +23,19 @@ class MainPage extends StatelessWidget {
             child: Text('Localização Obrigatória'),
           );
         } else {
-          if (token != null) {
-            return HomePage();
-            /*return VictimPage(//todo
-                title: 'SIREPH Técnicos Home Page',
-              victim: Victim(medicalFollowup: false, evaluations: [], pharmacies: []),
-            );*/
-          }
-          return LoginPage();
+         /* return FutureBuilder(
+            future: loadToken(),
+            builder: (context, tokenHive) {
+              if (!tokenHive.hasData) {
+                return Center(child: CircularProgressIndicator());
+              } else*/ if (token/*Hive.data*/ != null) {
+                //token = tokenHive.data;
+                return HomePage();
+              } else {
+                return LoginPage();
+              }
+            //},
+         // );
         }
       },
       future: getLocation(),

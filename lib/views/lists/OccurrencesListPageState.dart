@@ -47,7 +47,7 @@ class OccurrencesListPageState extends State<OccurrencesListPage> {
                                   ' - ' +
                                   occurrence.municipality),
                               trailing: Icon(Icons.keyboard_arrow_right),
-                              onTap: () {
+                              onTap: () async {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -55,6 +55,7 @@ class OccurrencesListPageState extends State<OccurrencesListPage> {
                                             OccurrenceDetailPage(
                                               occurrence: occurrence,
                                               enabled: false,
+                                              newOccurrence: false,
                                             )));
                               },
                             ),

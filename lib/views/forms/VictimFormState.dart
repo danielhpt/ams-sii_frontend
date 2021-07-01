@@ -1,6 +1,9 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:project/models/NonTransportReason.dart';
+import 'package:project/models/TypeOfTransport.dart';
 import 'package:project/models/Victim.dart';
+import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/forms/VictimForm.dart';
 import 'package:project/widgets/lists/EvaluationsListPage.dart';
 import 'package:project/widgets/lists/PharmaciesListPage.dart';
@@ -11,6 +14,42 @@ class VictimFormState extends State<VictimForm> {
   final bool enabled;
   final bool add;
   bool medicalFollowup;
+  var _currentSelectedValue1;
+  var _currentSelectedValue2;
+
+  var _typeOfTransport = [
+    "Primário",
+    "Secundário",
+    "Não Transporte",
+    ""
+  ];
+
+  Map<String, dynamic> typeOfTransportJson = <String, dynamic>{
+    "Primário": 1,
+    "Secundário": 2,
+    "Não Transporte": 3,
+    "": null
+  };
+
+  var _nonTransportReason = [
+    "Abandonou o local",
+    "Decisão médica",
+    "Morte",
+    "Recusou e assinou",
+    "Recusou e não assinou",
+    "Desativação",
+    ""
+  ];
+
+  Map<String, dynamic> nonTransportReasonJson = <String, dynamic>{
+    "Abandonou o local": 1,
+    "Decisão médica": 2,
+    "Morte": 3,
+    "Recusou e assinou": 4,
+    "Recusou e não assinou": 5,
+    "Desativação": 6,
+    "": null
+  };
 
   @override
   void initState() {
@@ -202,7 +241,7 @@ class VictimFormState extends State<VictimForm> {
                     initialValue: victim.usualMedication,
                     decoration: const InputDecoration(
                       icon: Icon(Icons.assignment_outlined),
-                      labelText: 'Nome',
+                      labelText: 'Medicação habitual',
                     ),
                     keyboardType: TextInputType.text,
                     onSaved: (String value) {
@@ -303,8 +342,80 @@ class VictimFormState extends State<VictimForm> {
                               : null;
                     },
                   ),
-                  //todo typeOfTransport
-                  //todo nonTransportReason
+                  FormField<String>(
+                    builder: (FormFieldState<String> typeOfTransport) {
+                      return InputDecorator(
+                        decoration: InputDecoration(
+                          //labelStyle: textStyle,
+                            errorStyle: TextStyle(
+                                color: Colors.redAccent, fontSize: 16.0),
+                            hintText: 'Tipo de Transporte',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0))),
+                        isEmpty: _currentSelectedValue1 == '',
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: _currentSelectedValue1,
+                            isDense: true,
+                            onChanged: (String newValue) {
+                              setState(() {
+                                _currentSelectedValue1 = newValue;
+                                typeOfTransport.didChange(newValue);
+                              });
+                            },
+                            items: _typeOfTransport.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      );
+                    },
+                    onSaved: (String value){
+                      var id = typeOfTransportJson[_currentSelectedValue1];
+                      if (id != null)
+                        victim.typeOfTransport = TypeOfTransport(id: id, typeOfTransport: _currentSelectedValue1);
+                    },
+                  ),
+                  FormField<String>(
+                    builder: (FormFieldState<String> state) {
+                      return InputDecorator(
+                        decoration: InputDecoration(
+                          //labelStyle: textStyle,
+                            errorStyle: TextStyle(
+                                color: Colors.redAccent, fontSize: 16.0),
+                            hintText: 'Razão para o Não Transporte',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5.0))),
+                        isEmpty: _currentSelectedValue2 == '',
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: _currentSelectedValue2,
+                            isDense: true,
+                            onChanged: (String newValue) {
+                              setState(() {
+                                _currentSelectedValue2 = newValue;
+                                state.didChange(newValue);
+                              });
+                            },
+                            items: _nonTransportReason.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      );
+                    },
+                    onSaved: (String value){
+                      var id = nonTransportReasonJson[_currentSelectedValue2];
+                      if (id != null)
+                        victim.nonTransportReason = NonTransportReason(id: id, nonTransportReason: _currentSelectedValue2);
+                    },
+                  ),
                   ExpandableButton(
                     child: Card(
                       child: ListTile(
@@ -375,16 +486,17 @@ class VictimFormState extends State<VictimForm> {
             ),
           ),
           Visibility(
-            visible: add,
+            visible: !add,
             child: Card(
               child: ListTile(
                 title: Text('Avaliações'),
                 trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () {
+                onTap: () async {
+                  if (victim.evaluations == null) victim.evaluations = await getVictimEvaluationsList(victim.id);
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return EvaluationsListPage(
                       enabled: enabled,
-                      evaluations: victim.evaluations,
+                      victimId: victim.id,
                     );
                   }));
                 },
@@ -392,16 +504,17 @@ class VictimFormState extends State<VictimForm> {
             ),
           ),
           Visibility(
-            visible: add,
+            visible: !add,
             child: Card(
               child: ListTile(
                 title: Text('Fármacos'),
                 trailing: Icon(Icons.keyboard_arrow_right),
-                onTap: () {
+                onTap: () async {
+                  if (victim.pharmacies == null) victim.pharmacies = await getVictimPharmaciesList(victim.id);
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return PharmaciesListPage(
                       enabled: enabled,
-                      pharmacies: victim.pharmacies,
+                      victimId: victim.id,
                     );
                   }));
                 },

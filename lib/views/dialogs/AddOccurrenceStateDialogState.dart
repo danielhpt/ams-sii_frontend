@@ -108,7 +108,9 @@ class AddOccurrenceStateDialogState extends State<AddOccurrenceStateDialog> {
                 occurrenceState.longitude = l.latitude;
                 var r = await postOccurrenceState(occurrenceId, occurrenceState.toJson());
                 Navigator.pop(context, 'add');
-              } catch (e) {}
+              } catch (e) {
+                print(e.toString());
+              }
             }
           },
         )

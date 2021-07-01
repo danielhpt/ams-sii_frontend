@@ -88,9 +88,11 @@ class Occurrence {
   }
 
   Map<String, dynamic> toJson() {
+    if (victims == null) victims = [];
     List<Map<String, dynamic>> vJson = this.victims.map((element) {
       return element.toJson();
     }).toList();
+    if (states == null) states = [];
     List<Map<String, dynamic>> sJson = this.states.map((element) {
       return element.toJson();
     }).toList();
@@ -105,7 +107,7 @@ class Occurrence {
       'local': this.local,
       'parish': this.parish,
       'municipality': this.municipality,
-      'team': team.toJson(),
+      'team': team == null ? null : team.toJson(),
       'victims': vJson,
       'states': sJson
     };

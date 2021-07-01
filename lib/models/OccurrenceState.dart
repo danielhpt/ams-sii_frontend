@@ -14,8 +14,8 @@ class OccurrenceState {
     States state = States.fromJson(json['state']);
     return OccurrenceState(
         id: json['id'],
-        latitude: json['latitude'],
-        longitude: json['longitude'],
+        latitude: double.parse(json['latitude']),
+        longitude: double.parse(json['longitude']),
         dateTime: DateTime.parse(json['date_time']),
         state: state);
   }
