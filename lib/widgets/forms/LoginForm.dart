@@ -9,8 +9,6 @@ class LoginForm extends StatefulWidget {
   LoginForm({Key key, this.formKey, this.login}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => LoginFormState(
-      formKey: this.formKey,
-      login: login
-  );
+  State<StatefulWidget> createState() =>
+      LoginFormState(formKey: this.formKey, login: login);
 }

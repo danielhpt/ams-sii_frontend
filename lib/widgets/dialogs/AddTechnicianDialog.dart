@@ -8,5 +8,6 @@ class AddTechnicianDialog extends StatefulWidget {
   AddTechnicianDialog({Key key, this.team}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => AddTechnicianDialogState(team: this.team);
+  State<StatefulWidget> createState() =>
+      AddTechnicianDialogState(team: this.team);
 }

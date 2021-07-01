@@ -18,47 +18,47 @@ class LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-        key: formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                icon: Icon(Icons.person),
-                labelText: 'Nome de Utilizador',
-              ),
-              keyboardType: TextInputType.text,
-              autocorrect: false,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (String value) {
-                return (value == null || value.trim() == "" || value.isEmpty)
-                    ? "Não pode estar vazio"
-                    : null;
-              },
-              onSaved: (String value) {
-                login.username = value.trim();
-              },
+      key: formKey,
+      child: Column(
+        children: [
+          TextFormField(
+            decoration: const InputDecoration(
+              icon: Icon(Icons.person),
+              labelText: 'Nome de Utilizador',
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                icon: Icon(Icons.vpn_key),
-                labelText: 'Palavra-Passe',
-              ),
-              keyboardType: TextInputType.text,
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (String value) {
-                return (value == null || value.trim() == "" || value.isEmpty)
-                    ? "Não pode estar vazio"
-                    : null;
-              },
-              onSaved: (String value) {
-                login.password = value.trim();
-              },
+            keyboardType: TextInputType.text,
+            autocorrect: false,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (String value) {
+              return (value == null || value.trim() == "" || value.isEmpty)
+                  ? "Não pode estar vazio"
+                  : null;
+            },
+            onSaved: (String value) {
+              login.username = value.trim();
+            },
+          ),
+          TextFormField(
+            decoration: const InputDecoration(
+              icon: Icon(Icons.vpn_key),
+              labelText: 'Palavra-Passe',
             ),
-          ],
-        ),
+            keyboardType: TextInputType.text,
+            obscureText: true,
+            enableSuggestions: false,
+            autocorrect: false,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (String value) {
+              return (value == null || value.trim() == "" || value.isEmpty)
+                  ? "Não pode estar vazio"
+                  : null;
+            },
+            onSaved: (String value) {
+              login.password = value.trim();
+            },
+          ),
+        ],
+      ),
     );
   }
 }

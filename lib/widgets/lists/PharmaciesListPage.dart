@@ -7,8 +7,10 @@ class PharmaciesListPage extends StatefulWidget {
   final List<Pharmacy> pharmacies;
   final bool enabled;
 
-  PharmaciesListPage({Key key, this.title, this.pharmacies, this.enabled}) : super(key: key);
+  PharmaciesListPage({Key key, this.title, this.pharmacies, this.enabled})
+      : super(key: key);
 
   @override
-  PharmaciesListPageState createState() => PharmaciesListPageState(title: title, pharmacies: pharmacies, enabled: enabled);
+  PharmaciesListPageState createState() => PharmaciesListPageState(
+      title: title, pharmacies: pharmacies, enabled: enabled);
 }

@@ -59,8 +59,9 @@ class OccurrenceDetailPageState extends State<OccurrenceDetailPage> {
                 onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            VictimListPage(title: 'SIREPH Técnicos Home Page', occurrenceId: occurrence.id))),
+                        builder: (context) => VictimListPage(
+                            title: 'SIREPH Técnicos Home Page',
+                            occurrenceId: occurrence.id))),
                 style: ButtonStyle(),
               ),
             ),

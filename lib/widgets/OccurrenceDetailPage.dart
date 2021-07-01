@@ -6,8 +6,10 @@ class OccurrenceDetailPage extends StatefulWidget {
   final Occurrence occurrence;
   final String title;
 
-  OccurrenceDetailPage({Key key, this.occurrence, this.title}) : super(key: key);
+  OccurrenceDetailPage({Key key, this.occurrence, this.title})
+      : super(key: key);
 
   @override
-  OccurrenceDetailPageState createState() => OccurrenceDetailPageState(occurrence: this.occurrence);
+  OccurrenceDetailPageState createState() =>
+      OccurrenceDetailPageState(occurrence: this.occurrence);
 }

@@ -8,13 +8,14 @@ class VictimForm extends StatefulWidget {
   final bool enabled;
   final bool add;
 
-  VictimForm({Key key, this.formKey, this.victim, this.enabled, this.add}) : super(key: key);
+  VictimForm({Key key, this.formKey, this.victim, this.enabled, this.add})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() => VictimFormState(
-      formKey: this.formKey,
-      victim: victim,
-      enabled: enabled,
-      add: add,
-  );
+        formKey: this.formKey,
+        victim: victim,
+        enabled: enabled,
+        add: add,
+      );
 }

@@ -4,7 +4,7 @@ import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/lists/OccurrencesListPage.dart';
 
-class OccurrencesListPageState  extends State<OccurrencesListPage>  {
+class OccurrencesListPageState extends State<OccurrencesListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +32,9 @@ class OccurrencesListPageState  extends State<OccurrencesListPage>  {
                     child: Column(
                       children: <Widget>[
                         ListTile(
-                          title: Text(occurrence.id.toString() + ' - ' + occurrence.municipality),
+                          title: Text(occurrence.id.toString() +
+                              ' - ' +
+                              occurrence.municipality),
                           trailing: Icon(Icons.keyboard_arrow_right),
                           leading: CircleAvatar(),
                           onTap: () {},

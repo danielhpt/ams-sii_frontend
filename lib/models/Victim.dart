@@ -31,6 +31,7 @@ class Victim {
   int episodeNumber;
   String comments;
   String typeOfEmergency;
+
   // ignore: non_constant_identifier_names
   DateTime siv_sav;
 
@@ -68,7 +69,7 @@ class Victim {
       this.episodeNumber,
       this.comments,
       this.typeOfEmergency,
-        // ignore: non_constant_identifier_names
+      // ignore: non_constant_identifier_names
       this.siv_sav,
       this.typeOfTransport,
       this.nonTransportReason,
@@ -83,48 +84,45 @@ class Victim {
       this.symptom});
 
   factory Victim.fromJson(Map<String, dynamic> json) {
-    TypeOfTransport typeOfTransport = TypeOfTransport.fromJson(json['type_of_transport']);
-    NonTransportReason nonTransportReason = NonTransportReason.fromJson(json['non_transport_reason']);
+    TypeOfTransport typeOfTransport =
+        TypeOfTransport.fromJson(json['type_of_transport']);
+    NonTransportReason nonTransportReason =
+        NonTransportReason.fromJson(json['non_transport_reason']);
     Occurrence occurrence = Occurrence.fromJsonSimplified(json['occurrence']);
 
     return Victim(
-      id: json['id'],
-      name: json['name'],
-      birthdate: DateTime.parse(json['birthdate'] + ' 00:00:00'),
-      age: json['age'],
-      gender: json['gender'],
-      identityNumber: json['identity_number'],
-      address: json['address'],
-
-      circumstances: json['circumstances'],
-      diseaseHistory: json['disease_history'],
-      allergies: json['allergies'],
-      lastMeal: json['last_meal'],
-      lastMealTime: DateTime.parse(json['last_meal_time']),
-      usualMedication: json['usual_medication'],
-      riskSituation: json['risk_situation'],
-
-      medicalFollowup: json['medical_followup'],
-      healthUnitOrigin: json['health_unit_origin'],
-      healthUnitDestination: json['health_unit_destination'],
-      episodeNumber: json['episode_number'],
-      typeOfTransport: typeOfTransport,
-      nonTransportReason: nonTransportReason,
-
-      comments: json['comments'],
-      typeOfEmergency: json['type_of_emergency'],
-      siv_sav: json['SIV_SAV'],
-
-      occurrence: occurrence,
-      evaluations: null,
-      pharmacies: null,
-      procedureRCP: null,
-      procedureVentilation: null,
-      procedureProtocol: null,
-      procedureCirculation: null,
-      procedureScale: null,
-      symptom: null
-    );
+        id: json['id'],
+        name: json['name'],
+        birthdate: DateTime.parse(json['birthdate'] + ' 00:00:00'),
+        age: json['age'],
+        gender: json['gender'],
+        identityNumber: json['identity_number'],
+        address: json['address'],
+        circumstances: json['circumstances'],
+        diseaseHistory: json['disease_history'],
+        allergies: json['allergies'],
+        lastMeal: json['last_meal'],
+        lastMealTime: DateTime.parse(json['last_meal_time']),
+        usualMedication: json['usual_medication'],
+        riskSituation: json['risk_situation'],
+        medicalFollowup: json['medical_followup'],
+        healthUnitOrigin: json['health_unit_origin'],
+        healthUnitDestination: json['health_unit_destination'],
+        episodeNumber: json['episode_number'],
+        typeOfTransport: typeOfTransport,
+        nonTransportReason: nonTransportReason,
+        comments: json['comments'],
+        typeOfEmergency: json['type_of_emergency'],
+        siv_sav: json['SIV_SAV'],
+        occurrence: occurrence,
+        evaluations: null,
+        pharmacies: null,
+        procedureRCP: null,
+        procedureVentilation: null,
+        procedureProtocol: null,
+        procedureCirculation: null,
+        procedureScale: null,
+        symptom: null);
   }
 
   factory Victim.fromJsonDetail(Map<String, dynamic> json) {
@@ -135,7 +133,7 @@ class Victim {
       evaluations.add(Evaluation.fromJson(evaluationJson));
     }
     victim.evaluations = evaluations;
-    
+
     List<Pharmacy> pharmacies = [];
     for (var pharmacyJson in json['pharmacies']) {
       pharmacies.add(Pharmacy.fromJson(pharmacyJson));
@@ -144,9 +142,12 @@ class Victim {
 
     victim.symptom = Symptom.fromJson(json['symptom']);
     victim.procedureRCP = ProcedureRCP.fromJson(json['procedure_rcp']);
-    victim.procedureVentilation = ProcedureVentilation.fromJson(json['procedure_ventilation']);
-    victim.procedureCirculation = ProcedureCirculation.fromJson(json['procedure_circulation']);
-    victim.procedureProtocol = ProcedureProtocol.fromJson(json['procedure_protocol']);
+    victim.procedureVentilation =
+        ProcedureVentilation.fromJson(json['procedure_ventilation']);
+    victim.procedureCirculation =
+        ProcedureCirculation.fromJson(json['procedure_circulation']);
+    victim.procedureProtocol =
+        ProcedureProtocol.fromJson(json['procedure_protocol']);
     victim.procedureScale = ProcedureScale.fromJson(json['procedure_scale']);
 
     return victim;
@@ -165,10 +166,8 @@ class Victim {
       'id': this.id,
       'name': name,
       'birthdate': birthdate.toString(),
-
       'evaluations': eJson,
       'pharmacies': pJson,
-
       'occurrence': procedureRCP.toJson(),
       'procedure_rcp': procedureRCP.toJson(),
       'procedure_ventilation': procedureVentilation.toJson(),
@@ -176,7 +175,6 @@ class Victim {
       'procedure_protocol': procedureProtocol.toJson(),
       'procedure_scale': procedureScale.toJson(),
       'symptom': symptom.toJson()
-
     };
   }
 }

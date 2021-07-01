@@ -11,7 +11,6 @@ import 'package:project/widgets/lists/OccurrencesListPage.dart';
 import 'package:project/widgets/TeamPage.dart';
 
 class HomePageState extends State<HomePage> {
-
   Occurrence occurrence = new Occurrence(
       id: 1,
       occurrenceNumber: 1,
@@ -21,8 +20,7 @@ class HomePageState extends State<HomePage> {
       numberOfVictims: 1,
       local: 'Rua da Liberdade 84',
       parish: 'Brandoa',
-      municipality: 'Amadora'
-  );
+      municipality: 'Amadora');
 
   final formKey = GlobalKey<FormState>();
 
@@ -47,7 +45,8 @@ class HomePageState extends State<HomePage> {
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => OccurrencesListPage(title: 'SIREPH Técnicos Home Page'))),
+                                builder: (context) => OccurrencesListPage(
+                                    title: 'SIREPH Técnicos Home Page'))),
                         style: ButtonStyle(),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -100,7 +99,9 @@ class HomePageState extends State<HomePage> {
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => OccurrenceDetailPage(occurrence: occurrence, title: 'SIREPH Técnicos Home Page'))),
+                                builder: (context) => OccurrenceDetailPage(
+                                    occurrence: occurrence,
+                                    title: 'SIREPH Técnicos Home Page'))),
                         style: ButtonStyle(),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

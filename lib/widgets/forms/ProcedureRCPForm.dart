@@ -12,9 +12,5 @@ class ProcedureRCPForm extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => ProcedureRCPFormState(
-      formKey: this.formKey,
-      procedureRCP: procedureRCP,
-      enabled: enabled
-
-  );
+      formKey: this.formKey, procedureRCP: procedureRCP, enabled: enabled);
 }

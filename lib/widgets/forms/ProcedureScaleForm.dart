@@ -12,8 +12,5 @@ class ProcedureScaleForm extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() => ProcedureScaleFormState(
-      formKey: this.formKey,
-      procedureScale: procedureScale,
-      enabled: enabled
-  );
+      formKey: this.formKey, procedureScale: procedureScale, enabled: enabled);
 }

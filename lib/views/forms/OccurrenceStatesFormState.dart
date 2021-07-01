@@ -28,9 +28,11 @@ class OccurrenceStatesFormState extends State<OccurrenceStatesForm> {
               return InputDecorator(
                 decoration: InputDecoration(
                     labelStyle: textStyle,
-                    errorStyle: TextStyle(color: Colors.redAccent, fontSize: 16.0),
+                    errorStyle:
+                        TextStyle(color: Colors.redAccent, fontSize: 16.0),
                     hintText: 'Selecione um estado',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0))),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0))),
                 isEmpty: _currentSelectedValue == '',
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
@@ -38,7 +40,7 @@ class OccurrenceStatesFormState extends State<OccurrenceStatesForm> {
                     isDense: true,
                     onChanged: (String newValue) {
                       setState(() {
-                        _currentSelectedValue  = newValue;
+                        _currentSelectedValue = newValue;
                         state.didChange(newValue);
                       });
                     },
@@ -70,7 +72,5 @@ class OccurrenceStatesFormState extends State<OccurrenceStatesForm> {
         ],
       ),
     );
-
   }
-
 }

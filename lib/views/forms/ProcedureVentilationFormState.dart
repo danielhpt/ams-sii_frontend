@@ -35,8 +35,7 @@ class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
               },
               onSaved: (value) {
                 procedureVentilation.clearance = value;
-              }
-          ),
+              }),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
@@ -52,8 +51,7 @@ class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
               },
               onSaved: (value) {
                 procedureVentilation.oropharyngeal = value;
-              }
-          ),
+              }),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
@@ -69,8 +67,7 @@ class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
               },
               onSaved: (value) {
                 procedureVentilation.laryngealTube = value;
-              }
-          ),
+              }),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
@@ -86,8 +83,7 @@ class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
               },
               onSaved: (value) {
                 procedureVentilation.endotracheal = value;
-              }
-          ),
+              }),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
@@ -103,8 +99,7 @@ class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
               },
               onSaved: (value) {
                 procedureVentilation.laryngealMask = value;
-              }
-          ),
+              }),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
@@ -120,8 +115,7 @@ class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
               },
               onSaved: (value) {
                 procedureVentilation.mechanicalVentilation = value;
-              }
-          ),
+              }),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
@@ -137,12 +131,7 @@ class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
               },
               onSaved: (value) {
                 procedureVentilation.cpap = value;
-              }
-          ),
-
-        ]
-        )
-    );
+              }),
+        ]));
   }
-
 }

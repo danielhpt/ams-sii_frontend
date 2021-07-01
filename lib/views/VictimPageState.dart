@@ -23,11 +23,10 @@ class VictimPageState extends State<VictimPage> {
           child: Column(
             children: [
               VictimForm(
-                victim: this.victim,
-                formKey: this.formKey,
-                enabled: true,
-                add: add
-              ),
+                  victim: this.victim,
+                  formKey: this.formKey,
+                  enabled: true,
+                  add: add),
               Container(
                 margin: EdgeInsets.only(top: 20.0),
                 child: ElevatedButton.icon(
@@ -40,11 +39,12 @@ class VictimPageState extends State<VictimPage> {
                     size: 50.0,
                   ),
                   onPressed: () async {
-                    if (formKey.currentState.validate()){
+                    if (formKey.currentState.validate()) {
                       formKey.currentState.save();
                       try {
-                        if (add){
-                          var v = await postOccurrenceVictim(occurrenceId, victim.toJson());
+                        if (add) {
+                          var v = await postOccurrenceVictim(
+                              occurrenceId, victim.toJson());
                         } else {
                           var v = await putVictim(victim.id, victim.toJson());
                         }

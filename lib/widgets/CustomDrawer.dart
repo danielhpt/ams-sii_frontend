@@ -18,15 +18,19 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            title: Text('Ocorrências',
-              style: TextStyle(fontSize: 16),),
+            title: Text(
+              'Ocorrências',
+              style: TextStyle(fontSize: 16),
+            ),
             onTap: () {
               Navigator.pop(context);
             },
           ),
           ListTile(
-            title: Text('Equipa',
-              style: TextStyle(fontSize: 16),),
+            title: Text(
+              'Equipa',
+              style: TextStyle(fontSize: 16),
+            ),
             onTap: () {
               Navigator.pop(context);
             },

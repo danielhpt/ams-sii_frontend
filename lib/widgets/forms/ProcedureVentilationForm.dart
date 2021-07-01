@@ -7,13 +7,13 @@ class ProcedureVentilationForm extends StatefulWidget {
   final ProcedureVentilation procedureVentilation;
   final bool enabled;
 
-  ProcedureVentilationForm({Key key, this.formKey, this.procedureVentilation, this.enabled})
+  ProcedureVentilationForm(
+      {Key key, this.formKey, this.procedureVentilation, this.enabled})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() => ProcedureVentilationFormState(
       formKey: this.formKey,
       procedureVentilation: procedureVentilation,
-      enabled: enabled
-  );
+      enabled: enabled);
 }

@@ -8,7 +8,13 @@ class TeamTechnician {
   bool isActive;
   bool isTeamLeader;
 
-  TeamTechnician({this.id, this.username, this.firstName, this.lastName, this.isActive, this.isTeamLeader});
+  TeamTechnician(
+      {this.id,
+      this.username,
+      this.firstName,
+      this.lastName,
+      this.isActive,
+      this.isTeamLeader});
 
   factory TeamTechnician.fromJson(Map<String, dynamic> json) {
     return TeamTechnician(
@@ -17,20 +23,17 @@ class TeamTechnician {
         firstName: json['first_name'],
         lastName: json['last_name'],
         isActive: json['active'],
-        isTeamLeader: json['team_leader']
-    );
+        isTeamLeader: json['team_leader']);
   }
 
-
-  factory TeamTechnician.fromUser(User user){
+  factory TeamTechnician.fromUser(User user) {
     return TeamTechnician(
         id: user.id,
         username: user.username,
         firstName: user.firstName,
         lastName: user.lastName,
         isTeamLeader: false,
-        isActive: true
-    );
+        isActive: true);
   }
 
   getFullName() => this.firstName + ' ' + this.lastName;

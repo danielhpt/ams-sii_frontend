@@ -376,21 +376,21 @@ class VictimFormState extends State<VictimForm> {
           ),
           Visibility(
             visible: add,
-              child: Card(
-                child: ListTile(
-                  title: Text('Avaliações'),
-                  trailing: Icon(Icons.keyboard_arrow_right),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return EvaluationsListPage(
-                        title: 'SIREPH Técnicos Home Page',
-                        enabled: enabled,
-                        evaluations: victim.evaluations,
-                      );
-                    }));
-                  },
-                ),
+            child: Card(
+              child: ListTile(
+                title: Text('Avaliações'),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return EvaluationsListPage(
+                      title: 'SIREPH Técnicos Home Page',
+                      enabled: enabled,
+                      evaluations: victim.evaluations,
+                    );
+                  }));
+                },
               ),
+            ),
           ),
           Visibility(
             visible: add,

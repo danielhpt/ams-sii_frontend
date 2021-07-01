@@ -42,7 +42,7 @@ class ProcedureScaleFormState extends State<ProcedureScaleForm> {
           },
           keyboardType: TextInputType.number,
           autocorrect: false,
-          ),
+        ),
         TextFormField(
           enabled: enabled,
           decoration: const InputDecoration(
@@ -79,7 +79,6 @@ class ProcedureScaleFormState extends State<ProcedureScaleForm> {
           keyboardType: TextInputType.number,
           autocorrect: false,
         ),
-
       ]),
     );
   }

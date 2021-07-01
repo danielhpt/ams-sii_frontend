@@ -7,14 +7,13 @@ class ProcedureProtocolForm extends StatefulWidget {
   final ProcedureProtocol procedureProtocol;
   final bool enabled;
 
-  ProcedureProtocolForm({Key key, this.formKey, this.procedureProtocol, this.enabled})
+  ProcedureProtocolForm(
+      {Key key, this.formKey, this.procedureProtocol, this.enabled})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() => ProcedureProtocolFormState(
       formKey: this.formKey,
       procedureProtocol: procedureProtocol,
-      enabled:enabled
-
-  );
+      enabled: enabled);
 }

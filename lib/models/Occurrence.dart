@@ -86,5 +86,28 @@ class Occurrence {
 
     return occurrence;
   }
-}
 
+  Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> vJson = this.victims.map((element) {
+      return element.toJson();
+    }).toList();
+    List<Map<String, dynamic>> sJson = this.states.map((element) {
+      return element.toJson();
+    }).toList();
+
+    return <String, dynamic>{
+      'id': this.id,
+      'occurrence_number': this.occurrenceNumber,
+      'entity': this.entity,
+      'mean_of_assistance': this.meanOfAssistance,
+      'motive': this.motive,
+      'number_of_victims': this.numberOfVictims,
+      'local': this.local,
+      'parish': this.parish,
+      'municipality': this.municipality,
+      'team': team.toJson(),
+      'victims': vJson,
+      'states': sJson
+    };
+  }
+}

@@ -5,7 +5,7 @@ class Login {
   Login({this.username, this.password});
 
   Map<String, dynamic> toJson() {
-    return <String, dynamic> {
+    return <String, dynamic>{
       'username': this.username,
       'password': this.password
     };

@@ -10,8 +10,13 @@ class TypeOfTransport {
     }
 
     return TypeOfTransport(
-        id: json['id'],
-        typeOfTransport: json['type_of_transport']
-    );
+        id: json['id'], typeOfTransport: json['type_of_transport']);
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'id': this.id,
+      'type_of_transport': this.typeOfTransport
+    };
   }
 }

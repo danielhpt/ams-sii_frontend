@@ -7,8 +7,10 @@ class EvaluationsListPage extends StatefulWidget {
   final List<Evaluation> evaluations;
   final bool enabled;
 
-  EvaluationsListPage({Key key, this.title, this.evaluations, this.enabled}) : super(key: key);
+  EvaluationsListPage({Key key, this.title, this.evaluations, this.enabled})
+      : super(key: key);
 
   @override
-  EvaluationsListPageState createState() => EvaluationsListPageState(title: title, evaluations: evaluations, enabled: enabled);
+  EvaluationsListPageState createState() => EvaluationsListPageState(
+      title: title, evaluations: evaluations, enabled: enabled);
 }

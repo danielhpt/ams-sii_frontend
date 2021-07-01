@@ -38,23 +38,44 @@ class Evaluation {
 
   factory Evaluation.fromJson(Map<String, dynamic> json) {
     return Evaluation(
-      id: json['id'],
-      hours: json['hours'],
-      avds: json['avds'],
-      ventilation: json['ventilation'],
-      spo2: json['spo2'],
-      o2: json['o2'],
-      etco2: json['etco2'],
-      pulse: json['pulse'],
-      ecg: json['ecg'],
-      skin: json['skin'],
-      temperature: json['temperature'],
-      systolicBloodPressure: json['systolic_blood_pressure'],
-      diastolicBloodPressure: json['diastolic_blood_pressure'],
-      pupils: json['pupils'],
-      pain: json['pain'],
-      glycemia: json['glycemia'],
-      news: json['news']
-    );
+        id: json['id'],
+        hours: json['hours'],
+        avds: json['avds'],
+        ventilation: json['ventilation'],
+        spo2: json['spo2'],
+        o2: json['o2'],
+        etco2: json['etco2'],
+        pulse: json['pulse'],
+        ecg: json['ecg'],
+        skin: json['skin'],
+        temperature: json['temperature'],
+        systolicBloodPressure: json['systolic_blood_pressure'],
+        diastolicBloodPressure: json['diastolic_blood_pressure'],
+        pupils: json['pupils'],
+        pain: json['pain'],
+        glycemia: json['glycemia'],
+        news: json['news']);
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'id': this.id,
+      'hours': this.hours,
+      'avds': this.avds,
+      'ventilation': this.ventilation,
+      'spo2': this.spo2,
+      'o2': this.o2,
+      'etco2': this.etco2,
+      'pulse': this.pulse,
+      'ecg': this.ecg,
+      'skin': this.skin,
+      'temperature': this.temperature,
+      'systolicBloodPressure': this.systolicBloodPressure,
+      'diastolicBloodPressure': this.diastolicBloodPressure,
+      'pupils': this.pupils,
+      'pain': this.pain,
+      'glycemia': this.glycemia,
+      'news': this.news
+    };
   }
 }

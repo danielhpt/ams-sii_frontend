@@ -12,22 +12,16 @@ class Team {
     for (var technicianJson in json['technicians']) {
       technicians.add(TeamTechnician.fromJson(technicianJson));
     }
-    return Team(
-      id: json['id'],
-      technicians: technicians
-    );
+    return Team(id: json['id'], technicians: technicians);
   }
 
-  factory Team.begin(User user){
+  factory Team.begin(User user) {
     TeamTechnician technician = TeamTechnician.fromUser(user);
     technician.isTeamLeader = true;
 
     List<TeamTechnician> technicians = [technician];
 
-    return Team(
-      id: 0,
-      technicians: technicians
-    );
+    return Team(id: 0, technicians: technicians);
   }
 
   TeamTechnician getLeader() {
@@ -39,13 +33,10 @@ class Team {
     return null;
   }
 
-  Map<String, dynamic> toJson(){
+  Map<String, dynamic> toJson() {
     List<Map<String, dynamic>> tJson = this.technicians.map((element) {
       return element.toJson();
     }).toList();
-    return <String, dynamic>{
-      'id': this.id,
-      'technicians': tJson
-    };
+    return <String, dynamic>{'id': this.id, 'technicians': tJson};
   }
 }

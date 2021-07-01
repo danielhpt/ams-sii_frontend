@@ -7,14 +7,13 @@ class ProcedureCirculationForm extends StatefulWidget {
   final ProcedureCirculation procedureCirculation;
   final bool enabled;
 
-  ProcedureCirculationForm({Key key, this.formKey, this.procedureCirculation, this.enabled})
+  ProcedureCirculationForm(
+      {Key key, this.formKey, this.procedureCirculation, this.enabled})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() => ProcedureCirculationFormState(
       formKey: this.formKey,
       procedureCirculation: procedureCirculation,
-      enabled:enabled
-
-  );
+      enabled: enabled);
 }

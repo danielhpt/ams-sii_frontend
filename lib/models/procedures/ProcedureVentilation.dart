@@ -24,7 +24,18 @@ class ProcedureVentilation {
         endotracheal: json['endotracheal'],
         laryngealMask: json['laryngeal_mask'],
         mechanicalVentilation: json['mechanical_ventilation'],
-        cpap: json['cpap']
-    );
+        cpap: json['cpap']);
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'clearance': this.clearance,
+      'oropharyngeal': this.oropharyngeal,
+      'laryngeal_tube': this.laryngealTube,
+      'endotracheal': this.endotracheal,
+      'laryngeal_mask': this.laryngealMask,
+      'mechanical_ventilation': this.mechanicalVentilation,
+      'cpap': this.cpap
+    };
   }
 }
