@@ -26,7 +26,6 @@ class CreateTeamPageState extends State<CreateTeamPage> {
 
   @override
   Widget build(BuildContext context) {
-    var teamUser;
     return Scaffold(
       appBar: AppBar(title: Text('SIREPH Técnicos')),
       drawer: CustomDrawer(),

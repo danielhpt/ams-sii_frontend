@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'package:project/utils/GPS.dart';
 import 'package:project/utils/Offline.dart';
 import 'package:project/utils/Rest.dart';
@@ -23,22 +24,20 @@ class MainPage extends StatelessWidget {
             child: Text('Localização Obrigatória'),
           );
         } else {
-         /* return FutureBuilder(
-            future: loadToken(),
-            builder: (context, tokenHive) {
-              if (!tokenHive.hasData) {
-                return Center(child: CircularProgressIndicator());
-              } else*/ if (token/*Hive.data*/ != null) {
-                //token = tokenHive.data;
-                return HomePage();
-              } else {
-                return LoginPage();
-              }
-            //},
-         // );
+          if (token != null) {
+            return HomePage();
+          }
+          return LoginPage();
         }
       },
-      future: getLocation(),
+      future: init(),
     );
   }
+}
+
+Future<LocationData> init() async {
+  if (token == null) {
+    token = await loadToken();
+  }
+  return await getLocation();
 }

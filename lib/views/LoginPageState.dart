@@ -48,7 +48,7 @@ class LoginPageState extends State<LoginPage> {
                     formKey.currentState.save();
                     try {
                       token = await postToken(login);
-                      //var a = await saveToken(token);
+                      await saveToken(token);
                       controller.reset();
                       Navigator.pushAndRemoveUntil(
                           context,

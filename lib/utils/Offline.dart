@@ -1,5 +1,4 @@
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> saveToken(String token) async {
   var box = await Hive.openBox("token");
@@ -7,8 +6,11 @@ Future<void> saveToken(String token) async {
 }
 
 Future<String> loadToken() async {
-  final documentDirectory = await getApplicationDocumentsDirectory();
-  Hive.init(documentDirectory.path);
+  await Hive.initFlutter();
   var box = await Hive.openBox("token");
   return box.get("token");
+}
+
+Future<void> deleteToken() async {
+  await Hive.deleteBoxFromDisk("token");
 }
