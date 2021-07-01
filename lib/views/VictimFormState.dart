@@ -350,7 +350,7 @@ class VictimFormState extends State<VictimForm> {
                       return InputDatePickerFormField(
                         lastDate: DateTime.now(),
                         firstDate: DateTime(1900),
-                        initialDate: victim.birthdate,
+                        initialDate: victim.siv_sav,
                         onDateSaved: (DateTime value) {
                           victim.siv_sav = value;
                         },
