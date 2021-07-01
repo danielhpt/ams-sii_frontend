@@ -1,17 +1,17 @@
-import 'package:project/models/State.dart';
+import 'package:project/models/States.dart';
 
 class OccurrenceState {
   int id;
   double longitude;
   double latitude;
   DateTime dateTime;
-  State state;
+  States state;
 
   OccurrenceState(
       {this.id, this.longitude, this.latitude, this.dateTime, this.state});
 
   factory OccurrenceState.fromJson(Map<String, dynamic> json) {
-    State state = State.fromJson(json['state']);
+    States state = States.fromJson(json['state']);
     return OccurrenceState(
         id: json['id'],
         latitude: json['latitude'],

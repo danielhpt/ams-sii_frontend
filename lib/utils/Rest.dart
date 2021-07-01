@@ -4,13 +4,14 @@ import 'package:http/http.dart' as http;
 import 'package:project/models/Evaluation.dart';
 import 'package:project/models/Login.dart';
 import 'package:project/models/Occurrence.dart';
+import 'package:project/models/OccurrenceState.dart';
 import 'package:project/models/Pharmacy.dart';
 import 'package:project/models/procedures/ProcedureCirculation.dart';
 import 'package:project/models/procedures/ProcedureProtocol.dart';
 import 'package:project/models/procedures/ProcedureRCP.dart';
 import 'package:project/models/procedures/ProcedureScale.dart';
 import 'package:project/models/procedures/ProcedureVentilation.dart';
-import 'package:project/models/State.dart';
+import 'package:project/models/States.dart';
 import 'package:project/models/Symptom.dart';
 import 'package:project/models/Team.dart';
 import 'package:project/models/User.dart';
@@ -340,7 +341,7 @@ Future<Victim> postOccurrenceVictim(
 }
 
 // occurrences/<int:occurrence_id>/states/
-Future<List<State>> getOccurrenceStatesList(int occurrenceId) async {
+Future<List<OccurrenceState>> getOccurrenceStatesList(int occurrenceId) async {
   if (token == null) {
     throw Exception('Token null.');
   }
@@ -354,8 +355,8 @@ Future<List<State>> getOccurrenceStatesList(int occurrenceId) async {
   if (response.statusCode == 200) {
     List<dynamic> array = jsonDecode(utf8.decode(response.body.runes.toList()));
 
-    List<State> states = array.map((element) {
-      return State.fromJson(element);
+    List<OccurrenceState> states = array.map((element) {
+      return OccurrenceState.fromJson(element);
     }).toList();
 
     return states;
@@ -364,7 +365,7 @@ Future<List<State>> getOccurrenceStatesList(int occurrenceId) async {
   }
 }
 
-Future<State> postOccurrenceState(
+Future<OccurrenceState> postOccurrenceState(
     int occurrenceId, Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
@@ -379,8 +380,7 @@ Future<State> postOccurrenceState(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return State.fromJson(
-        jsonDecode(utf8.decode(response.body.runes.toList())));
+    return OccurrenceState.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post State.');
   }
