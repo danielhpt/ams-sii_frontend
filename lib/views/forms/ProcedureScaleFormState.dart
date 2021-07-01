@@ -34,7 +34,7 @@ class ProcedureScaleFormState extends State<ProcedureScaleForm> {
                   labelText: 'Cincinatti',
                 ),
                 onSaved: (String value) {
-                  procedureScale.cincinatti = int.parse(value);
+                  procedureScale.cincinatti = value.isEmpty ? 0 : int.parse(value);
                 },
                 keyboardType: TextInputType.number,
                 autocorrect: false,
@@ -46,7 +46,7 @@ class ProcedureScaleFormState extends State<ProcedureScaleForm> {
                   labelText: 'PROACS',
                 ),
                 onSaved: (String value) {
-                  procedureScale.proacs = int.parse(value);
+                  procedureScale.proacs = value.isEmpty ? 0 : int.parse(value);
                 },
                 keyboardType: TextInputType.number,
                 autocorrect: false,
@@ -58,7 +58,7 @@ class ProcedureScaleFormState extends State<ProcedureScaleForm> {
                   labelText: 'RTS',
                 ),
                 onSaved: (String value) {
-                  procedureScale.rts = int.parse(value);
+                  procedureScale.rts = value.isEmpty ? 0 : int.parse(value);
                 },
                 keyboardType: TextInputType.number,
                 autocorrect: false,
@@ -70,7 +70,7 @@ class ProcedureScaleFormState extends State<ProcedureScaleForm> {
                   labelText: 'MGAP',
                 ),
                 onSaved: (String value) {
-                  procedureScale.mgap = int.parse(value);
+                  procedureScale.mgap = value.isEmpty ? 0 : int.parse(value);
                 },
                 keyboardType: TextInputType.number,
                 autocorrect: false,
@@ -82,7 +82,7 @@ class ProcedureScaleFormState extends State<ProcedureScaleForm> {
                   labelText: 'RACE',
                 ),
                 onSaved: (String value) {
-                  procedureScale.race = int.parse(value);
+                  procedureScale.race = value.isEmpty ? 0 : int.parse(value);
                 },
                 keyboardType: TextInputType.number,
                 autocorrect: false,

@@ -7,6 +7,14 @@ class ProcedureCirculationFormState extends State<ProcedureCirculationForm> {
   final formKey;
   final ProcedureCirculation procedureCirculation;
   final bool enabled;
+  bool temp;
+  bool comp;
+  bool tour;
+  bool pelv;
+  bool veno;
+  bool patc;
+  bool ecg;
+
 
   ProcedureCirculationFormState(
       {this.procedureCirculation, this.formKey, this.enabled});
@@ -14,6 +22,13 @@ class ProcedureCirculationFormState extends State<ProcedureCirculationForm> {
   @override
   void initState() {
     super.initState();
+    temp = procedureCirculation.temperatureMonitoring == null ? false : procedureCirculation.temperatureMonitoring ;
+    comp = procedureCirculation.compression == null ? false : procedureCirculation.compression ;
+    tour = procedureCirculation.tourniquet == null ? false : procedureCirculation.tourniquet ;
+    pelv = procedureCirculation.pelvicBelt == null ? false : procedureCirculation.pelvicBelt ;
+    veno = procedureCirculation.venousAccess == null ? false : procedureCirculation.venousAccess ;
+    patc = procedureCirculation.patch == null ? false : procedureCirculation.patch ;
+    ecg = procedureCirculation.ecg == null ? false : procedureCirculation.ecg ;
   }
 
   @override
@@ -33,113 +48,113 @@ class ProcedureCirculationFormState extends State<ProcedureCirculationForm> {
                     enabled: enabled,
                     builder: (FormFieldState<bool> state) {
                       return SwitchListTile(
-                        title: Text('Controlo Temperatura'),
-                        value: procedureCirculation.temperatureMonitoring,
+                        title: Text('Controlo de Temperatura'),
+                        value: temp,
                         onChanged: (bool value) {
                           setState(() {
-                            procedureCirculation.temperatureMonitoring = value;
+                            temp = value;
                           });
                         },
                       );
                     },
                     onSaved: (value) {
-                      procedureCirculation.temperatureMonitoring = value;
+                      procedureCirculation.temperatureMonitoring = temp;
                     }),
                 FormField(
                     enabled: enabled,
                     builder: (FormFieldState<bool> state) {
                       return SwitchListTile(
                         title: Text('Compressão'),
-                        value: procedureCirculation.compression,
+                        value:  comp,
                         onChanged: (bool value) {
                           setState(() {
-                            procedureCirculation.compression = value;
+                            comp = value;
                           });
                         },
                       );
                     },
                     onSaved: (value) {
-                      procedureCirculation.compression = value;
+                      procedureCirculation.compression = comp;
                     }),
                 FormField(
                     enabled: enabled,
                     builder: (FormFieldState<bool> state) {
                       return SwitchListTile(
                         title: Text('Torniquete'),
-                        value: procedureCirculation.tourniquet,
+                        value: tour,
                         onChanged: (bool value) {
                           setState(() {
-                            procedureCirculation.tourniquet = value;
+                            tour = value;
                           });
                         },
                       );
                     },
                     onSaved: (value) {
-                      procedureCirculation.tourniquet = value;
+                      procedureCirculation.tourniquet = tour;
                     }),
                 FormField(
                     enabled: enabled,
                     builder: (FormFieldState<bool> state) {
                       return SwitchListTile(
                         title: Text('Cinto pélvico'),
-                        value: procedureCirculation.pelvicBelt,
+                        value: pelv,
                         onChanged: (bool value) {
                           setState(() {
-                            procedureCirculation.pelvicBelt = value;
+                            pelv = value;
                           });
                         },
                       );
                     },
                     onSaved: (value) {
-                      procedureCirculation.pelvicBelt = value;
+                      procedureCirculation.pelvicBelt = pelv;
                     }),
                 FormField(
                     enabled: enabled,
                     builder: (FormFieldState<bool> state) {
                       return SwitchListTile(
                         title: Text('Acesso venoso'),
-                        value: procedureCirculation.venousAccess,
+                        value: veno,
                         onChanged: (bool value) {
                           setState(() {
-                            procedureCirculation.venousAccess = value;
+                            veno = value;
                           });
                         },
                       );
                     },
                     onSaved: (value) {
-                      procedureCirculation.venousAccess = value;
+                      procedureCirculation.venousAccess = veno;
                     }),
                 FormField(
                     enabled: enabled,
                     builder: (FormFieldState<bool> state) {
                       return SwitchListTile(
                         title: Text('Penso'),
-                        value: procedureCirculation.patch,
+                        value: patc,
                         onChanged: (bool value) {
                           setState(() {
-                            procedureCirculation.patch = value;
+                            patc = value;
                           });
                         },
                       );
                     },
                     onSaved: (value) {
-                      procedureCirculation.patch = value;
+                      procedureCirculation.patch = patc;
                     }),
                 FormField(
                     enabled: enabled,
                     builder: (FormFieldState<bool> state) {
                       return SwitchListTile(
                         title: Text('ECG'),
-                        value: procedureCirculation.ecg,
+                        value: ecg,
                         onChanged: (bool value) {
                           setState(() {
-                            procedureCirculation.ecg = value;
+                            ecg = value;
                           });
                         },
                       );
                     },
                     onSaved: (value) {
-                      procedureCirculation.ecg = value;
+                      procedureCirculation.ecg = ecg;
                     }),
               ],
             ),

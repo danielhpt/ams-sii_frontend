@@ -7,6 +7,14 @@ class ProcedureProtocolFormState extends State<ProcedureProtocolForm> {
   final formKey;
   final ProcedureProtocol procedureProtocol;
   final bool enabled;
+  bool immobilization;
+  bool teph;
+  bool siv;
+  bool vv_avc;
+  bool vv_coronary;
+  bool vv_sepsis;
+  bool vv_trauma;
+  bool vv_pcr;
 
   ProcedureProtocolFormState(
       {this.procedureProtocol, this.formKey, this.enabled});
@@ -14,6 +22,14 @@ class ProcedureProtocolFormState extends State<ProcedureProtocolForm> {
   @override
   void initState() {
     super.initState();
+    immobilization = procedureProtocol.immobilization == null ? false : procedureProtocol.immobilization;
+    teph = procedureProtocol.teph == null ? false : procedureProtocol.teph;
+    siv = procedureProtocol.siv == null ? false : procedureProtocol.siv;
+    vv_avc = procedureProtocol.vv_avc == null ? false : procedureProtocol.vv_avc;
+    vv_coronary = procedureProtocol.vv_coronary == null ? false : procedureProtocol.vv_coronary;
+    vv_sepsis = procedureProtocol.vv_sepsis == null ? false : procedureProtocol.vv_sepsis;
+    vv_trauma = procedureProtocol.vv_trauma == null ? false : procedureProtocol.vv_trauma;
+    vv_pcr = procedureProtocol.vv_pcr == null ? false : procedureProtocol.vv_pcr;
   }
 
   @override
@@ -33,128 +49,128 @@ class ProcedureProtocolFormState extends State<ProcedureProtocolForm> {
                         builder: (FormFieldState<bool> state) {
                           return SwitchListTile(
                             title: Text('Imobilização'),
-                            value: procedureProtocol.immobilization,
+                            value: immobilization,
                             onChanged: (bool value) {
                               setState(() {
-                                procedureProtocol.immobilization = value;
+                                immobilization = value;
                               });
                             },
                           );
                         },
                         onSaved: (value) {
-                          procedureProtocol.immobilization = value;
+                          procedureProtocol.immobilization = immobilization;
                         }),
                     FormField(
                         enabled: enabled,
                         builder: (FormFieldState<bool> state) {
                           return SwitchListTile(
                             title: Text('TEPH'),
-                            value: procedureProtocol.teph,
+                            value: teph,
                             onChanged: (bool value) {
                               setState(() {
-                                procedureProtocol.teph = value;
+                                teph = value;
                               });
                             },
                           );
                         },
                         onSaved: (value) {
-                          procedureProtocol.teph = value;
+                          procedureProtocol.teph = teph;
                         }),
                     FormField(
                         enabled: enabled,
                         builder: (FormFieldState<bool> state) {
                           return SwitchListTile(
                             title: Text('SIV'),
-                            value: procedureProtocol.siv,
+                            value: siv,
                             onChanged: (bool value) {
                               setState(() {
-                                procedureProtocol.siv = value;
+                                siv = value;
                               });
                             },
                           );
                         },
                         onSaved: (value) {
-                          procedureProtocol.siv = value;
+                          procedureProtocol.siv = siv;
                         }),
                     FormField(
                         enabled: enabled,
                         builder: (FormFieldState<bool> state) {
                           return SwitchListTile(
                             title: Text('VV AVC'),
-                            value: procedureProtocol.vv_avc,
+                            value: vv_avc,
                             onChanged: (bool value) {
                               setState(() {
-                                procedureProtocol.vv_avc = value;
+                                vv_avc = value;
                               });
                             },
                           );
                         },
                         onSaved: (value) {
-                          procedureProtocol.vv_avc = value;
+                          procedureProtocol.vv_avc = vv_avc;
                         }),
                     FormField(
                         enabled: enabled,
                         builder: (FormFieldState<bool> state) {
                           return SwitchListTile(
                             title: Text('VV Coronária'),
-                            value: procedureProtocol.vv_coronary,
+                            value: vv_coronary,
                             onChanged: (bool value) {
                               setState(() {
-                                procedureProtocol.vv_coronary = value;
+                                vv_coronary = value;
                               });
                             },
                           );
                         },
                         onSaved: (value) {
-                          procedureProtocol.vv_coronary = value;
+                          procedureProtocol.vv_coronary = vv_coronary;
                         }),
                     FormField(
                         enabled: enabled,
                         builder: (FormFieldState<bool> state) {
                           return SwitchListTile(
                             title: Text('VV Sépsis'),
-                            value: procedureProtocol.vv_sepsis,
+                            value: vv_sepsis,
                             onChanged: (bool value) {
                               setState(() {
-                                procedureProtocol.vv_sepsis = value;
+                                vv_sepsis = value;
                               });
                             },
                           );
                         },
                         onSaved: (value) {
-                          procedureProtocol.vv_sepsis = value;
+                          procedureProtocol.vv_sepsis = vv_sepsis;
                         }),
                     FormField(
                         enabled: enabled,
                         builder: (FormFieldState<bool> state) {
                           return SwitchListTile(
                             title: Text('VV Trauma'),
-                            value: procedureProtocol.vv_trauma,
+                            value: vv_trauma,
                             onChanged: (bool value) {
                               setState(() {
-                                procedureProtocol.vv_trauma = value;
+                                vv_trauma = value;
                               });
                             },
                           );
                         },
                         onSaved: (value) {
-                          procedureProtocol.vv_trauma = value;
+                          procedureProtocol.vv_trauma = vv_trauma;
                         }),
                     FormField(
                         enabled: enabled,
                         builder: (FormFieldState<bool> state) {
                           return SwitchListTile(
                             title: Text('VV PCR'),
-                            value: procedureProtocol.vv_pcr,
+                            value: vv_pcr,
                             onChanged: (bool value) {
                               setState(() {
-                                procedureProtocol.vv_pcr = value;
+                                vv_pcr = value;
                               });
                             },
                           );
                         },
                         onSaved: (value) {
-                          procedureProtocol.vv_pcr = value;
+                          procedureProtocol.vv_pcr = vv_pcr;
                         }),
                   ]))),
         ],

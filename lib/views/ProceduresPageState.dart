@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/models/Victim.dart';
 import 'package:project/models/procedures/ProcedureCirculation.dart';
 import 'package:project/models/procedures/ProcedureProtocol.dart';
 import 'package:project/models/procedures/ProcedureRCP.dart';
@@ -33,6 +34,47 @@ class ProceduresPageState extends State<ProceduresPage> {
           if (!victim.hasData) {
             return Center(child: CircularProgressIndicator());
           } else {
+            ProcedureRCP procedureRCP = victim.data.procedureRCP == null
+                ? ProcedureRCP(performed: false, witnessed: false)
+                : victim.data.procedureRCP;
+            ProcedureVentilation procedureVentilation =
+                victim.data.procedureVentilation == null
+                    ? ProcedureVentilation(
+                        clearance: false,
+                        cpap: false,
+                        endotracheal: false,
+                        laryngealMask: false,
+                        laryngealTube: false,
+                        mechanicalVentilation: false,
+                        oropharyngeal: false)
+                    : victim.data.procedureVentilation;
+            ProcedureCirculation procedureCirculation =
+                victim.data.procedureCirculation == null
+                    ? ProcedureCirculation(
+                        compression: false,
+                        ecg: false,
+                        patch: false,
+                        pelvicBelt: false,
+                        temperatureMonitoring: false,
+                        tourniquet: false,
+                        venousAccess: false)
+                    : victim.data.procedureCirculation;
+            ProcedureProtocol procedureProtocol =
+                victim.data.procedureProtocol == null
+                    ? ProcedureProtocol(
+                        immobilization: false,
+                        siv: false,
+                        teph: false,
+                        vv_avc: false,
+                        vv_coronary: false,
+                        vv_pcr: false,
+                        vv_sepsis: false,
+                        vv_trauma: false)
+                    : victim.data.procedureProtocol;
+            ProcedureScale procedureScale = victim.data.procedureScale == null
+                ? ProcedureScale()
+                : victim.data.procedureScale;
+
             return Scaffold(
                 appBar: AppBar(title: Text('SIREPH Técnicos')),
                 drawer: CustomDrawer(),
@@ -41,61 +83,26 @@ class ProceduresPageState extends State<ProceduresPage> {
                     children: [
                       ProcedureRCPForm(
                         formKey: formKeyRCP,
-                        procedureRCP: victim.data.procedureRCP == null
-                            ? ProcedureRCP(performed: false, witnessed: false)
-                            : victim.data.procedureRCP,
+                        procedureRCP: procedureRCP,
                         enabled: enabled,
                       ),
                       ProcedureVentilationForm(
                         formKey: formKeyVentilation,
-                        procedureVentilation:
-                            victim.data.procedureVentilation == null
-                                ? ProcedureVentilation(
-                                    clearance: false,
-                                    cpap: false,
-                                    endotracheal: false,
-                                    laryngealMask: false,
-                                    laryngealTube: false,
-                                    mechanicalVentilation: false,
-                                    oropharyngeal: false)
-                                : victim.data.procedureVentilation,
+                        procedureVentilation: procedureVentilation,
                         enabled: enabled,
                       ),
                       ProcedureCirculationForm(
                         formKey: formKeyCirculation,
-                        procedureCirculation:
-                            victim.data.procedureCirculation == null
-                                ? ProcedureCirculation(
-                                    compression: false,
-                                    ecg: false,
-                                    patch: false,
-                                    pelvicBelt: false,
-                                    temperatureMonitoring: false,
-                                    tourniquet: false,
-                                    venousAccess: false)
-                                : victim.data.procedureCirculation,
+                        procedureCirculation: procedureCirculation,
                         enabled: enabled,
                       ),
                       ProcedureProtocolForm(
                           formKey: formKeyProtocol,
-                          procedureProtocol:
-                              victim.data.procedureProtocol == null
-                                  ? ProcedureProtocol(
-                                      immobilization: false,
-                                      siv: false,
-                                      teph: false,
-                                      vv_avc: false,
-                                      vv_coronary: false,
-                                      vv_pcr: false,
-                                      vv_sepsis: false,
-                                      vv_trauma: false)
-                                  : victim.data.procedureProtocol,
+                          procedureProtocol: procedureProtocol,
                           enabled: enabled),
                       ProcedureScaleForm(
                         formKey: formKeyScale,
-                        procedureScale: victim.data.procedureScale == null
-                            ? ProcedureScale()
-                            : victim.data.procedureScale,
+                        procedureScale: procedureScale,
                         enabled: enabled,
                       ),
                       Visibility(
@@ -112,10 +119,22 @@ class ProceduresPageState extends State<ProceduresPage> {
                               size: 50.0,
                             ),
                             onPressed: () async {
-                              if (formKeyVentilation.currentState.validate()) {
+                              if (formKeyRCP.currentState.validate() &&
+                                  formKeyVentilation.currentState.validate() &&
+                                  formKeyCirculation.currentState.validate() &&
+                                  formKeyProtocol.currentState.validate() &&
+                                  formKeyScale.currentState.validate()) {
+                                formKeyRCP.currentState.save();
                                 formKeyVentilation.currentState.save();
-                                try {} catch (e) {
-                                  showToast("Erro ao Guardar Procedimentos");
+                                formKeyCirculation.currentState.save();
+                                formKeyProtocol.currentState.save();
+                                formKeyScale.currentState.save();
+
+                                try {
+                                  await saveProcedures(
+                                      victim.data, procedureRCP, procedureVentilation, procedureCirculation, procedureProtocol, procedureScale);
+                                } catch (e) {
+                                  showToast("Erro ao Gravar Procedimentos");
                                 }
                               } else {
                                 showToast("Valor(es) Inválido(s)");
@@ -131,4 +150,41 @@ class ProceduresPageState extends State<ProceduresPage> {
           }
         });
   }
+}
+
+Future<void> saveProcedures(
+    Victim victim,
+    ProcedureRCP procedureRCP,
+    ProcedureVentilation procedureVentilation,
+    ProcedureCirculation procedureCirculation,
+    ProcedureProtocol procedureProtocol,
+    ProcedureScale procedureScale) async {
+  if (victim.procedureRCP == null)
+    await postProcedureRCP(victim.id, procedureRCP.toJson());
+  else
+    await putProcedureRCP(victim.id, procedureRCP.toJson());
+
+  if (victim.procedureVentilation == null)
+    await postProcedureVentilation(
+        victim.id, procedureVentilation.toJson());
+  else
+    await putProcedureVentilation(
+        victim.id, procedureVentilation.toJson());
+
+  if (victim.procedureCirculation == null)
+    await postProcedureCirculation(
+        victim.id, procedureCirculation.toJson());
+  else
+    await putProcedureCirculation(
+        victim.id, procedureCirculation.toJson());
+
+  if (victim.procedureProtocol == null)
+    await postProcedureProtocol(victim.id, procedureProtocol.toJson());
+  else
+    await putProcedureProtocol(victim.id, procedureProtocol.toJson());
+
+  if (victim.procedureScale == null)
+    await postProcedureScale(victim.id, procedureScale.toJson());
+  else
+    await putProcedureScale(victim.id, procedureScale.toJson());
 }

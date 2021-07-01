@@ -7,12 +7,16 @@ class ProcedureRCPFormState extends State<ProcedureRCPForm> {
   final formKey;
   final ProcedureRCP procedureRCP;
   final bool enabled;
+  bool witn;
+  bool perf;
 
   ProcedureRCPFormState({this.procedureRCP, this.formKey, this.enabled});
 
   @override
   void initState() {
     super.initState();
+    witn = procedureRCP.witnessed == null ? false : procedureRCP.witnessed;
+    perf = procedureRCP.performed == null ? false : procedureRCP.performed;
   }
 
   @override
@@ -31,22 +35,23 @@ class ProcedureRCPFormState extends State<ProcedureRCPForm> {
                   builder: (FormFieldState<bool> state) {
                     return SwitchListTile(
                       title: Text('Presenciada'),
-                      value: procedureRCP.witnessed,
+                      value: witn,
                       onChanged: (bool value) {
                         setState(() {
-                          procedureRCP.witnessed = value;
+                          witn = value;
                         });
                       },
                     );
                   },
                   onSaved: (value) {
-                    procedureRCP.witnessed = value;
+                    procedureRCP.witnessed = witn;
                   }),
               FormField(
                 //todo sbv_dae
                 enabled: enabled,
                 builder: (FormFieldState<dynamic> state) {
                   return InputDatePickerFormField(
+                    fieldLabelText: 'Data de Reanimação',
                     lastDate: DateTime.now(),
                     firstDate: DateTime(1900),
                     initialDate: procedureRCP.sbv_dae,
@@ -75,7 +80,7 @@ class ProcedureRCPFormState extends State<ProcedureRCPForm> {
                   labelText: 'Nº Choque(s)',
                 ),
                 onSaved: (String value) {
-                  procedureRCP.nrShocks = int.parse(value);
+                  procedureRCP.nrShocks = value.isEmpty ? 0 : int.parse(value);
                 },
                 keyboardType: TextInputType.number,
                 autocorrect: false,
@@ -125,16 +130,16 @@ class ProcedureRCPFormState extends State<ProcedureRCPForm> {
                   builder: (FormFieldState<bool> state) {
                     return SwitchListTile(
                       title: Text('Não Realizado'),
-                      value: procedureRCP.performed,
+                      value: perf,
                       onChanged: (bool value) {
                         setState(() {
-                          procedureRCP.performed = value;
+                          perf = value;
                         });
                       },
                     );
                   },
                   onSaved: (value) {
-                    procedureRCP.performed = value;
+                    procedureRCP.performed = perf;
                   }),
             ]),
           ),
