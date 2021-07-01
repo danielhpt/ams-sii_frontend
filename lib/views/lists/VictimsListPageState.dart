@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project/models/Victim.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/CustomDrawer.dart';
-import 'package:project/widgets/VictimListPage.dart';
+import 'package:project/widgets/lists/VictimListPage.dart';
 
 class VictimListPageState  extends State<VictimListPage>  {
   final int occurrenceId;

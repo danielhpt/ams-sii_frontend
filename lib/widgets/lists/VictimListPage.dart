@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/views/VictimsListPageState.dart';
+import 'package:project/views/lists/VictimsListPageState.dart';
 
 
 class VictimListPage extends StatefulWidget {

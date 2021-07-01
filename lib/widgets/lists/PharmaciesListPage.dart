@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Pharmacy.dart';
-import 'package:project/views/PharmaciesListPageState.dart';
+import 'package:project/views/lists/PharmaciesListPageState.dart';
 
 class PharmaciesListPage extends StatefulWidget {
   final String title;

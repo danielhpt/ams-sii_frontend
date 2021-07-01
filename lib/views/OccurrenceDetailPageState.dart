@@ -4,7 +4,7 @@ import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/OccurrenceDetailPage.dart';
 import 'package:project/widgets/forms/OccurrenceForm.dart';
 import 'package:project/widgets/TeamPage.dart';
-import 'package:project/widgets/VictimListPage.dart';
+import 'package:project/widgets/lists/VictimListPage.dart';
 import 'package:project/widgets/forms/OccurrenceForm.dart';
 
 class OccurrenceDetailPageState extends State<OccurrenceDetailPage> {
