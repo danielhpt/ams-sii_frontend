@@ -151,4 +151,32 @@ class Victim {
 
     return victim;
   }
+
+  Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> eJson = this.evaluations.map((element) {
+      return element.toJson();
+    }).toList();
+
+    List<Map<String, dynamic>> pJson = this.pharmacies.map((element) {
+      return element.toJson();
+    }).toList();
+
+    return <String, dynamic>{
+      'id': this.id,
+      'name': name,
+      'birthdate': birthdate.toString(),
+
+      'evaluations': eJson,
+      'pharmacies': pJson,
+
+      'occurrence': procedureRCP.toJson(),
+      'procedure_rcp': procedureRCP.toJson(),
+      'procedure_ventilation': procedureVentilation.toJson(),
+      'procedure_circulation': procedureCirculation.toJson(),
+      'procedure_protocol': procedureProtocol.toJson(),
+      'procedure_scale': procedureScale.toJson(),
+      'symptom': symptom.toJson()
+
+    };
+  }
 }

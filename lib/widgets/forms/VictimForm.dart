@@ -16,6 +16,5 @@ class VictimForm extends StatefulWidget {
       victim: victim,
       enabled: enabled,
       add: add,
-
   );
 }

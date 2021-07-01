@@ -40,15 +40,20 @@ class VictimPageState extends State<VictimPage> {
                     size: 50.0,
                   ),
                   onPressed: () async {
-                    try {
-                      if (add){
-                        var v = await postOccurrenceVictim(occurrenceId, victim.toJson());
-                      } else {
-                        var v = await putVictim(victim.id, victim.toJson());
+                    if (formKey.currentState.validate()){
+                      formKey.currentState.save();
+                      try {
+                        if (add){
+                          var v = await postOccurrenceVictim(occurrenceId, victim.toJson());
+                        } else {
+                          var v = await putVictim(victim.id, victim.toJson());
+                        }
+                        Navigator.pop(context, 'add');
+                      } catch (e) {
+                        showToast("Erro ao Guardar a Vitima");
                       }
-                      Navigator.pop(context);
-                    } catch (e) {
-                      showToast("Erro ao Guardar a Vitima");
+                    } else {
+                      showToast("Valor(es) Invalido(s)");
                     }
                   },
                   style: ButtonStyle(),
