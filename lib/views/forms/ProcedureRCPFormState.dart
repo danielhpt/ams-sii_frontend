@@ -120,7 +120,7 @@ class ProcedureRCPFormState extends State<ProcedureRCPForm> {
                   labelText: 'Compressões Mecânicas',
                 ),
                 onSaved: (String value) {
-                  procedureRCP.mechanicalCompressions = int.parse(value);
+                  procedureRCP.mechanicalCompressions = value.isEmpty ? 0 : int.parse(value);
                 },
                 keyboardType: TextInputType.number,
                 autocorrect: false,
