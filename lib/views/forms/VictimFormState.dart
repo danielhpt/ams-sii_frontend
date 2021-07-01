@@ -9,6 +9,7 @@ class VictimFormState extends State<VictimForm> {
   final formKey;
   final Victim victim;
   final bool enabled;
+  final bool add;
   bool medicalFollowup;
 
   @override
@@ -17,7 +18,7 @@ class VictimFormState extends State<VictimForm> {
     medicalFollowup = victim.medicalFollowup;
   }
 
-  VictimFormState({this.formKey, this.victim, this.enabled});
+  VictimFormState({this.add, this.formKey, this.victim, this.enabled});
 
   @override
   Widget build(BuildContext context) {
@@ -373,34 +374,40 @@ class VictimFormState extends State<VictimForm> {
               ),
             ),
           ),
-          Card(
-            child: ListTile(
-              title: Text('Avaliações'),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return EvaluationsListPage(
-                    title: 'SIREPH Técnicos Home Page',
-                    enabled: enabled,
-                    evaluations: victim.evaluations,
-                  );
-                }));
-              },
-            ),
+          Visibility(
+            visible: add,
+              child: Card(
+                child: ListTile(
+                  title: Text('Avaliações'),
+                  trailing: Icon(Icons.keyboard_arrow_right),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return EvaluationsListPage(
+                        title: 'SIREPH Técnicos Home Page',
+                        enabled: enabled,
+                        evaluations: victim.evaluations,
+                      );
+                    }));
+                  },
+                ),
+              ),
           ),
-          Card(
-            child: ListTile(
-              title: Text('Fármacos'),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return PharmaciesListPage(
-                    title: 'SIREPH Técnicos Home Page',
-                    enabled: enabled,
-                    pharmacies: victim.pharmacies,
-                  );
-                }));
-              },
+          Visibility(
+            visible: add,
+            child: Card(
+              child: ListTile(
+                title: Text('Fármacos'),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return PharmaciesListPage(
+                      title: 'SIREPH Técnicos Home Page',
+                      enabled: enabled,
+                      pharmacies: victim.pharmacies,
+                    );
+                  }));
+                },
+              ),
             ),
           ),
         ],
