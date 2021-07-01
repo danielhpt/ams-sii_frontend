@@ -15,7 +15,7 @@ class OccurrenceDetailPageState extends State<OccurrenceDetailPage> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.title)),
       drawer: CustomDrawer(),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             OccurrenceForm(
@@ -23,8 +23,9 @@ class OccurrenceDetailPageState extends State<OccurrenceDetailPage> {
               formKey: this.formKey,
               enabled: true,
             )
-        ],
+          ],
+        ),
       ),
-    ));
+    );
   }
 }
