@@ -21,7 +21,6 @@ class NonTransportReason {
   }
 
   factory NonTransportReason.fromName(String name) {
-
     Map<String, dynamic> nonTransportReasonJson = <String, dynamic>{
       "Abandonou o local": 1,
       "Decisão médica": 2,
@@ -34,8 +33,7 @@ class NonTransportReason {
 
     var id = nonTransportReasonJson[name];
 
-    if (id != null)
-      return NonTransportReason(id: id, nonTransportReason: name);
+    if (id != null) return NonTransportReason(id: id, nonTransportReason: name);
 
     return null;
   }

@@ -5,10 +5,7 @@ class States {
   States({this.id, this.state});
 
   factory States.fromJson(Map<String, dynamic> json) {
-    return States(
-      id: json['id'],
-      state: json['state']
-    );
+    return States(id: json['id'], state: json['state']);
   }
 
   Map<String, dynamic> toJson() {

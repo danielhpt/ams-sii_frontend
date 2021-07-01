@@ -86,7 +86,9 @@ class TeamPageState extends State<TeamPage> {
                               children: <Widget>[
                                 ListTile(
                                   title: Text(technician.getFullName()),
-                                  leading: technician.isTeamLeader ? Icon(Icons.anchor) : null,
+                                  leading: technician.isTeamLeader
+                                      ? Icon(Icons.anchor)
+                                      : null,
                                 ),
                               ],
                             ),

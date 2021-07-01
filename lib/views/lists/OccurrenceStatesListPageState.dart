@@ -100,7 +100,8 @@ class OccurrenceStatesListPageState extends State<OccurrenceStatesListPage> {
   }
 }
 
-Future<List<OccurrenceState>> getStates(List<OccurrenceState> occurrenceStates, int occurrenceId) async {
+Future<List<OccurrenceState>> getStates(
+    List<OccurrenceState> occurrenceStates, int occurrenceId) async {
   if (occurrenceStates == null) {
     return await getOccurrenceStatesList(occurrenceId);
   } else {

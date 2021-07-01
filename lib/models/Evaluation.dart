@@ -48,7 +48,9 @@ class Evaluation {
         pulse: json['pulse'],
         ecg: json['ecg'],
         skin: json['skin'],
-        temperature: json['temperature'] == null ? null : double.parse(json['temperature']),
+        temperature: json['temperature'] == null
+            ? null
+            : double.parse(json['temperature']),
         systolicBloodPressure: json['systolic_blood_pressure'],
         diastolicBloodPressure: json['diastolic_blood_pressure'],
         pupils: json['pupils'],

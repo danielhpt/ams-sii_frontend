@@ -102,11 +102,13 @@ class AddOccurrenceStateDialogState extends State<AddOccurrenceStateDialog> {
               occurrenceState.id = 0;
               try {
                 var id = statesJson[_currentSelectedValue];
-                occurrenceState.state = States(id: id, state: _currentSelectedValue);
+                occurrenceState.state =
+                    States(id: id, state: _currentSelectedValue);
                 LocationData l = await getLocation();
                 occurrenceState.latitude = l.longitude;
                 occurrenceState.longitude = l.latitude;
-                var r = await postOccurrenceState(occurrenceId, occurrenceState.toJson());
+                var r = await postOccurrenceState(
+                    occurrenceId, occurrenceState.toJson());
                 Navigator.pop(context, 'add');
               } catch (e) {
                 print(e.toString());

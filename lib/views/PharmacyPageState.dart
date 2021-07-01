@@ -27,9 +27,7 @@ class PharmacyPageState extends State<PharmacyPage> {
             Container(
               margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
               child: Text(
-                add
-                    ? 'Novo Farmaco'
-                    : 'Informação do Farmaco',
+                add ? 'Novo Farmaco' : 'Informação do Farmaco',
                 style: TextStyle(fontSize: 20.0),
               ),
             ),
@@ -41,8 +39,7 @@ class PharmacyPageState extends State<PharmacyPage> {
             Visibility(
               visible: enabled,
               child: Container(
-                padding:
-                EdgeInsets.symmetric(vertical: 15, horizontal: 70),
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 70),
                 child: ProgressButton(
                   color: Colors.green,
                   child: Text(
@@ -57,7 +54,8 @@ class PharmacyPageState extends State<PharmacyPage> {
 
                       controller.forward();
                       try {
-                        var s = await postVictimPharmacy(victimId, pharmacy.toJson());
+                        var s = await postVictimPharmacy(
+                            victimId, pharmacy.toJson());
 
                         controller.reset();
                         Navigator.pop(context, 'create');

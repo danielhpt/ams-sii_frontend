@@ -6,16 +6,15 @@ import 'package:project/models/Login.dart';
 import 'package:project/models/Occurrence.dart';
 import 'package:project/models/OccurrenceState.dart';
 import 'package:project/models/Pharmacy.dart';
+import 'package:project/models/Symptom.dart';
+import 'package:project/models/Team.dart';
+import 'package:project/models/User.dart';
+import 'package:project/models/Victim.dart';
 import 'package:project/models/procedures/ProcedureCirculation.dart';
 import 'package:project/models/procedures/ProcedureProtocol.dart';
 import 'package:project/models/procedures/ProcedureRCP.dart';
 import 'package:project/models/procedures/ProcedureScale.dart';
 import 'package:project/models/procedures/ProcedureVentilation.dart';
-import 'package:project/models/States.dart';
-import 'package:project/models/Symptom.dart';
-import 'package:project/models/Team.dart';
-import 'package:project/models/User.dart';
-import 'package:project/models/Victim.dart';
 
 const String url = String.fromEnvironment('API_SERVER');
 String token;
@@ -329,8 +328,7 @@ Future<Occurrence> postOccurrence(Map<String, dynamic> json) async {
   if (token == null) {
     throw Exception('Token null.');
   }
-  final response = await http.post(
-      Uri.http(url, '/api/occurrences/'),
+  final response = await http.post(Uri.http(url, '/api/occurrences/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -426,8 +424,7 @@ Future<OccurrenceState> postOccurrenceState(
     throw Exception('Token null.');
   }
   final response = await http.post(
-      Uri.http(
-          url, '/api/occurrences/' + occurrenceId.toString() + '/states/'),
+      Uri.http(url, '/api/occurrences/' + occurrenceId.toString() + '/states/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         'Authorization': token
@@ -435,7 +432,8 @@ Future<OccurrenceState> postOccurrenceState(
       body: jsonEncode(json));
 
   if (response.statusCode == 201) {
-    return OccurrenceState.fromJson(jsonDecode(utf8.decode(response.body.runes.toList())));
+    return OccurrenceState.fromJson(
+        jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to post State.');
   }

@@ -4,9 +4,9 @@ import 'package:project/models/Team.dart';
 import 'package:project/models/TeamTechnician.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:project/utils/Utils.dart';
-import 'package:project/widgets/dialogs/AddTechnicianDialog.dart';
-import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/CreateTeamPage.dart';
+import 'package:project/widgets/CustomDrawer.dart';
+import 'package:project/widgets/dialogs/AddTechnicianDialog.dart';
 
 class CreateTeamPageState extends State<CreateTeamPage> {
   Team newTeam = Team.begin(user);
@@ -44,7 +44,9 @@ class CreateTeamPageState extends State<CreateTeamPage> {
                         children: <Widget>[
                           ListTile(
                             title: Text(technician.getFullName()),
-                            leading: technician.isTeamLeader ? Icon(Icons.anchor) : null,
+                            leading: technician.isTeamLeader
+                                ? Icon(Icons.anchor)
+                                : null,
                           ),
                         ],
                       ),

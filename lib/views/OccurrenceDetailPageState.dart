@@ -169,7 +169,8 @@ class OccurrenceDetailPageState extends State<OccurrenceDetailPage> {
                     ),
                   ),
                   Visibility(
-                    visible: (isTeamLeader(team.data) && enabled && newOccurrence),
+                    visible:
+                        (isTeamLeader(team.data) && enabled && newOccurrence),
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(vertical: 15, horizontal: 70),

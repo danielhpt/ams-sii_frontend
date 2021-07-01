@@ -22,14 +22,24 @@ class ProcedureProtocolFormState extends State<ProcedureProtocolForm> {
   @override
   void initState() {
     super.initState();
-    immobilization = procedureProtocol.immobilization == null ? false : procedureProtocol.immobilization;
+    immobilization = procedureProtocol.immobilization == null
+        ? false
+        : procedureProtocol.immobilization;
     teph = procedureProtocol.teph == null ? false : procedureProtocol.teph;
     siv = procedureProtocol.siv == null ? false : procedureProtocol.siv;
-    vv_avc = procedureProtocol.vv_avc == null ? false : procedureProtocol.vv_avc;
-    vv_coronary = procedureProtocol.vv_coronary == null ? false : procedureProtocol.vv_coronary;
-    vv_sepsis = procedureProtocol.vv_sepsis == null ? false : procedureProtocol.vv_sepsis;
-    vv_trauma = procedureProtocol.vv_trauma == null ? false : procedureProtocol.vv_trauma;
-    vv_pcr = procedureProtocol.vv_pcr == null ? false : procedureProtocol.vv_pcr;
+    vv_avc =
+        procedureProtocol.vv_avc == null ? false : procedureProtocol.vv_avc;
+    vv_coronary = procedureProtocol.vv_coronary == null
+        ? false
+        : procedureProtocol.vv_coronary;
+    vv_sepsis = procedureProtocol.vv_sepsis == null
+        ? false
+        : procedureProtocol.vv_sepsis;
+    vv_trauma = procedureProtocol.vv_trauma == null
+        ? false
+        : procedureProtocol.vv_trauma;
+    vv_pcr =
+        procedureProtocol.vv_pcr == null ? false : procedureProtocol.vv_pcr;
   }
 
   @override

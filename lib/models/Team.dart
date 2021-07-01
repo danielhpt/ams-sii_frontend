@@ -34,7 +34,7 @@ class Team {
   }
 
   Map<String, dynamic> toJson() {
-    if(technicians == null) technicians = [];
+    if (technicians == null) technicians = [];
     List<Map<String, dynamic>> tJson = this.technicians.map((element) {
       return element.toJson();
     }).toList();

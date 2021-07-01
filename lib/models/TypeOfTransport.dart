@@ -21,7 +21,6 @@ class TypeOfTransport {
   }
 
   factory TypeOfTransport.fromName(String name) {
-
     Map<String, dynamic> typeOfTransportJson = <String, dynamic>{
       "Primário": 1,
       "Secundário": 2,
@@ -31,8 +30,7 @@ class TypeOfTransport {
 
     var id = typeOfTransportJson[name];
 
-    if (id != null)
-      return TypeOfTransport(id: id, typeOfTransport: name);
+    if (id != null) return TypeOfTransport(id: id, typeOfTransport: name);
 
     return null;
   }

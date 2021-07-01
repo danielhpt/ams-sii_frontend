@@ -2,13 +2,13 @@ import 'package:project/models/Evaluation.dart';
 import 'package:project/models/NonTransportReason.dart';
 import 'package:project/models/Occurrence.dart';
 import 'package:project/models/Pharmacy.dart';
+import 'package:project/models/Symptom.dart';
+import 'package:project/models/TypeOfTransport.dart';
 import 'package:project/models/procedures/ProcedureCirculation.dart';
 import 'package:project/models/procedures/ProcedureProtocol.dart';
 import 'package:project/models/procedures/ProcedureRCP.dart';
 import 'package:project/models/procedures/ProcedureScale.dart';
 import 'package:project/models/procedures/ProcedureVentilation.dart';
-import 'package:project/models/Symptom.dart';
-import 'package:project/models/TypeOfTransport.dart';
 
 class Victim {
   int id;
@@ -84,8 +84,10 @@ class Victim {
       this.symptom});
 
   factory Victim.fromJson(Map<String, dynamic> json) {
-    TypeOfTransport typeOfTransport =  TypeOfTransport.fromJson(json['type_of_transport']);
-    NonTransportReason nonTransportReason = NonTransportReason.fromJson(json['non_transport_reason']);
+    TypeOfTransport typeOfTransport =
+        TypeOfTransport.fromJson(json['type_of_transport']);
+    NonTransportReason nonTransportReason =
+        NonTransportReason.fromJson(json['non_transport_reason']);
     Occurrence occurrence = Occurrence.fromJsonSimplified(json['occurrence']);
 
     return Victim(
@@ -124,8 +126,10 @@ class Victim {
   }
 
   factory Victim.fromJsonCompleted(Map<String, dynamic> json) {
-    TypeOfTransport typeOfTransport =  TypeOfTransport.fromName(json['type_of_transport']);
-    NonTransportReason nonTransportReason = NonTransportReason.fromName(json['non_transport_reason']);
+    TypeOfTransport typeOfTransport =
+        TypeOfTransport.fromName(json['type_of_transport']);
+    NonTransportReason nonTransportReason =
+        NonTransportReason.fromName(json['non_transport_reason']);
     Occurrence occurrence = Occurrence.fromJsonSimplified(json['occurrence']);
 
     return Victim(
@@ -222,16 +226,22 @@ class Victim {
       'comments': this.comments,
       'type_of_emergency': this.typeOfEmergency,
       'SIV_SAV': this.siv_sav.toString(),
-      'type_of_transport': typeOfTransport == null ? null : typeOfTransport.toJson(),
-      'non_transport_reason': nonTransportReason == null ? null : nonTransportReason.toJson(),
+      'type_of_transport':
+          typeOfTransport == null ? null : typeOfTransport.toJson(),
+      'non_transport_reason':
+          nonTransportReason == null ? null : nonTransportReason.toJson(),
       'evaluations': eJson,
       'pharmacies': pJson,
       'occurrence': occurrence == null ? null : occurrence.toJson(),
       'procedure_rcp': procedureRCP == null ? null : procedureRCP.toJson(),
-      'procedure_ventilation': procedureVentilation == null ? null : procedureVentilation.toJson(),
-      'procedure_circulation': procedureCirculation == null ? null : procedureCirculation.toJson(),
-      'procedure_protocol': procedureProtocol == null ? null : procedureProtocol.toJson(),
-      'procedure_scale': procedureScale == null ? null : procedureScale.toJson(),
+      'procedure_ventilation':
+          procedureVentilation == null ? null : procedureVentilation.toJson(),
+      'procedure_circulation':
+          procedureCirculation == null ? null : procedureCirculation.toJson(),
+      'procedure_protocol':
+          procedureProtocol == null ? null : procedureProtocol.toJson(),
+      'procedure_scale':
+          procedureScale == null ? null : procedureScale.toJson(),
       'symptom': symptom == null ? null : symptom.toJson()
     };
   }

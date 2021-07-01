@@ -1,6 +1,7 @@
-import 'package:project/widgets/forms/EvaluationForm.dart';
-import '../../models/Evaluation.dart';
 import 'package:flutter/material.dart';
+import 'package:project/widgets/forms/EvaluationForm.dart';
+
+import '../../models/Evaluation.dart';
 
 class EvaluationFormState extends State<EvaluationForm> {
   final formKey;
@@ -29,7 +30,9 @@ class EvaluationFormState extends State<EvaluationForm> {
               return InputDatePickerFormField(
                 lastDate: DateTime.now(),
                 firstDate: DateTime(1900),
-                initialDate: evaluation.hours == null ? DateTime.now() : evaluation.hours,
+                initialDate: evaluation.hours == null
+                    ? DateTime.now()
+                    : evaluation.hours,
                 onDateSaved: (DateTime value) {
                   evaluation.hours = value;
                 },
@@ -156,7 +159,8 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'Pressão arterial sistólica',
             ),
             onSaved: (String value) {
-              evaluation.systolicBloodPressure = value == '' ? null : int.parse(value);
+              evaluation.systolicBloodPressure =
+                  value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,
@@ -168,7 +172,8 @@ class EvaluationFormState extends State<EvaluationForm> {
               labelText: 'Pressão arterial diastólica',
             ),
             onSaved: (String value) {
-              evaluation.diastolicBloodPressure = value == '' ? null : int.parse(value);
+              evaluation.diastolicBloodPressure =
+                  value == '' ? null : int.parse(value);
             },
             keyboardType: TextInputType.number,
             autocorrect: false,

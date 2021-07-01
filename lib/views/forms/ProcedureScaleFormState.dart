@@ -34,7 +34,8 @@ class ProcedureScaleFormState extends State<ProcedureScaleForm> {
                   labelText: 'Cincinatti',
                 ),
                 onSaved: (String value) {
-                  procedureScale.cincinatti = value.isEmpty ? 0 : int.parse(value);
+                  procedureScale.cincinatti =
+                      value.isEmpty ? 0 : int.parse(value);
                 },
                 keyboardType: TextInputType.number,
                 autocorrect: false,

@@ -27,9 +27,7 @@ class EvaluationPageState extends State<EvaluationPage> {
             Container(
               margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
               child: Text(
-                add
-                    ? 'Nova Avaliação'
-                    : 'Informação da Avaliação',
+                add ? 'Nova Avaliação' : 'Informação da Avaliação',
                 style: TextStyle(fontSize: 20.0),
               ),
             ),
@@ -41,8 +39,7 @@ class EvaluationPageState extends State<EvaluationPage> {
             Visibility(
               visible: enabled,
               child: Container(
-                padding:
-                EdgeInsets.symmetric(vertical: 15, horizontal: 70),
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 70),
                 child: ProgressButton(
                   color: Colors.green,
                   child: Text(
@@ -57,7 +54,8 @@ class EvaluationPageState extends State<EvaluationPage> {
 
                       controller.forward();
                       try {
-                        var s = await postVictimEvaluation(victimId, evaluation.toJson());
+                        var s = await postVictimEvaluation(
+                            victimId, evaluation.toJson());
 
                         controller.reset();
                         Navigator.pop(context, 'create');

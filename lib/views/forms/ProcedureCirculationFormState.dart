@@ -15,20 +15,30 @@ class ProcedureCirculationFormState extends State<ProcedureCirculationForm> {
   bool patc;
   bool ecg;
 
-
   ProcedureCirculationFormState(
       {this.procedureCirculation, this.formKey, this.enabled});
 
   @override
   void initState() {
     super.initState();
-    temp = procedureCirculation.temperatureMonitoring == null ? false : procedureCirculation.temperatureMonitoring ;
-    comp = procedureCirculation.compression == null ? false : procedureCirculation.compression ;
-    tour = procedureCirculation.tourniquet == null ? false : procedureCirculation.tourniquet ;
-    pelv = procedureCirculation.pelvicBelt == null ? false : procedureCirculation.pelvicBelt ;
-    veno = procedureCirculation.venousAccess == null ? false : procedureCirculation.venousAccess ;
-    patc = procedureCirculation.patch == null ? false : procedureCirculation.patch ;
-    ecg = procedureCirculation.ecg == null ? false : procedureCirculation.ecg ;
+    temp = procedureCirculation.temperatureMonitoring == null
+        ? false
+        : procedureCirculation.temperatureMonitoring;
+    comp = procedureCirculation.compression == null
+        ? false
+        : procedureCirculation.compression;
+    tour = procedureCirculation.tourniquet == null
+        ? false
+        : procedureCirculation.tourniquet;
+    pelv = procedureCirculation.pelvicBelt == null
+        ? false
+        : procedureCirculation.pelvicBelt;
+    veno = procedureCirculation.venousAccess == null
+        ? false
+        : procedureCirculation.venousAccess;
+    patc =
+        procedureCirculation.patch == null ? false : procedureCirculation.patch;
+    ecg = procedureCirculation.ecg == null ? false : procedureCirculation.ecg;
   }
 
   @override
@@ -65,7 +75,7 @@ class ProcedureCirculationFormState extends State<ProcedureCirculationForm> {
                     builder: (FormFieldState<bool> state) {
                       return SwitchListTile(
                         title: Text('Compressão'),
-                        value:  comp,
+                        value: comp,
                         onChanged: (bool value) {
                           setState(() {
                             comp = value;

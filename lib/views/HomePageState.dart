@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Occurrence.dart';
 import 'package:project/utils/Rest.dart';
-import 'package:project/widgets/OccurrenceDetailPage.dart';
 import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/HomePage.dart';
-import 'package:project/widgets/lists/OccurrencesListPage.dart';
+import 'package:project/widgets/OccurrenceDetailPage.dart';
 import 'package:project/widgets/TeamPage.dart';
+import 'package:project/widgets/lists/OccurrencesListPage.dart';
 
 class HomePageState extends State<HomePage> {
   final formKey = GlobalKey<FormState>();
@@ -100,10 +100,9 @@ class HomePageState extends State<HomePage> {
                                         enabled: true,
                                         newOccurrence: newOccurrence,
                                       ))).then((value) {
-                                        if (value == 'create') {
-                                          setState(() {
-                                          });
-                                        }
+                            if (value == 'create') {
+                              setState(() {});
+                            }
                           });
                         },
                         style: ButtonStyle(),

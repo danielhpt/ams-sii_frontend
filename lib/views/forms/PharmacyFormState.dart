@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/widgets/forms/PharmacyForm.dart';
+
 import '../../models/Pharmacy.dart';
 
 class PharmacyFormState extends State<PharmacyForm> {
@@ -22,7 +23,8 @@ class PharmacyFormState extends State<PharmacyForm> {
               return InputDatePickerFormField(
                 lastDate: DateTime.now(),
                 firstDate: DateTime(1900),
-                initialDate: pharmacy.time == null ? DateTime.now() : pharmacy.time,
+                initialDate:
+                    pharmacy.time == null ? DateTime.now() : pharmacy.time,
                 onDateSaved: (DateTime value) {
                   pharmacy.time = value;
                 },

@@ -24,10 +24,10 @@ class VictimPageState extends State<VictimPage> {
           child: Column(
             children: [
               VictimForm(
-                  victim: this.victim,
-                  formKey: this.formKey,
-                  enabled: enabled,
-                  add: add,
+                victim: this.victim,
+                formKey: this.formKey,
+                enabled: enabled,
+                add: add,
               ),
               Visibility(
                 visible: enabled,
@@ -46,8 +46,9 @@ class VictimPageState extends State<VictimPage> {
                       if (formKey.currentState.validate()) {
                         formKey.currentState.save();
                         try {
-                          if (victim.evaluations == null) victim.evaluations =[];
-                          if (victim.pharmacies == null) victim.pharmacies =[];
+                          if (victim.evaluations == null)
+                            victim.evaluations = [];
+                          if (victim.pharmacies == null) victim.pharmacies = [];
                           if (add) {
                             var v = await postOccurrenceVictim(
                                 occurrenceId, victim.toJson());

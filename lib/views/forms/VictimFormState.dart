@@ -18,12 +18,7 @@ class VictimFormState extends State<VictimForm> {
   var _currentSelectedValue1;
   var _currentSelectedValue2;
 
-  var _typeOfTransport = [
-    "Primário",
-    "Secundário",
-    "Não Transporte",
-    ""
-  ];
+  var _typeOfTransport = ["Primário", "Secundário", "Não Transporte", ""];
 
   Map<String, dynamic> typeOfTransportJson = <String, dynamic>{
     "Primário": 1,
@@ -347,7 +342,7 @@ class VictimFormState extends State<VictimForm> {
                     builder: (FormFieldState<String> typeOfTransport) {
                       return InputDecorator(
                         decoration: InputDecoration(
-                          //labelStyle: textStyle,
+                            //labelStyle: textStyle,
                             errorStyle: TextStyle(
                                 color: Colors.redAccent, fontSize: 16.0),
                             hintText: 'Tipo de Transporte',
@@ -374,17 +369,18 @@ class VictimFormState extends State<VictimForm> {
                         ),
                       );
                     },
-                    onSaved: (String value){
+                    onSaved: (String value) {
                       var id = typeOfTransportJson[_currentSelectedValue1];
                       if (id != null)
-                        victim.typeOfTransport = TypeOfTransport(id: id, typeOfTransport: _currentSelectedValue1);
+                        victim.typeOfTransport = TypeOfTransport(
+                            id: id, typeOfTransport: _currentSelectedValue1);
                     },
                   ),
                   FormField<String>(
                     builder: (FormFieldState<String> state) {
                       return InputDecorator(
                         decoration: InputDecoration(
-                          //labelStyle: textStyle,
+                            //labelStyle: textStyle,
                             errorStyle: TextStyle(
                                 color: Colors.redAccent, fontSize: 16.0),
                             hintText: 'Razão para o Não Transporte',
@@ -411,10 +407,11 @@ class VictimFormState extends State<VictimForm> {
                         ),
                       );
                     },
-                    onSaved: (String value){
+                    onSaved: (String value) {
                       var id = nonTransportReasonJson[_currentSelectedValue2];
                       if (id != null)
-                        victim.nonTransportReason = NonTransportReason(id: id, nonTransportReason: _currentSelectedValue2);
+                        victim.nonTransportReason = NonTransportReason(
+                            id: id, nonTransportReason: _currentSelectedValue2);
                     },
                   ),
                   ExpandableButton(
@@ -493,7 +490,9 @@ class VictimFormState extends State<VictimForm> {
                 title: Text('Avaliações'),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {
-                  if (victim.evaluations == null) victim.evaluations = await getVictimEvaluationsList(victim.id);
+                  if (victim.evaluations == null)
+                    victim.evaluations =
+                        await getVictimEvaluationsList(victim.id);
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return EvaluationsListPage(
                       enabled: enabled,
@@ -511,7 +510,9 @@ class VictimFormState extends State<VictimForm> {
                 title: Text('Fármacos'),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () async {
-                  if (victim.pharmacies == null) victim.pharmacies = await getVictimPharmaciesList(victim.id);
+                  if (victim.pharmacies == null)
+                    victim.pharmacies =
+                        await getVictimPharmaciesList(victim.id);
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return PharmaciesListPage(
                       enabled: enabled,

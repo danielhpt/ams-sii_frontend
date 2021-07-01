@@ -132,7 +132,12 @@ class ProceduresPageState extends State<ProceduresPage> {
 
                                 try {
                                   await saveProcedures(
-                                      victim.data, procedureRCP, procedureVentilation, procedureCirculation, procedureProtocol, procedureScale);
+                                      victim.data,
+                                      procedureRCP,
+                                      procedureVentilation,
+                                      procedureCirculation,
+                                      procedureProtocol,
+                                      procedureScale);
                                 } catch (e) {
                                   showToast("Erro ao Gravar Procedimentos");
                                 }
@@ -165,18 +170,14 @@ Future<void> saveProcedures(
     await putProcedureRCP(victim.id, procedureRCP.toJson());
 
   if (victim.procedureVentilation == null)
-    await postProcedureVentilation(
-        victim.id, procedureVentilation.toJson());
+    await postProcedureVentilation(victim.id, procedureVentilation.toJson());
   else
-    await putProcedureVentilation(
-        victim.id, procedureVentilation.toJson());
+    await putProcedureVentilation(victim.id, procedureVentilation.toJson());
 
   if (victim.procedureCirculation == null)
-    await postProcedureCirculation(
-        victim.id, procedureCirculation.toJson());
+    await postProcedureCirculation(victim.id, procedureCirculation.toJson());
   else
-    await putProcedureCirculation(
-        victim.id, procedureCirculation.toJson());
+    await putProcedureCirculation(victim.id, procedureCirculation.toJson());
 
   if (victim.procedureProtocol == null)
     await postProcedureProtocol(victim.id, procedureProtocol.toJson());

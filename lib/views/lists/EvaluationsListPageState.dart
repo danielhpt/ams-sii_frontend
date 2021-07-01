@@ -76,15 +76,13 @@ class EvaluationsListPageState extends State<EvaluationsListPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        EvaluationPage(
+                                    builder: (context) => EvaluationPage(
                                           enabled: enabled,
                                           victimId: victimId,
                                           evaluation: Evaluation(),
                                           add: true,
                                         ))).then((value) {
-                              if (value == 'create')
-                                setState(() {});
+                              if (value == 'create') setState(() {});
                             });
                           },
                           style: ButtonStyle(),

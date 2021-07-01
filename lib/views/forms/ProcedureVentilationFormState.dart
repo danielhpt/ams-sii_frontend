@@ -21,13 +21,27 @@ class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
   @override
   void initState() {
     super.initState();
-    clean = procedureVentilation.clearance == null ? false : procedureVentilation.clearance;
-    oroph = procedureVentilation.oropharyngeal == null ? false : procedureVentilation.oropharyngeal;
-    laryn = procedureVentilation.laryngealTube == null ? false : procedureVentilation.laryngealTube;
-    endo = procedureVentilation.endotracheal == null ? false : procedureVentilation.endotracheal;
-    larynMask = procedureVentilation.laryngealMask == null ? false : procedureVentilation.laryngealMask;
-    mech = procedureVentilation.mechanicalVentilation == null ? false : procedureVentilation.mechanicalVentilation;
-    cpap = procedureVentilation.mechanicalVentilation == null ? false : procedureVentilation.cpap;
+    clean = procedureVentilation.clearance == null
+        ? false
+        : procedureVentilation.clearance;
+    oroph = procedureVentilation.oropharyngeal == null
+        ? false
+        : procedureVentilation.oropharyngeal;
+    laryn = procedureVentilation.laryngealTube == null
+        ? false
+        : procedureVentilation.laryngealTube;
+    endo = procedureVentilation.endotracheal == null
+        ? false
+        : procedureVentilation.endotracheal;
+    larynMask = procedureVentilation.laryngealMask == null
+        ? false
+        : procedureVentilation.laryngealMask;
+    mech = procedureVentilation.mechanicalVentilation == null
+        ? false
+        : procedureVentilation.mechanicalVentilation;
+    cpap = procedureVentilation.mechanicalVentilation == null
+        ? false
+        : procedureVentilation.cpap;
   }
 
   @override
@@ -130,8 +144,7 @@ class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
                             value: mech,
                             onChanged: (bool value) {
                               setState(() {
-                                mech =
-                                    value;
+                                mech = value;
                               });
                             },
                           );
