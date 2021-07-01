@@ -63,16 +63,16 @@ class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
                         builder: (FormFieldState<bool> state) {
                           return SwitchListTile(
                             title: Text('Tubo orofaríngeo'),
-                            value: endo,
+                            value: oroph,
                             onChanged: (bool value) {
                               setState(() {
-                                endo = value;
+                                oroph = value;
                               });
                             },
                           );
                         },
                         onSaved: (value) {
-                          procedureVentilation.oropharyngeal = endo;
+                          procedureVentilation.oropharyngeal = oroph;
                         }),
                     FormField(
                         enabled: enabled,
