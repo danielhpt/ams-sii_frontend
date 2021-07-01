@@ -21,6 +21,7 @@ class TeamTechnician {
     );
   }
 
+
   factory TeamTechnician.fromUser(User user){
     return TeamTechnician(
         id: user.id,
