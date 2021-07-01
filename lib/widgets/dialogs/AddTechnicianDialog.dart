@@ -3,7 +3,7 @@ import 'package:project/models/Team.dart';
 import 'package:project/views/dialogs/AddTechnicianDialogState.dart';
 
 class AddTechnicianDialog extends StatefulWidget {
-  Team team;
+  final Team team;
 
   AddTechnicianDialog({Key key, this.team}) : super(key: key);
 

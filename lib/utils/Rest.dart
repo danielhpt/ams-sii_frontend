@@ -23,9 +23,6 @@ User user;
 
 // token/
 Future<String> postToken(Login login) async {
-/*  await Future.delayed(Duration(seconds: 3), () {});
-  token = 'a';
-  return 'a';*/
   var response = await http.post(Uri.http(url, '/api/token/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',

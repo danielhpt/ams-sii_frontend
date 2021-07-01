@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:progress_indicator_button/progress_button.dart';
 import 'package:project/models/Occurrence.dart';
@@ -9,19 +7,20 @@ import 'package:project/utils/Utils.dart';
 import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/OccurrenceDetailPage.dart';
 import 'package:project/widgets/forms/OccurrenceForm.dart';
-import 'package:project/widgets/TeamPage.dart';
+import 'package:project/widgets/lists/OccurrenceStatesListPage.dart';
 import 'package:project/widgets/lists/VictimListPage.dart';
 
 class OccurrenceDetailPageState extends State<OccurrenceDetailPage> {
   final formKey = GlobalKey<FormState>();
   final Occurrence occurrence;
+  final bool enabled;
 
-  OccurrenceDetailPageState({this.occurrence});
+  OccurrenceDetailPageState({this.enabled, this.occurrence});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(title: Text('SIREPH Técnicos')),
       drawer: CustomDrawer(),
       body: SingleChildScrollView(
         child: Column(
@@ -36,7 +35,7 @@ class OccurrenceDetailPageState extends State<OccurrenceDetailPage> {
             OccurrenceForm(
               occurrence: this.occurrence,
               formKey: this.formKey,
-              enabled: true,
+              enabled: enabled,
             ),
             Container(
               margin: EdgeInsets.only(top: 20.0),
@@ -52,8 +51,11 @@ class OccurrenceDetailPageState extends State<OccurrenceDetailPage> {
                 onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            TeamPage(title: 'SIREPH Técnicos Home Page'))),
+                        builder: (context) => OccurrenceStatesListPage(
+                              occurrenceStates: occurrence.states,
+                              enabled: enabled,
+                              occurrenceId: occurrence.id,
+                            ))),
                 style: ButtonStyle(),
               ),
             ),
@@ -72,46 +74,52 @@ class OccurrenceDetailPageState extends State<OccurrenceDetailPage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => VictimListPage(
-                            title: 'SIREPH Técnicos Home Page',
-                            occurrenceId: occurrence.id))),
+                              occurrenceId: occurrence.id,
+                              enabled: enabled,
+                            ))),
                 style: ButtonStyle(),
               ),
             ),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 70),
-              child: ProgressButton(
-                color: Colors.green,
-                child: Text(
-                  'Gravar Informação',
-                  style: TextStyle(fontSize: 20),
-                ),
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                strokeWidth: 2,
-                onPressed: (AnimationController controller) async {
-                  if (formKey.currentState.validate()) {
-                    formKey.currentState.save();
+            Visibility(
+              visible: enabled,
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 70),
+                child: ProgressButton(
+                  color: Colors.green,
+                  child: Text(
+                    'Gravar Informação',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  strokeWidth: 2,
+                  onPressed: (AnimationController controller) async {
+                    if (formKey.currentState.validate()) {
+                      formKey.currentState.save();
 
-                    controller.forward();
-                    try {
-                      var s;
-                      Team team = await getUserTeamActive(user.id);
-                      occurrence.team = team;
+                      controller.forward();
+                      try {
+                        var s;
+                        Team team = await getUserTeamActive(user.id);
+                        occurrence.team = team;
 
-                      if (occurrence.id != null) {
-                        s = await putOccurrence(occurrence.id, occurrence.toJson());
-                      } else {
-                        occurrence.id = 0;
-                        s = await postTeamOccurrence(team.id, occurrence.toJson());
+                        if (occurrence.id != null) {
+                          s = await putOccurrence(
+                              occurrence.id, occurrence.toJson());
+                        } else {
+                          occurrence.id = 0;
+                          s = await postTeamOccurrence(
+                              team.id, occurrence.toJson());
+                        }
+
+                        controller.reset();
+                        Navigator.pop(context);
+                      } catch (e) {
+                        controller.reset();
+                        showToast("Erro ao Gravar Ocorrência");
                       }
-
-                      controller.reset();
-                      Navigator.pop(context);
-                    } catch (e) {
-                      controller.reset();
-                      showToast("Erro ao Gravar Ocorrência");
                     }
-                  }
-                },
+                  },
+                ),
               ),
             ),
           ],

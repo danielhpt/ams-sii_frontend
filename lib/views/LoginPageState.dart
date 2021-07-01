@@ -14,15 +14,10 @@ class LoginPageState extends State<LoginPage> {
   LoginPageState();
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('SIREPH Técnicos'),
       ),
       body: Container(
         padding: EdgeInsets.all(15),
@@ -51,13 +46,13 @@ class LoginPageState extends State<LoginPage> {
                   if (formKey.currentState.validate()) {
                     formKey.currentState.save();
                     try {
-                      var s = await postToken(login);
+                      token = await postToken(login);
                       controller.reset();
                       Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  HomePage(title: 'SIREPH Técnicos Home Page')),
+                                  HomePage()),
                           (route) => false);
                     } catch (e) {
                       controller.reset();

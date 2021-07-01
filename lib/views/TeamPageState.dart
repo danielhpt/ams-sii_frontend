@@ -12,7 +12,7 @@ class TeamPageState extends State<TeamPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
+        appBar: AppBar(title: Text('SIREPH Técnicos')),
         drawer: CustomDrawer(),
         body: Center(
           child: listTeam(),
@@ -40,8 +40,7 @@ class TeamPageState extends State<TeamPage> {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return CreateTeamPage(
-                            title: 'SIREPH Técnicos Home Page');
+                        return CreateTeamPage();
                       })).then((value) => setState(() {}));
                     },
                     style: ButtonStyle(),
@@ -66,6 +65,13 @@ class TeamPageState extends State<TeamPage> {
           return Container(
             child: Column(
               children: [
+                Container(
+                  margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                  child: Text(
+                    'Equipa Atual',
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                ),
                 ListView.builder(
                     shrinkWrap: true,
                     itemCount: teamUser.data.technicians.length,
@@ -80,9 +86,7 @@ class TeamPageState extends State<TeamPage> {
                               children: <Widget>[
                                 ListTile(
                                   title: Text(technician.getFullName()),
-                                  trailing: Icon(Icons.keyboard_arrow_right),
-                                  leading: CircleAvatar(),
-                                  onTap: () {},
+                                  leading: technician.isTeamLeader ? Icon(Icons.anchor) : null,
                                 ),
                               ],
                             ),
@@ -96,7 +100,7 @@ class TeamPageState extends State<TeamPage> {
                     child: ProgressButton(
                       color: Colors.red,
                       child: Text(
-                        'Desmanchar Equipa',
+                        'Eliminar Equipa',
                         style: TextStyle(fontSize: 20),
                       ),
                       borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -113,7 +117,7 @@ class TeamPageState extends State<TeamPage> {
                           setState(() {});
                         } catch (e) {
                           controller.reset();
-                          showToast("Erro ao Desmanchar a Equipa");
+                          showToast("Erro ao Eliminar a Equipa");
                         }
                       },
                     ),

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:project/views/lists/VictimsListPageState.dart';
 
 class VictimListPage extends StatefulWidget {
-  final String title;
   final int occurrenceId;
+  final bool enabled;
 
-  VictimListPage({Key key, this.title, this.occurrenceId}) : super(key: key);
+  VictimListPage({Key key, this.occurrenceId, this.enabled}) : super(key: key);
 
   @override
-  VictimListPageState createState() => VictimListPageState(this.occurrenceId);
+  VictimListPageState createState() => VictimListPageState(occurrenceId: occurrenceId, enabled: enabled,);
 }

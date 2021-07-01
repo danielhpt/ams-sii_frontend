@@ -383,7 +383,6 @@ class VictimFormState extends State<VictimForm> {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return EvaluationsListPage(
-                      title: 'SIREPH Técnicos Home Page',
                       enabled: enabled,
                       evaluations: victim.evaluations,
                     );
@@ -401,7 +400,6 @@ class VictimFormState extends State<VictimForm> {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return PharmaciesListPage(
-                      title: 'SIREPH Técnicos Home Page',
                       enabled: enabled,
                       pharmacies: victim.pharmacies,
                     );

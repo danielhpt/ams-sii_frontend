@@ -11,53 +11,56 @@ class VictimPageState extends State<VictimPage> {
   final Victim victim;
   final bool add;
   final int occurrenceId;
+  final bool enabled;
 
-  VictimPageState({this.occurrenceId, this.add, this.victim});
+  VictimPageState({this.enabled, this.occurrenceId, this.add, this.victim});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
+        appBar: AppBar(title: Text('SIREPH Técnicos')),
         drawer: CustomDrawer(),
         body: SingleChildScrollView(
           child: Column(
             children: [
               VictimForm(
-                victim: this.victim,
-                formKey: this.formKey,
-                enabled: true,
-                add: add
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 20.0),
-                child: ElevatedButton.icon(
-                  label: Text(
-                    'Salvar',
-                    style: TextStyle(fontSize: 20.0),
-                  ),
-                  icon: Icon(
-                    Icons.save,
-                    size: 50.0,
-                  ),
-                  onPressed: () async {
-                    if (formKey.currentState.validate()) {
-                      formKey.currentState.save();
-                      try {
-                        if (add) {
-                          var v = await postOccurrenceVictim(
-                              occurrenceId, victim.toJson());
-                        } else {
-                          var v = await putVictim(victim.id, victim.toJson());
+                  victim: this.victim,
+                  formKey: this.formKey,
+                  enabled: enabled,
+                  add: add),
+              Visibility(
+                visible: enabled,
+                child: Container(
+                  margin: EdgeInsets.only(top: 20.0),
+                  child: ElevatedButton.icon(
+                    label: Text(
+                      'Salvar',
+                      style: TextStyle(fontSize: 20.0),
+                    ),
+                    icon: Icon(
+                      Icons.save,
+                      size: 50.0,
+                    ),
+                    onPressed: () async {
+                      if (formKey.currentState.validate()) {
+                        formKey.currentState.save();
+                        try {
+                          if (add) {
+                            var v = await postOccurrenceVictim(
+                                occurrenceId, victim.toJson());
+                          } else {
+                            var v = await putVictim(victim.id, victim.toJson());
+                          }
+                          Navigator.pop(context, 'add');
+                        } catch (e) {
+                          showToast("Erro ao Guardar a Vitima");
                         }
-                        Navigator.pop(context, 'add');
-                      } catch (e) {
-                        showToast("Erro ao Guardar a Vitima");
+                      } else {
+                        showToast("Valor(es) Invalido(s)");
                       }
-                    } else {
-                      showToast("Valor(es) Invalido(s)");
-                    }
-                  },
-                  style: ButtonStyle(),
+                    },
+                    style: ButtonStyle(),
+                  ),
                 ),
               ),
             ],

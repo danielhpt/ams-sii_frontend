@@ -7,13 +7,14 @@ import 'package:project/widgets/lists/VictimListPage.dart';
 
 class VictimListPageState extends State<VictimListPage> {
   final int occurrenceId;
+  final bool enabled;
 
-  VictimListPageState(this.occurrenceId);
+  VictimListPageState({this.occurrenceId, this.enabled});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(title: Text('SIREPH Técnicos')),
       drawer: CustomDrawer(),
       body: Center(
         child: Column(
@@ -29,36 +30,38 @@ class VictimListPageState extends State<VictimListPage> {
               margin: EdgeInsets.only(top: 20.0),
               child: listVictims(),
             ),
-            Container(
-              margin: EdgeInsets.only(top: 20.0),
-              child: ElevatedButton.icon(
-                label: Text(
-                  'Adicionar Nova Vítima',
-                  style: TextStyle(fontSize: 20.0),
-                ),
-                icon: Icon(
-                  Icons.person_add,
-                  size: 50.0,
-                ),
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => VictimPage(
-                      victim: new Victim(
-                          evaluations: [],
-                          medicalFollowup: false,
-                          pharmacies: []),
-                      title: 'SIREPH Técnicos Home Page',
-                      add: true,
-                      occurrenceId: occurrenceId,
-                    ),
+            Visibility(
+              visible: enabled,
+              child: Container(
+                margin: EdgeInsets.only(top: 20.0),
+                child: ElevatedButton.icon(
+                  label: Text(
+                    'Adicionar Nova Vítima',
+                    style: TextStyle(fontSize: 20.0),
                   ),
-                ).then((value) {
-                  if (value = 'add' != null) setState(() {});
-                }),
-                style: ButtonStyle(),
+                  icon: Icon(
+                    Icons.person_add,
+                    size: 50.0,
+                  ),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => VictimPage(
+                        victim: new Victim(
+                            evaluations: [],
+                            medicalFollowup: false,
+                            pharmacies: []),
+                        add: true,
+                        occurrenceId: occurrenceId,
+                      ),
+                    ),
+                  ).then((value) {
+                    if (value = 'add' != null) setState(() {});
+                  }),
+                  style: ButtonStyle(),
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -91,7 +94,7 @@ class VictimListPageState extends State<VictimListPage> {
                           MaterialPageRoute(
                             builder: (context) => VictimPage(
                               victim: victim,
-                              title: 'SIREPH Técnicos Home Page',
+                              enabled: enabled,
                               add: false,
                             ),
                           ),

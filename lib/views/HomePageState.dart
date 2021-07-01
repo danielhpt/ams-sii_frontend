@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Occurrence.dart';
-import 'package:project/models/User.dart';
-import 'package:project/utils/GPS.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/OccurrenceDetailPage.dart';
-import 'package:project/widgets/forms/OccurrenceForm.dart';
 import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/HomePage.dart';
 import 'package:project/widgets/lists/OccurrencesListPage.dart';
@@ -16,12 +13,12 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
+      builder: (context, userLogged) {
+        if (!userLogged.hasData) {
           return Center(child: CircularProgressIndicator());
         } else {
           return Scaffold(
-            appBar: AppBar(title: Text(widget.title)),
+            appBar: AppBar(title: Text('SIREPH Técnicos')),
             drawer: CustomDrawer(),
             body: Center(
               child: SingleChildScrollView(
@@ -34,8 +31,7 @@ class HomePageState extends State<HomePage> {
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => OccurrencesListPage(
-                                    title: 'SIREPH Técnicos Home Page'))),
+                                builder: (context) => OccurrencesListPage())),
                         style: ButtonStyle(),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,8 +57,7 @@ class HomePageState extends State<HomePage> {
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => TeamPage(
-                                    title: 'SIREPH Técnicos Home Page'))),
+                                builder: (context) => TeamPage())),
                         style: ButtonStyle(),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -98,8 +93,7 @@ class HomePageState extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => OccurrenceDetailPage(
-                                      occurrence: occurrence,
-                                      title: 'SIREPH Técnicos Home Page')));
+                                      occurrence: occurrence)));
                         },
                         style: ButtonStyle(),
                         child: Column(

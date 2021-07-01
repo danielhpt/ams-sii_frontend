@@ -28,7 +28,7 @@ class CreateTeamPageState extends State<CreateTeamPage> {
   Widget build(BuildContext context) {
     var teamUser;
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(title: Text('SIREPH Técnicos')),
       drawer: CustomDrawer(),
       body: SingleChildScrollView(
         child: Container(
@@ -45,9 +45,7 @@ class CreateTeamPageState extends State<CreateTeamPage> {
                         children: <Widget>[
                           ListTile(
                             title: Text(technician.getFullName()),
-                            trailing: Icon(Icons.keyboard_arrow_right),
-                            leading: CircleAvatar(),
-                            onTap: () {},
+                            leading: technician.isTeamLeader ? Icon(Icons.anchor) : null,
                           ),
                         ],
                       ),
