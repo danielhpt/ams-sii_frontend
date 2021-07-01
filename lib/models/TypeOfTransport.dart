@@ -19,4 +19,21 @@ class TypeOfTransport {
       'type_of_transport': this.typeOfTransport
     };
   }
+
+  factory TypeOfTransport.fromName(String name) {
+
+    Map<String, dynamic> typeOfTransportJson = <String, dynamic>{
+      "Primário": 1,
+      "Secundário": 2,
+      "Não Transporte": 3,
+      "": null
+    };
+
+    var id = typeOfTransportJson[name];
+
+    if (id != null)
+      return TypeOfTransport(id: id, typeOfTransport: name);
+
+    return null;
+  }
 }

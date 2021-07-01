@@ -454,7 +454,7 @@ Future<Victim> getVictim(int victimId) async {
       });
 
   if (response.statusCode == 200) {
-    return Victim.fromJson(
+    return Victim.fromJsonCompleted(
         jsonDecode(utf8.decode(response.body.runes.toList())));
   } else {
     throw Exception('Failed to get Victim.');

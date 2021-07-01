@@ -4,6 +4,7 @@ import 'package:project/models/NonTransportReason.dart';
 import 'package:project/models/TypeOfTransport.dart';
 import 'package:project/models/Victim.dart';
 import 'package:project/utils/Rest.dart';
+import 'package:project/widgets/ProceduresPage.dart';
 import 'package:project/widgets/forms/VictimForm.dart';
 import 'package:project/widgets/lists/EvaluationsListPage.dart';
 import 'package:project/widgets/lists/PharmaciesListPage.dart';
@@ -513,6 +514,23 @@ class VictimFormState extends State<VictimForm> {
                   if (victim.pharmacies == null) victim.pharmacies = await getVictimPharmaciesList(victim.id);
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return PharmaciesListPage(
+                      enabled: enabled,
+                      victimId: victim.id,
+                    );
+                  }));
+                },
+              ),
+            ),
+          ),
+          Visibility(
+            visible: !add,
+            child: Card(
+              child: ListTile(
+                title: Text('Procedimentos'),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () async {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ProceduresPage(
                       enabled: enabled,
                       victimId: victim.id,
                     );

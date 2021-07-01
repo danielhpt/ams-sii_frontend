@@ -84,10 +84,48 @@ class Victim {
       this.symptom});
 
   factory Victim.fromJson(Map<String, dynamic> json) {
-    TypeOfTransport typeOfTransport =
-        TypeOfTransport.fromJson(json['type_of_transport']);
-    NonTransportReason nonTransportReason =
-        NonTransportReason.fromJson(json['non_transport_reason']);
+    TypeOfTransport typeOfTransport =  TypeOfTransport.fromJson(json['type_of_transport']);
+    NonTransportReason nonTransportReason = NonTransportReason.fromJson(json['non_transport_reason']);
+    Occurrence occurrence = Occurrence.fromJsonSimplified(json['occurrence']);
+
+    return Victim(
+        id: json['id'],
+        name: json['name'],
+        birthdate: DateTime.parse(json['birthdate'] + ' 00:00:00'),
+        age: json['age'],
+        gender: json['gender'],
+        identityNumber: json['identity_number'],
+        address: json['address'],
+        circumstances: json['circumstances'],
+        diseaseHistory: json['disease_history'],
+        allergies: json['allergies'],
+        lastMeal: json['last_meal'],
+        lastMealTime: DateTime.parse(json['last_meal_time']),
+        usualMedication: json['usual_medication'],
+        riskSituation: json['risk_situation'],
+        medicalFollowup: json['medical_followup'],
+        healthUnitOrigin: json['health_unit_origin'],
+        healthUnitDestination: json['health_unit_destination'],
+        episodeNumber: json['episode_number'],
+        typeOfTransport: typeOfTransport,
+        nonTransportReason: nonTransportReason,
+        comments: json['comments'],
+        typeOfEmergency: json['type_of_emergency'],
+        siv_sav: DateTime.parse(json['SIV_SAV']),
+        occurrence: occurrence,
+        evaluations: null,
+        pharmacies: null,
+        procedureRCP: null,
+        procedureVentilation: null,
+        procedureProtocol: null,
+        procedureCirculation: null,
+        procedureScale: null,
+        symptom: null);
+  }
+
+  factory Victim.fromJsonCompleted(Map<String, dynamic> json) {
+    TypeOfTransport typeOfTransport =  TypeOfTransport.fromName(json['type_of_transport']);
+    NonTransportReason nonTransportReason = NonTransportReason.fromName(json['non_transport_reason']);
     Occurrence occurrence = Occurrence.fromJsonSimplified(json['occurrence']);
 
     return Victim(
