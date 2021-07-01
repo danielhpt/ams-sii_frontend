@@ -90,7 +90,7 @@ class Victim {
     return Victim(
       id: json['id'],
       name: json['name'],
-      birthdate: json['birthdate'],
+      birthdate: DateTime.parse(json['birthdate'] + ' 00:00:00'),
       age: json['age'],
       gender: json['gender'],
       identityNumber: json['identity_number'],
@@ -100,7 +100,7 @@ class Victim {
       diseaseHistory: json['disease_history'],
       allergies: json['allergies'],
       lastMeal: json['last_meal'],
-      lastMealTime: json['last_meal_time'],
+      lastMealTime: DateTime.parse(json['last_meal_time']),
       usualMedication: json['usual_medication'],
       riskSituation: json['risk_situation'],
 

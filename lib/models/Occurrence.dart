@@ -31,6 +31,10 @@ class Occurrence {
       this.states});
 
   factory Occurrence.fromJsonSimplified(Map<String, dynamic> json) {
+    if (json == null) {
+      return null;
+    }
+
     return Occurrence(
       id: json['id'],
       occurrenceNumber: json['occurrence_number'],
