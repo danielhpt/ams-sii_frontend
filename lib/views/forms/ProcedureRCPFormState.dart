@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project/widgets/ProcedureRCPForm.dart';
-import '../models/ProcedureRCP.dart';
+import 'package:project/models/procedures/ProcedureRCP.dart';
+import 'package:project/widgets/forms/ProcedureRCPForm.dart';
 
 class ProcedureRCPFormState extends State<ProcedureRCPForm> {
   final formKey;

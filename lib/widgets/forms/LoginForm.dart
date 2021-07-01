@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Login.dart';
-import 'package:project/views/LoginFormState.dart';
+import 'package:project/views/forms/LoginFormState.dart';
 
 class LoginForm extends StatefulWidget {
   final formKey;

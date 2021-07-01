@@ -5,7 +5,7 @@ import 'package:project/models/TeamTechnician.dart';
 import 'package:project/models/User.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:project/utils/Utils.dart';
-import 'package:project/widgets/AddTechnicianDialog.dart';
+import 'package:project/widgets/dialogs/AddTechnicianDialog.dart';
 
 class AddTechnicianDialogState extends State<AddTechnicianDialog> {
   final formKey = GlobalKey<FormState>();

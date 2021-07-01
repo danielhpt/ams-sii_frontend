@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project/widgets/ProcedureCirculationForm.dart';
-import '../models/ProcedureCirculation.dart';
+import 'package:project/models/procedures/ProcedureCirculation.dart';
+import 'package:project/widgets/forms/ProcedureCirculationForm.dart';
+
 
 class ProcedureCirculationFormState extends State<ProcedureCirculationForm> {
   final formKey;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Pharmacy.dart';
 import 'package:project/widgets/CustomDrawer.dart';
-import 'package:project/widgets/PharmaciesListPage.dart';
+import 'package:project/widgets/lists/PharmaciesListPage.dart';
 
 class PharmaciesListPageState extends State<PharmaciesListPage> {
   final String title;

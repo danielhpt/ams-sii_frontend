@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:project/models/Occurrence.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/CustomDrawer.dart';
-import 'package:project/widgets/OccurrenceHistory.dart';
+import 'package:project/widgets/lists/OccurrencesListPage.dart';
 
-class OccurrenceHistoryState  extends State<OccurrenceHistory>  {
+class OccurrencesListPageState  extends State<OccurrencesListPage>  {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project/models/Occurrence.dart';
 import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/OccurrenceDetailPage.dart';
-import 'package:project/widgets/OccurrenceForm.dart';
+import 'package:project/widgets/forms/OccurrenceForm.dart';
 
 class OccurrenceDetailPageState extends State<OccurrenceDetailPage> {
   final formKey = GlobalKey<FormState>();

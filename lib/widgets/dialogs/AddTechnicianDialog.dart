@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Team.dart';
-import 'package:project/views/AddTechnicianDialogState.dart';
+import 'package:project/views/dialogs/AddTechnicianDialogState.dart';
 
 class AddTechnicianDialog extends StatefulWidget {
   Team team;

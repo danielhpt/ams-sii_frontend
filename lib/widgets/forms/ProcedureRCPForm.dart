@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../models/ProcedureRCP.dart';
-import 'package:project/views/ProcedureRCPFormState.dart';
+import 'package:project/models/procedures/ProcedureRCP.dart';
+import 'package:project/views/forms/ProcedureRCPFormState.dart';
 
 class ProcedureRCPForm extends StatefulWidget {
   final formKey;

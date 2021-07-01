@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:project/widgets/ProcedureProtocolForm.dart';
-import '../models/ProcedureProtocol.dart';
+import 'package:project/models/procedures/ProcedureVentilation.dart';
+import 'package:project/widgets/forms/ProcedureVentilationForm.dart';
 
-class ProcedureProtocolFormState extends State<ProcedureProtocolForm> {
+class ProcedureVentilationFormState extends State<ProcedureVentilationForm> {
   final formKey;
-  final ProcedureProtocol procedureProtocol;
+  final ProcedureVentilation procedureVentilation;
   final bool enabled;
 
-  ProcedureProtocolFormState(
-      {this.procedureProtocol, this.formKey, this.enabled});
+  ProcedureVentilationFormState(
+      {this.procedureVentilation, this.formKey, this.enabled});
 
   @override
   void initState() {
@@ -24,130 +24,125 @@ class ProcedureProtocolFormState extends State<ProcedureProtocolForm> {
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
                 return SwitchListTile(
-                  title: Text('Imobilização'),
-                  value: procedureProtocol.immobilization,
+                  title: Text('Desobstrução'),
+                  value: procedureVentilation.clearance,
                   onChanged: (bool value) {
                     setState(() {
-                      procedureProtocol.immobilization = value;
+                      procedureVentilation.clearance = value;
                     });
                   },
                 );
               },
               onSaved: (value) {
-                procedureProtocol.immobilization = value;
-              }),
+                procedureVentilation.clearance = value;
+              }
+          ),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
                 return SwitchListTile(
-                  title: Text('TEPH'),
-                  value: procedureProtocol.teph,
+                  title: Text('Tubo orofaríngeo'),
+                  value: procedureVentilation.oropharyngeal,
                   onChanged: (bool value) {
                     setState(() {
-                      procedureProtocol.teph = value;
+                      procedureVentilation.oropharyngeal = value;
                     });
                   },
                 );
               },
               onSaved: (value) {
-                procedureProtocol.teph = value;
-              }),
+                procedureVentilation.oropharyngeal = value;
+              }
+          ),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
                 return SwitchListTile(
-                  title: Text('SIV'),
-                  value: procedureProtocol.siv,
+                  title: Text('Tubo laríngeo'),
+                  value: procedureVentilation.laryngealTube,
                   onChanged: (bool value) {
                     setState(() {
-                      procedureProtocol.siv = value;
+                      procedureVentilation.laryngealTube = value;
                     });
                   },
                 );
               },
               onSaved: (value) {
-                procedureProtocol.siv = value;
-              }),
+                procedureVentilation.laryngealTube = value;
+              }
+          ),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
                 return SwitchListTile(
-                  title: Text('VV AVC'),
-                  value: procedureProtocol.vv_avc,
+                  title: Text('Tubo endotraqueal'),
+                  value: procedureVentilation.endotracheal,
                   onChanged: (bool value) {
                     setState(() {
-                      procedureProtocol.vv_avc = value;
+                      procedureVentilation.endotracheal = value;
                     });
                   },
                 );
               },
               onSaved: (value) {
-                procedureProtocol.vv_avc = value;
-              }),
+                procedureVentilation.endotracheal = value;
+              }
+          ),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
                 return SwitchListTile(
-                  title: Text('VV Coronária'),
-                  value: procedureProtocol.vv_coronary,
+                  title: Text('Máscara laríngea'),
+                  value: procedureVentilation.laryngealMask,
                   onChanged: (bool value) {
                     setState(() {
-                      procedureProtocol.vv_coronary = value;
+                      procedureVentilation.laryngealMask = value;
                     });
                   },
                 );
               },
               onSaved: (value) {
-                procedureProtocol.vv_coronary = value;
-              }),
+                procedureVentilation.laryngealMask = value;
+              }
+          ),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
                 return SwitchListTile(
-                  title: Text('VV Sépsis'),
-                  value: procedureProtocol.vv_sepsis,
+                  title: Text('Ventilação mecânica'),
+                  value: procedureVentilation.mechanicalVentilation,
                   onChanged: (bool value) {
                     setState(() {
-                      procedureProtocol.vv_sepsis = value;
+                      procedureVentilation.mechanicalVentilation = value;
                     });
                   },
                 );
               },
               onSaved: (value) {
-                procedureProtocol.vv_sepsis = value;
-              }),
+                procedureVentilation.mechanicalVentilation = value;
+              }
+          ),
           FormField(
               enabled: enabled,
               builder: (FormFieldState<bool> state) {
                 return SwitchListTile(
-                  title: Text('VV Trauma'),
-                  value: procedureProtocol.vv_trauma,
+                  title: Text('CPAP'),
+                  value: procedureVentilation.cpap,
                   onChanged: (bool value) {
                     setState(() {
-                      procedureProtocol.vv_trauma = value;
+                      procedureVentilation.cpap = value;
                     });
                   },
                 );
               },
               onSaved: (value) {
-                procedureProtocol.vv_trauma = value;
-              }),
-          FormField(
-              enabled: enabled,
-              builder: (FormFieldState<bool> state) {
-                return SwitchListTile(
-                  title: Text('VV PCR'),
-                  value: procedureProtocol.vv_pcr,
-                  onChanged: (bool value) {
-                    setState(() {
-                      procedureProtocol.vv_pcr = value;
-                    });
-                  },
-                );
-              },
-              onSaved: (value) {
-                procedureProtocol.vv_pcr = value;
-              }),
-        ]));
+                procedureVentilation.cpap = value;
+              }
+          ),
+
+        ]
+        )
+    );
   }
+
 }

@@ -1,6 +1,6 @@
-import '../models/ProcedureProtocol.dart';
 import 'package:flutter/material.dart';
-import 'package:project/views/ProcedureProtocolFormState.dart';
+import 'package:project/models/procedures/ProcedureProtocol.dart';
+import 'package:project/views/forms/ProcedureProtocolFormState.dart';
 
 class ProcedureProtocolForm extends StatefulWidget {
   final formKey;

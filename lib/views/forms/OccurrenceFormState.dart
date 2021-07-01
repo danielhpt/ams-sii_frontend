@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Occurrence.dart';
-import 'package:project/widgets/OccurrenceForm.dart';
+import 'package:project/widgets/forms/OccurrenceForm.dart';
 import 'package:project/widgets/TeamPage.dart';
 
 class OccurrenceFormState extends State<OccurrenceForm> {

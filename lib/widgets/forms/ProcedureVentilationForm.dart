@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project/views/ProcedureVentilationFormState.dart';
-import '../models/ProcedureVentilation.dart';
+import 'package:project/models/procedures/ProcedureVentilation.dart';
+import 'package:project/views/forms/ProcedureVentilationFormState.dart';
 
 class ProcedureVentilationForm extends StatefulWidget {
   final formKey;

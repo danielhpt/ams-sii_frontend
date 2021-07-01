@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:project/models/Login.dart';
 import 'package:project/utils/Utils.dart';
 import 'package:project/widgets/HomePage.dart';
-import 'package:project/widgets/LoginForm.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:progress_indicator_button/progress_button.dart';
 import 'package:project/widgets/LoginPage.dart';
+import 'package:project/widgets/forms/LoginForm.dart';
 
 class LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();

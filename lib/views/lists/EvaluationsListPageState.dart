@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Evaluation.dart';
 import 'package:project/widgets/CustomDrawer.dart';
-import 'package:project/widgets/EvaluationsListPage.dart';
+import 'package:project/widgets/lists/EvaluationsListPage.dart';
 
 class EvaluationsListPageState extends State<EvaluationsListPage> {
   final String title;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project/views/ProcedureScaleFormState.dart';
-import '../models/ProcedureScale.dart';
+import 'package:project/models/procedures/ProcedureScale.dart';
+import 'package:project/views/forms/ProcedureScaleFormState.dart';
 
 class ProcedureScaleForm extends StatefulWidget {
   final formKey;

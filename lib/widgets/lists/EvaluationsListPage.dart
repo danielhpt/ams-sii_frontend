@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Evaluation.dart';
-import 'package:project/views/EvaluationsListPageState.dart';
+import 'package:project/views/lists/EvaluationsListPageState.dart';
 
 class EvaluationsListPage extends StatefulWidget {
   final String title;

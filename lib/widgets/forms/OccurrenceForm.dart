@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Occurrence.dart';
-import 'package:project/views/OccurrenceFormState.dart';
+import 'package:project/views/forms/OccurrenceFormState.dart';
 
 class OccurrenceForm extends StatefulWidget {
   final formKey;

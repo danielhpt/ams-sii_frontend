@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Victim.dart';
 import 'package:project/widgets/CustomDrawer.dart';
-import 'package:project/widgets/OccurrenceForm.dart';
-import 'package:project/widgets/VictimForm.dart';
 import 'package:project/widgets/VictimPage.dart';
+import 'package:project/widgets/forms/VictimForm.dart';
 
 class VictimPageState extends State<VictimPage> {
   final formKey = GlobalKey<FormState>();

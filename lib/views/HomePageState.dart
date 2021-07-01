@@ -4,10 +4,10 @@ import 'package:project/models/User.dart';
 import 'package:project/utils/GPS.dart';
 import 'package:project/utils/Rest.dart';
 import 'package:project/widgets/OccurrenceDetailPage.dart';
-import 'package:project/widgets/OccurrenceForm.dart';
+import 'package:project/widgets/forms/OccurrenceForm.dart';
 import 'package:project/widgets/CustomDrawer.dart';
 import 'package:project/widgets/HomePage.dart';
-import 'package:project/widgets/OccurrenceHistory.dart';
+import 'package:project/widgets/lists/OccurrencesListPage.dart';
 import 'package:project/widgets/TeamPage.dart';
 
 class HomePageState extends State<HomePage> {
@@ -47,7 +47,7 @@ class HomePageState extends State<HomePage> {
                         onPressed: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => OccurrenceHistory(title: 'SIREPH Técnicos Home Page'))),
+                                builder: (context) => OccurrencesListPage(title: 'SIREPH Técnicos Home Page'))),
                         style: ButtonStyle(),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,

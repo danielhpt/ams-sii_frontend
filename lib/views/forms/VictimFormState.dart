@@ -1,9 +1,9 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:project/models/Victim.dart';
-import 'package:project/widgets/EvaluationsListPage.dart';
-import 'package:project/widgets/PharmaciesListPage.dart';
-import 'package:project/widgets/VictimForm.dart';
+import 'package:project/widgets/forms/VictimForm.dart';
+import 'package:project/widgets/lists/EvaluationsListPage.dart';
+import 'package:project/widgets/lists/PharmaciesListPage.dart';
 
 class VictimFormState extends State<VictimForm> {
   final formKey;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/Victim.dart';
-import 'package:project/views/VictimFormState.dart';
+import 'package:project/views/forms/VictimFormState.dart';
 
 class VictimForm extends StatefulWidget {
   final formKey;
