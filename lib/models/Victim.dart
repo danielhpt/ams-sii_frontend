@@ -164,17 +164,38 @@ class Victim {
 
     return <String, dynamic>{
       'id': this.id,
-      'name': name,
+      'name': this.name,
       'birthdate': birthdate.toString(),
+      'age': this.age,
+      'gender': this.gender,
+      'identity_number': this.identityNumber,
+      'address': this.address,
+      'circumstances': this.circumstances,
+      'disease_history': this.diseaseHistory,
+      'allergies': this.allergies,
+      'last_meal': this.lastMeal,
+      'last_meal_time': lastMealTime.toString(),
+      'usual_medication': this.usualMedication,
+      'risk_situation': this.riskSituation,
+      'medical_followup': this.medicalFollowup,
+      'health_unit_origin': this.healthUnitOrigin,
+      'health_unit_destination': this.healthUnitDestination,
+      'episode_number': this.episodeNumber,
+      'comments': this.comments,
+      'type_of_emergency': this.typeOfEmergency,
+      'siv_sav': this.siv_sav.toString(),
+      'type_of_transport': typeOfTransport.toJson(),
+      'non_transport_reason': nonTransportReason.toJson(),
       'evaluations': eJson,
       'pharmacies': pJson,
-      'occurrence': procedureRCP.toJson(),
+      'occurrence': occurrence.toJson(),
       'procedure_rcp': procedureRCP.toJson(),
       'procedure_ventilation': procedureVentilation.toJson(),
       'procedure_circulation': procedureCirculation.toJson(),
       'procedure_protocol': procedureProtocol.toJson(),
       'procedure_scale': procedureScale.toJson(),
       'symptom': symptom.toJson()
+
     };
   }
 }
